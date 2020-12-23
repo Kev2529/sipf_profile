@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
             <div name="options_active" position="after">
-                <div name="purchase_order">
+                <div name="purchase_order" attrs="{'invisible': [('is_template','=',True)]}">
                     <div>
                         <label for="purchase_order_id" class="oe_inline" string="Linked Purchase Order :"/>
                         <field name="purchase_order_id" class="oe_inline oe_input_align"/>
