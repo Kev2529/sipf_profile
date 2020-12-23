@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_nomenclature_sipf_tree" model="ir.ui.view">
+        <field name="name">view.nomenclature.sipf.tree</field>
+        <field name="model">nomenclature.sipf</field>
+        <field name="type">tree</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <tree string="Label">
+            <field name="name"/>
+        </tree>
+        </field>
+    </record>
+
+    <record id="view_nomenclature_sipf_form" model="ir.ui.view">
+        <field name="name">view.nomenclature.sipf.form</field>
+        <field name="model">nomenclature.sipf</field>
+        <field name="type">form</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <form string="Label">
+            <field name="name"/>
+            <field name="nomenclature_europe_ids"/>
+        </form>
+        </field>
+    </record>
+    <record id="view_nomenclature_europe_tree" model="ir.ui.view">
+        <field name="name">view.nomenclature.europe.tree</field>
+        <field name="model">nomenclature.europe</field>
+        <field name="type">tree</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <tree string="Label">
+            <field name="name"/>
+        </tree>
+        </field>
+    </record>
+
+    <record id="view_nomenclature_europe_form" model="ir.ui.view">
+        <field name="name">view.nomenclature.europe.form</field>
+        <field name="model">nomenclature.europe</field>
+        <field name="type">form</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <form string="Label">
+            <field name="name"/>
+            <field name="nomenclature_europe_ids"/>
+        </form>
+        </field>
+    </record>
+</odoo>

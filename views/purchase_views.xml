@@ -9,6 +9,9 @@
                 <field name="project_id" attrs="{'invisible': [('state','not in',('purchase','done'))]}"/>
                 <field name="department_id" attrs="{'readonly': [('state','in',('purchase','done'))]}"/>
             </field>
+            <xpath expr="//field[@name='account_analytic_id']" position="before">
+                <field name="nomenclature_europe_id" optional="hide"/>
+            </xpath>
         </field>
     </record>
 </odoo>

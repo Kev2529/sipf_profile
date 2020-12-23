@@ -2,7 +2,6 @@ from odoo import api, exceptions, fields, models, _
 
 
 class PurchaseOrder(models.Model):
-    _name = 'purchase.order'
     _inherit = 'purchase.order'
 
     project_id = fields.Many2one(
@@ -13,4 +12,12 @@ class PurchaseOrder(models.Model):
     @api.onchange('requisition_id')
     def _onchange_requisition_id(self):
         super(PurchaseOrder, self)._onchange_requisition_id()
-        self.department_id = self.requisition_id.department_id.id
+        self.department_id = self.requisition_id.department_id.id or False
+
+
+class PurchaseOrderLine(models.Model):
+    _name = 'purchase.order.line'
+    _inherit = 'purchase.order.line'
+
+    nomenclature_europe_id = fields.Many2one(
+        comodel_name='nomenclature.europe', string='Nomenclature Europe',)

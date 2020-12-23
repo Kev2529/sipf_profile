@@ -8,6 +8,9 @@
             <field name="vendor_id" position="after">
                 <field name="department_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
             </field>
+            <xpath expr="//field[@name='account_analytic_id']" position="before">
+                <field name="nomenclature_europe_id" optional="hide"/>
+            </xpath>
         </field>
     </record>
 </odoo>

@@ -4,3 +4,5 @@
 from . import project
 from . import purchase
 from . import purchase_requisition
+from . import nomenclature_sipf
+from . import nomenclature_europe
