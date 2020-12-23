@@ -3,3 +3,4 @@
 
 from . import project
 from . import purchase
+from . import purchase_requisition

@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <field name="origin" position="after">
                 <field name="project_id" attrs="{'invisible': [('state','not in',('purchase','done'))]}"/>
+                <field name="department_id" attrs="{'readonly': [('state','in',('purchase','done'))]}"/>
             </field>
         </field>
     </record>

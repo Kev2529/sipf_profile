@@ -17,7 +17,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'calendar',
         # 'project_template',
         # 'project_category',
-        'purchase',
+        'purchase_requisition',
         'hr_holidays',
     ],
 
@@ -25,6 +25,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
     'data': [
         'views/project_views.xml',
         'views/purchase_views.xml',
+        'views/purchase_requisition_views.xml',
         'views/account_move_views.xml',
     ],
     # only loaded in demonstration mode
