@@ -26,6 +26,10 @@ class PurchaseRequisition(models.Model):
         help='This account will be propagated to all lines, if you need '
         'to use different accounts, define the account at line level.',
     )
+    nomenclature_europe_id = fields.Many2one(
+        comodel_name='nomenclature.europe', string='Nomenclature Europe',
+        inverse='_inverse_nomenclature',
+    )
 
     @api.onchange('user_id')
     def onchange_user_id(self):
@@ -53,6 +57,12 @@ class PurchaseRequisition(models.Model):
             if rec.analytic_tag_ids:
                 for line in rec.line_ids:
                     line.analytic_tag_ids = rec.analytic_tag_ids
+
+    def _inverse_nomenclature(self):
+        for rec in self:
+            if rec.nomenclature_europe_id:
+                for line in rec.line_ids:
+                    line.nomenclature_europe_id = rec.nomenclature_europe_id
 
 
 class PurchaseRequisitionLine(models.Model):
