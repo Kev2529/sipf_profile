@@ -7,10 +7,15 @@
         <field name="arch" type="xml">
             <field name="vendor_id" position="after">
                 <field name="department_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                <field name="account_analytic_id" attrs="{'readonly': [('state','not in',('draft'))]}" groups="analytic.group_analytic_accounting"/>
+                <field name="analytic_tag_ids" attrs="{'readonly': [('state','not in',('draft'))]}" groups="analytic.group_analytic_tags" widget="many2many_tags"/>
             </field>
-            <xpath expr="//field[@name='account_analytic_id']" position="before">
+            <xpath expr="//tree/field[@name='account_analytic_id']" position="before">
                 <field name="nomenclature_europe_id" optional="hide"/>
             </xpath>
+            <field name="line_ids" position="attributes">
+                <attribute name="context">{'default_account_analytic_id': account_analytic_id}</attribute>
+            </field>
         </field>
     </record>
 </odoo>
