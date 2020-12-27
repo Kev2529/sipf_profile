@@ -4,9 +4,21 @@ from odoo import api, exceptions, fields, models, _
 class PurchaseRequisition(models.Model):
     _inherit = 'purchase.requisition'
 
+    def _get_my_department(self):
+        employees = self.env.user.employee_ids
+        return (employees[0].department_id if employees
+                else self.env['hr.department'] or False)
+
     department_id = fields.Many2one(
         comodel_name='hr.department', string='Department',
+        default=_get_my_department,
         help='Select the Department the purchase requisition is for')
+
+    @api.onchange('user_id')
+    def onchange_user_id(self):
+        employees = self.user_id.employee_ids
+        self.department_id = (employees[0].department_id if employees
+                              else self.env['hr.department'] or False)
 
 
 class PurchaseRequisitionLine(models.Model):
