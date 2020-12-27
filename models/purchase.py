@@ -21,3 +21,12 @@ class PurchaseOrderLine(models.Model):
 
     nomenclature_europe_id = fields.Many2one(
         comodel_name='nomenclature.europe', string='Nomenclature Europe',)
+
+    def _prepare_account_move_line(self, move=False):
+        res = super(PurchaseOrderLine, self)._prepare_account_move_line(move=move)
+        nomenclature = self.nomenclature_europe_id
+        if nomenclature:
+            res.update({
+                'nomenclature_europe_id': nomenclature,
+            })
+        return res
