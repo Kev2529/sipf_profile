@@ -16,7 +16,8 @@ Ce module permet de personnaliser Odoo pour le SIPF
     'depends': [
         'calendar',
         'project_template',
-        # 'project_category',
+        'project_category',
+        'project_task_dependency',
         'purchase_requisition',
         'hr_holidays',
     ],
