@@ -20,7 +20,9 @@ class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
     nomenclature_europe_id = fields.Many2one(
-        comodel_name='nomenclature.europe', string='Nomenclature Europe',)
+        comodel_name='nomenclature.europe', string='Nomenclature Europe',
+        domain=[('nomenclature_sipf_id', '!=', False)],
+    )
 
     def _prepare_account_move_line(self, move=False):
         res = super(PurchaseOrderLine, self)._prepare_account_move_line(move=move)

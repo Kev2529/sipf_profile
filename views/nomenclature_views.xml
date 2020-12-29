@@ -1,51 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="nomenclature_sipf_action" model="ir.actions.act_window">
+        <field name="name">Nomenclature SIPF</field>
+        <field name="res_model">nomenclature.sipf</field>
+        <field name="context">{}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="nomenclature_europe_action" model="ir.actions.act_window">
+        <field name="name">Nomenclature Europe</field>
+        <field name="res_model">nomenclature.europe</field>
+        <field name="context">{}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_purchase_nomenclature_sipf"
+        sequence="10"
+        parent="purchase.menu_purchase_config"
+        action="nomenclature_sipf_action"/>
+    <menuitem
+        id="menu_purchase_nomenclature_europe"
+        sequence="10"
+        parent="purchase.menu_purchase_config"
+        action="nomenclature_europe_action"/>
+
     <record id="view_nomenclature_sipf_tree" model="ir.ui.view">
         <field name="name">view.nomenclature.sipf.tree</field>
         <field name="model">nomenclature.sipf</field>
         <field name="type">tree</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-        <tree string="Label">
-            <field name="name"/>
-        </tree>
+            <tree string="Nomenclature SIPF">
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
         </field>
     </record>
-
     <record id="view_nomenclature_sipf_form" model="ir.ui.view">
         <field name="name">view.nomenclature.sipf.form</field>
         <field name="model">nomenclature.sipf</field>
         <field name="type">form</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-        <form string="Label">
-            <field name="name"/>
-            <field name="nomenclature_europe_ids"/>
-        </form>
+            <form string="Nomenclature SIPF">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="nomenclature_europe_ids"/>
+            </form>
         </field>
     </record>
+    <record id="view_nomenclature_sipf_search" model="ir.ui.view">
+        <field name="name">nomenclature.sipf.search</field>
+        <field name="model">nomenclature.sipf</field>
+        <field name="type">search</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search string="Nomenclature SIPF">
+                <field name="name" filter_domain="['|', ('description','ilike',self), ('name','ilike',self)]" string="Nomenclature SIPF"/>
+            </search>
+        </field>
+    </record>
+
     <record id="view_nomenclature_europe_tree" model="ir.ui.view">
         <field name="name">view.nomenclature.europe.tree</field>
         <field name="model">nomenclature.europe</field>
         <field name="type">tree</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-        <tree string="Label">
-            <field name="name"/>
-        </tree>
+            <tree string="Nomenclature Europe">
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
         </field>
     </record>
-
     <record id="view_nomenclature_europe_form" model="ir.ui.view">
         <field name="name">view.nomenclature.europe.form</field>
         <field name="model">nomenclature.europe</field>
         <field name="type">form</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-        <form string="Label">
-            <field name="name"/>
-            <field name="nomenclature_europe_ids"/>
-        </form>
+            <form string="Nomenclature Europe">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="nomenclature_sipf_id"/>
+            </form>
+        </field>
+    </record>
+    <record id="view_nomenclature_europe_search" model="ir.ui.view">
+        <field name="name">nomenclature.europe.search</field>
+        <field name="model">nomenclature.europe</field>
+        <field name="type">search</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search string="Nomenclature Europe">
+                <field name="name" filter_domain="['|', ('description','ilike',self), ('name','ilike',self)]" string="Nomenclature Europe"/>
+                <field name="nomenclature_sipf_id" filter_domain="['|', ('nomenclature_sipf_id.description','ilike',self), ('nomenclature_sipf_id.name','ilike',self)]" string="Nomenclature SIPF"/>
+            </search>
         </field>
     </record>
 </odoo>

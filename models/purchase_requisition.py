@@ -29,6 +29,7 @@ class PurchaseRequisition(models.Model):
     nomenclature_europe_id = fields.Many2one(
         comodel_name='nomenclature.europe', string='Nomenclature Europe',
         inverse='_inverse_nomenclature',
+        domain=[('nomenclature_sipf_id', '!=', False)],
     )
 
     @api.onchange('user_id')
@@ -69,7 +70,9 @@ class PurchaseRequisitionLine(models.Model):
     _inherit = 'purchase.requisition.line'
 
     nomenclature_europe_id = fields.Many2one(
-        comodel_name='nomenclature.europe', string='Nomenclature Europe',)
+        comodel_name='nomenclature.europe', string='Nomenclature Europe',
+        domain=[('nomenclature_sipf_id', '!=', False)],
+    )
 
     def _prepare_purchase_order_line(
             self, name, product_qty=0.0, price_unit=0.0, taxes_ids=False):
