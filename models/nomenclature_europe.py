@@ -13,11 +13,9 @@ class NomenclatureEurope(models.Model):
     nomenclature_sipf_id = fields.Many2one(
         comodel_name='nomenclature.sipf', string='SIPF Nomenclature',
         help='SIPF Nomenclature')
-    company_id = fields.Many2one('res.company', string='Company', required=True, readonly=True,
-                                 default=lambda self: self.env.company)
 
     _sql_constraints = [
-        ('code_company_uniq', 'unique (name,company_id)', 'The code of the nomenclature must be unique per company !')
+        ('code_company_uniq', 'unique (name)', 'The code of the nomenclature must be unique !')
     ]
 
     def name_get(self):
