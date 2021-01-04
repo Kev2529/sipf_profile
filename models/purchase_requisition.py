@@ -26,11 +26,6 @@ class PurchaseRequisition(models.Model):
         help='This account will be propagated to all lines, if you need '
         'to use different accounts, define the account at line level.',
     )
-    nomenclature_europe_id = fields.Many2one(
-        comodel_name='nomenclature.europe', string='Nomenclature Europe',
-        inverse='_inverse_nomenclature',
-        domain=[('nomenclature_sipf_id', '!=', False)],
-    )
 
     @api.onchange('user_id')
     def onchange_user_id(self):
@@ -59,12 +54,6 @@ class PurchaseRequisition(models.Model):
                 for line in rec.line_ids:
                     line.analytic_tag_ids = rec.analytic_tag_ids
 
-    def _inverse_nomenclature(self):
-        for rec in self:
-            if rec.nomenclature_europe_id:
-                for line in rec.line_ids:
-                    line.nomenclature_europe_id = rec.nomenclature_europe_id
-
 
 class PurchaseRequisitionLine(models.Model):
     _inherit = 'purchase.requisition.line'
@@ -81,4 +70,13 @@ class PurchaseRequisitionLine(models.Model):
         nomenclature = self.nomenclature_europe_id
         if nomenclature:
             res['nomenclature_europe_id'] = nomenclature.id
+        return res
+
+    @api.onchange("product_id")
+    def _onchange_product_id(self):
+        res = super(PurchaseRequisitionLine, self)._onchange_product_id()
+        if self.product_id:
+            nomenclature = self.product_id.nomenclature_europe_id
+            if nomenclature:
+                self.nomenclature_europe_id = nomenclature
         return res

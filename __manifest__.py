@@ -24,6 +24,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
 
     # always loaded
     'data': [
+        'views/product_views.xml',
         'views/project_views.xml',
         'views/purchase_views.xml',
         'views/purchase_requisition_views.xml',
