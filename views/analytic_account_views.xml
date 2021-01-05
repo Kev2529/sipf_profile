@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_analytic_account_search_sipf" model="ir.ui.view">
+        <field name="name">view.account.analytic.account.search.sipf</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_account_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <filter name="associatedpartner" position="after">
+                <filter string="Analytic Group" name="analyticgroup" domain="[]" context="{'group_by': 'group_id'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>
