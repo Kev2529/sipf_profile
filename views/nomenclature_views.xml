@@ -42,9 +42,11 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <form string="Nomenclature SIPF">
-                <field name="name"/>
-                <field name="description"/>
-                <field name="nomenclature_europe_ids"/>
+                <group>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="nomenclature_europe_ids"/>
+                </group>
             </form>
         </field>
     </record>
@@ -79,9 +81,11 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <form string="Nomenclature Europe">
-                <field name="name"/>
-                <field name="description"/>
-                <field name="nomenclature_sipf_id"/>
+                <group>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="nomenclature_sipf_id"/>
+                </group>
             </form>
         </field>
     </record>
