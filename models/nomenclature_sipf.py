@@ -1,5 +1,6 @@
 from odoo import api, exceptions, fields, models, _
 from odoo.osv import expression
+from odoo.exceptions import ValidationError
 
 
 class NomenclatureSipf(models.Model):
@@ -17,6 +18,17 @@ class NomenclatureSipf(models.Model):
     _sql_constraints = [
         ('code_company_uniq', 'unique (name,company_id)', 'The code of the nomenclature must be unique per company !')
     ]
+
+    @api.constrains('nomenclature_europe_ids')
+    def _constrains_nomenclature_europe_ids(self):
+        if not self.nomenclature_europe_ids or len(self.nomenclature_europe_ids) == 0:
+            raise ValidationError("You must add at least one CPV code to the SIPF code")
+
+    @api.model
+    def create(self, values):
+        if 'nomenclature_europe_ids' not in values:
+            values['nomenclature_europe_ids'] = False
+        return super(NomenclatureSipf, self).create(values)
 
     def name_get(self):
         res = []
