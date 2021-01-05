@@ -18,6 +18,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'project_template',
         'project_category',
         'project_task_dependency',
+        'purchase_stock',
         'purchase_requisition',
         'hr_holidays',
     ],
