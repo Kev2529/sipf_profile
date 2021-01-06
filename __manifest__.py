@@ -33,6 +33,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'views/nomenclature_views.xml',
         'views/analytic_account_views.xml',
         'security/ir.model.access.csv',
+        'data/analytic_account_data.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

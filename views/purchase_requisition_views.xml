@@ -13,6 +13,9 @@
             <xpath expr="//tree/field[@name='account_analytic_id']" position="before">
                 <field name="nomenclature_europe_id" optional="hide"/>
             </xpath>
+            <xpath expr="//tree/field[@name='account_analytic_id']" position="attributes">
+                <attribute name="domain">['|', ('company_id', '=', False), ('company_id', '=', parent.company_id), ('is_project', '=', True)]</attribute>
+            </xpath>
             <field name="line_ids" position="attributes">
                 <attribute name="context">{'default_account_analytic_id': account_analytic_id}</attribute>
             </field>

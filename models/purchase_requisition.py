@@ -17,6 +17,7 @@ class PurchaseRequisition(models.Model):
         'account.analytic.account', string='Analytic Account',
         compute='_compute_analytic_account',
         inverse='_inverse_analytic_account',
+        domain=[('is_project', '=', True)],
         help='This account will be propagated to all lines, if you need '
         'to use different accounts, define the account at line level.',
     )
@@ -62,6 +63,10 @@ class PurchaseRequisitionLine(models.Model):
         comodel_name='nomenclature.europe', string='Nomenclature Europe',
         domain=[('nomenclature_sipf_id', '!=', False)],
     )
+    account_analytic_id = fields.Many2one(
+        'account.analytic.account',
+        domain=[('is_project', '=', True)],
+        string='Analytic Account')
 
     def _prepare_purchase_order_line(
             self, name, product_qty=0.0, price_unit=0.0, taxes_ids=False):

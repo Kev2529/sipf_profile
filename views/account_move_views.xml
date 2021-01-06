@@ -8,6 +8,15 @@
             <xpath expr="//field[@name='line_ids']/tree/field[@name='analytic_account_id']" position="before">
                 <field name="nomenclature_europe_id" optional="show"/>
             </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='analytic_account_id']" position="attributes">
+                <attribute name="domain">['|', ('company_id', '=', False), ('company_id', '=', parent.company_id), ('is_project', '=', True)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='analytic_account_id']" position="before">
+                <field name="nomenclature_europe_id" optional="show"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='analytic_account_id']" position="attributes">
+                <attribute name="domain">['|', ('company_id', '=', False), ('company_id', '=', parent.company_id), ('is_project', '=', True)]</attribute>
+            </xpath>
             <xpath expr="//field[@name='invoice_line_ids']/form/sheet/field[@name='name']" position="after">
                 <field name="purchase_order_id" attrs="{'column_invisible': [('parent.move_type', '!=', 'in_invoice')]}"/>
             </xpath>
