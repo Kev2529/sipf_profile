@@ -7,7 +7,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="categ_id" position="after">
-                <field name="nomenclature_europe_id"/>
+                <field name="nomenclature_europe_id" string="Nomenclature (SIPF/CPV)"/>
             </field>
         </field>
     </record>

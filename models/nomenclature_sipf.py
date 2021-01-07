@@ -11,7 +11,7 @@ class NomenclatureSipf(models.Model):
     description = fields.Char(string='Description', help='Description Nomenclature SIPF')
     nomenclature_europe_ids = fields.One2many(
         comodel_name='nomenclature.europe', inverse_name='nomenclature_sipf_id',
-        string='European Nomenclature', help='The corresponding European Nomenclature')
+        string='European CPV Nomenclature', help='The corresponding European CPV Nomenclature')
     company_id = fields.Many2one('res.company', string='Company', required=True, readonly=True,
                                  default=lambda self: self.env.company)
 

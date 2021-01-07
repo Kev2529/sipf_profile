@@ -7,9 +7,9 @@ class NomenclatureEurope(models.Model):
     _description = 'European Nomenclature'
 
     name = fields.Char(string='Code', size=64,
-                       help='Code for European Nomenclature')
+                       help='Code for European CPV Nomenclature')
     description = fields.Char(string='Description',
-                              help='Description for European Nomenclature')
+                              help='Description for European CPV Nomenclature')
     nomenclature_sipf_id = fields.Many2one(
         comodel_name='nomenclature.sipf', string='SIPF Nomenclature',
         help='SIPF Nomenclature')
