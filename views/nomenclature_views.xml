@@ -45,7 +45,7 @@
                 <group>
                     <field name="name"/>
                     <field name="description"/>
-                    <field name="nomenclature_europe_ids"/>
+                    <field name="nomenclature_europe_ids" widget="many2many"/>
                 </group>
             </form>
         </field>
