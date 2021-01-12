@@ -5,6 +5,7 @@ from odoo.exceptions import ValidationError
 
 class NomenclatureSipf(models.Model):
     _name = 'nomenclature.sipf'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Nomenclature interne au SIPF'
 
     name = fields.Char(string='Code', size=64, help='Code Nomenclature SIPF')
