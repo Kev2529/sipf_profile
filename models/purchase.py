@@ -23,12 +23,39 @@ class PurchaseOrderLine(models.Model):
         comodel_name='nomenclature.europe', string='Nomenclature Europe',
         domain=[('nomenclature_sipf_id', '!=', False)],
     )
+    account_budget_id = fields.Many2one(
+        'account.account', string='Budgeted Account',
+        index=True, ondelete="cascade",
+        domain="[('deprecated', '=', False), ('company_id', '=', 'company_id'),('is_off_balance', '=', False)]",
+        check_company=True,
+        tracking=True)
+
+    def _get_computed_account(self):
+        self.ensure_one()
+        self = self.with_company(self.order_id.company_id)
+
+        if not self.product_id:
+            return
+
+        fiscal_position = self.order_id.fiscal_position_id
+        accounts = self.product_id.product_tmpl_id.get_product_accounts(fiscal_pos=fiscal_position)
+        return accounts['expense'] or self.account_budget_id
+
+    def _product_id_change(self):
+        super(PurchaseOrderLine, self)._product_id_change()
+        self.account_budget_id = self._get_computed_account()
 
     def _prepare_account_move_line(self, move=False):
         res = super(PurchaseOrderLine, self)._prepare_account_move_line(move=move)
         nomenclature = self.nomenclature_europe_id
+        account = self.account_budget_id
         if nomenclature:
             res.update({
                 'nomenclature_europe_id': nomenclature,
+                'account_budget_id': account,
+            })
+        if account:
+            res.update({
+                'account_budget_id': account,
             })
         return res

@@ -5,11 +5,17 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="purchase.view_move_form_inherit_purchase"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='account_id']" position="before">
+                <field name="account_budget_id" optional="show"/>
+            </xpath>
             <xpath expr="//field[@name='line_ids']/tree/field[@name='analytic_account_id']" position="before">
                 <field name="nomenclature_europe_id" optional="show"/>
             </xpath>
             <xpath expr="//field[@name='line_ids']/tree/field[@name='analytic_account_id']" position="attributes">
                 <attribute name="domain">['|', ('company_id', '=', False), ('company_id', '=', parent.company_id), ('is_project', '=', True)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='account_id']" position="before">
+                <field name="account_budget_id" optional="show"/>
             </xpath>
             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='analytic_account_id']" position="before">
                 <field name="nomenclature_europe_id" optional="show"/>
