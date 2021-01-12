@@ -35,7 +35,9 @@ class NomenclatureEurope(models.Model):
                       ('nomenclature_sipf_id', operator, name),
                       ('nomenclature_sipf_id.description', operator, name),
                       ('description', operator, name),
-                      ('name', operator, name),
+                      ('name', '=ilike', name.split(' ')[0] + '%')
                       ]
+            if operator in expression.NEGATIVE_TERM_OPERATORS:
+                domain = ['&', '!'] + domain[1:]
             return self._search(expression.AND([domain, args]), limit=limit, access_rights_uid=name_get_uid)
         return super(NomenclatureEurope, self)._name_search(name=name, args=args, operator=operator, limit=limit, name_get_uid=name_get_uid)

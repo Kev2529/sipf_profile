@@ -103,7 +103,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <search string="Nomenclature Europe">
-                <field name="name" filter_domain="['|', ('description','ilike',self), ('name','ilike',self)]" string="Nomenclature Europe"/>
+                <field name="name" filter_domain="['|', ('description','ilike',self), ('name','=like',str(self)+'%')]" string="Nomenclature Europe"/>
                 <field name="nomenclature_sipf_id" filter_domain="['|', ('nomenclature_sipf_id.description','ilike',self), ('nomenclature_sipf_id.name','ilike',self)]" string="Nomenclature SIPF"/>
             </search>
         </field>
