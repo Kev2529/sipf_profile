@@ -8,11 +8,34 @@ class PurchaseOrder(models.Model):
         comodel_name='project.project', string='Linked Project',
         help='Choose the Project this purchase order is linked to')
     department_id = fields.Many2one(comodel_name='hr.department', string='Department', help='This is the Department the purchase order is for')
+    account_budget_id = fields.Many2one(
+        'account.account', string='Budgeted Account',
+        compute='_compute_budget_account',
+        inverse='_inverse_budget_account',
+        index=True, ondelete="cascade",
+        domain="[('deprecated', '=', False), ('company_id', '=', 'company_id'),('is_off_balance', '=', False)]",
+        check_company=True,
+        tracking=True)
 
     @api.onchange('requisition_id')
     def _onchange_requisition_id(self):
         super(PurchaseOrder, self)._onchange_requisition_id()
         self.department_id = self.requisition_id.department_id.id or False
+
+    @api.depends("order_line.account_budget_id")
+    def _compute_budget_account(self):
+        for rec in self:
+            account = rec.mapped("order_line.account_budget_id")
+            if len(account) == 1:
+                rec.account_budget_id = account.id
+            else:
+                rec.account_budget_id = False
+
+    def _inverse_budget_account(self):
+        for rec in self:
+            if rec.account_budget_id:
+                for line in rec.order_line:
+                    line.account_budget_id = rec.account_budget_id
 
 
 class PurchaseOrderLine(models.Model):
@@ -27,8 +50,7 @@ class PurchaseOrderLine(models.Model):
         'account.account', string='Budgeted Account',
         index=True, ondelete="cascade",
         domain="[('deprecated', '=', False), ('company_id', '=', 'company_id'),('is_off_balance', '=', False)]",
-        check_company=True,
-        tracking=True)
+        check_company=True)
 
     def _get_computed_account(self):
         self.ensure_one()

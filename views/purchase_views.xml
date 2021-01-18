@@ -8,13 +8,17 @@
             <field name="origin" position="after">
                 <field name="project_id" attrs="{'invisible': [('state','not in',('purchase','done'))]}"/>
                 <field name="department_id" attrs="{'readonly': [('state','in',('purchase','done'))]}"/>
+                <field name="account_budget_id"
+                    domain="[('deprecated', '=', False), ('user_type_id.type', 'not in', ('receivable', 'payable')), ('company_id', '=', company_id), ('is_off_balance', '=', False)]"
+                    attrs="{'readonly': [('state','not in',('draft'))]}"
+                    groups="account.group_account_readonly"/>
             </field>
             <xpath expr="//field[@name='account_analytic_id']" position="before">
                 <field name="account_budget_id"
                     groups="account.group_account_readonly"
                     options="{'no_create': True}"
                     domain="[('deprecated', '=', False), ('user_type_id.type', 'not in', ('receivable', 'payable')), ('company_id', '=', parent.company_id), ('is_off_balance', '=', False)]"
-                    attrs="{'required': [('display_type', '=', False)]}"/>
+                    attrs="{'readonly': [('state','not in',('draft'))], 'required': [('display_type', '=', False)]}"/>
                 <field name="nomenclature_europe_id" optional="hide"/>
             </xpath>
             <xpath expr="//field[@name='account_analytic_id']" position="attributes">
