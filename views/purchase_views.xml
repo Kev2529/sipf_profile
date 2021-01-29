@@ -18,7 +18,7 @@
                     groups="account.group_account_readonly"
                     options="{'no_create': True}"
                     domain="[('deprecated', '=', False), ('user_type_id.type', 'not in', ('receivable', 'payable')), ('company_id', '=', parent.company_id), ('is_off_balance', '=', False)]"
-                    attrs="{'readonly': [('state','not in',('draft'))], 'required': [('display_type', '=', False)]}"/>
+                    attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="nomenclature_europe_id" optional="hide"/>
             </xpath>
             <xpath expr="//field[@name='account_analytic_id']" position="attributes">
