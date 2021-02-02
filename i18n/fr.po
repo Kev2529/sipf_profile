@@ -1,0 +1,493 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sipf_profile
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-01 21:27+0000\n"
+"PO-Revision-Date: 2021-02-01 21:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model,name:sipf_profile.model_account_analytic_account
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition__account_analytic_id
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition_line__account_analytic_id
+msgid "Analytic Account"
+msgstr "Projet"
+
+#. module: sipf_profile
+#: model_terms:ir.ui.view,arch_db:sipf_profile.view_account_analytic_account_search_sipf
+msgid "Analytic Group"
+msgstr "Groupe analytique"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition__analytic_tag_ids
+msgid "Analytic Tags"
+msgstr "Imputations budgétaires"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_account_move_line__account_budget_id
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order__account_budget_id
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order_line__account_budget_id
+msgid "Budgeted Account"
+msgstr "Article budgétaire"
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_purchase_order__project_id
+msgid "Choose the Project this purchase order is linked to"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_project_project__purchase_order_id
+msgid "Choose the Purchase Order this project is linked to"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe__name
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__name
+msgid "Code"
+msgstr "Code"
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__name
+msgid "Code Nomenclature SIPF"
+msgstr "Code Nomenclature SIPF"
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_europe__name
+msgid "Code for European CPV Nomenclature"
+msgstr "Code pour Nomenclature Européenne CPV"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe__create_uid
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe__create_date
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order__department_id
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition__department_id
+msgid "Department"
+msgstr "Département"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe__description
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__description
+msgid "Description"
+msgstr "Description"
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__description
+msgid "Description Nomenclature SIPF"
+msgstr "Description Nomenclature SIPF"
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_europe__description
+msgid "Description for European CPV Nomenclature"
+msgstr "Description pour Nomenclature Européenne CPV"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_account_analytic_account__display_name
+#: model:ir.model.fields,field_description:sipf_profile.field_account_invoice_report__display_name
+#: model:ir.model.fields,field_description:sipf_profile.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe__display_name
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__display_name
+#: model:ir.model.fields,field_description:sipf_profile.field_product_template__display_name
+#: model:ir.model.fields,field_description:sipf_profile.field_project_project__display_name
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_report__display_name
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition__display_name
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__nomenclature_europe_ids
+msgid "European CPV Nomenclature"
+msgstr "Nomenclature Européenne CPV"
+
+#. module: sipf_profile
+#: model:ir.model,name:sipf_profile.model_nomenclature_europe
+msgid "European Nomenclature"
+msgstr "Nomenclature Européenne"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_account_analytic_account__id
+#: model:ir.model.fields,field_description:sipf_profile.field_account_invoice_report__id
+#: model:ir.model.fields,field_description:sipf_profile.field_account_move_line__id
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe__id
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__id
+#: model:ir.model.fields,field_description:sipf_profile.field_product_template__id
+#: model:ir.model.fields,field_description:sipf_profile.field_project_project__id
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order__id
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_report__id
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition__id
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__message_needaction
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__message_has_error
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model,name:sipf_profile.model_account_invoice_report
+msgid "Invoices Statistics"
+msgstr "Statistiques des factures"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_account_analytic_account__is_project
+msgid "Is a Project"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model,name:sipf_profile.model_account_move_line
+msgid "Journal Item"
+msgstr "Écriture comptable"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_account_analytic_account____last_update
+#: model:ir.model.fields,field_description:sipf_profile.field_account_invoice_report____last_update
+#: model:ir.model.fields,field_description:sipf_profile.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe____last_update
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf____last_update
+#: model:ir.model.fields,field_description:sipf_profile.field_product_template____last_update
+#: model:ir.model.fields,field_description:sipf_profile.field_project_project____last_update
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_report____last_update
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition____last_update
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe__write_uid
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe__write_date
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order__project_id
+msgid "Linked Project"
+msgstr "Projet lié"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_project_project__purchase_order_id
+msgid "Linked Purchase Order"
+msgstr "Bon de commande lié"
+
+#. module: sipf_profile
+#: model_terms:ir.ui.view,arch_db:sipf_profile.edit_project_sipf
+msgid "Linked Purchase Order :"
+msgstr "Bon de commande lié :"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Pièce jointe principale"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: sipf_profile
+#: model_terms:ir.ui.view,arch_db:sipf_profile.view_product_template_sipf_form
+msgid "Nomenclature (SIPF/CPV)"
+msgstr "Nomenclature (SIPF/CPV)"
+
+#. module: sipf_profile
+#: model:ir.actions.act_window,name:sipf_profile.nomenclature_europe_action
+#: model:ir.model.fields,field_description:sipf_profile.field_account_invoice_report__nomenclature_europe_id
+#: model:ir.model.fields,field_description:sipf_profile.field_account_move_line__nomenclature_europe_id
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_report__nomenclature_europe_id
+#: model:ir.ui.menu,name:sipf_profile.menu_purchase_nomenclature_europe
+#: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_europe_form
+#: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_europe_search
+#: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_europe_tree
+msgid "Nomenclature Europe"
+msgstr "Nomenclature Europe"
+
+#. module: sipf_profile
+#: model:ir.actions.act_window,name:sipf_profile.nomenclature_sipf_action
+#: model:ir.model.fields,field_description:sipf_profile.field_account_invoice_report__nomenclature_sipf_id
+#: model:ir.model.fields,field_description:sipf_profile.field_product_product__nomenclature_europe_id
+#: model:ir.model.fields,field_description:sipf_profile.field_product_template__nomenclature_europe_id
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order_line__nomenclature_europe_id
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_report__nomenclature_sipf_id
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition_line__nomenclature_europe_id
+#: model:ir.ui.menu,name:sipf_profile.menu_purchase_nomenclature_sipf
+#: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_europe_search
+#: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_sipf_form
+#: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_sipf_search
+#: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_sipf_tree
+msgid "Nomenclature SIPF"
+msgstr "Nomenclature SIPF"
+
+#. module: sipf_profile
+#: model:ir.model,name:sipf_profile.model_nomenclature_sipf
+msgid "Nomenclature interne au SIPF"
+msgstr "Nomenclature interne ay SIPF"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model,name:sipf_profile.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: sipf_profile
+#: model:ir.model,name:sipf_profile.model_project_project
+msgid "Project"
+msgstr "Projet"
+
+#. module: sipf_profile
+#: model:ir.model,name:sipf_profile.model_purchase_order
+msgid "Purchase Order"
+msgstr "Commande fournisseur"
+
+#. module: sipf_profile
+#: model:ir.model,name:sipf_profile.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: sipf_profile
+#: model:ir.model,name:sipf_profile.model_purchase_report
+msgid "Purchase Report"
+msgstr "Rapport d'achat"
+
+#. module: sipf_profile
+#: model:ir.model,name:sipf_profile.model_purchase_requisition
+msgid "Purchase Requisition"
+msgstr "Demande d'achat"
+
+#. module: sipf_profile
+#: model:ir.model,name:sipf_profile.model_purchase_requisition_line
+msgid "Purchase Requisition Line"
+msgstr "Ligne de la demande d'achat"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__activity_user_id
+msgid "Responsible User"
+msgstr "Responsable"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe__nomenclature_sipf_id
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_europe__nomenclature_sipf_id
+msgid "SIPF Nomenclature"
+msgstr "Nomenclature SIPF"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_purchase_requisition__department_id
+msgid "Select the Department the purchase requisition is for"
+msgstr "Sélectionnez le département pour lequel est destinée la demande d'achat"
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.constraint,message:sipf_profile.constraint_nomenclature_europe_code_company_uniq
+msgid "The code of the nomenclature must be unique !"
+msgstr "Le code de la nomenclature doit être unique !"
+
+#. module: sipf_profile
+#: model:ir.model.constraint,message:sipf_profile.constraint_nomenclature_sipf_code_company_uniq
+msgid "The code of the nomenclature must be unique per company !"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__nomenclature_europe_ids
+msgid "The corresponding European CPV Nomenclature"
+msgstr "La Nomenclature Européenne CPV correspondante"
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_purchase_requisition__account_analytic_id
+#: model:ir.model.fields,help:sipf_profile.field_purchase_requisition__analytic_tag_ids
+msgid ""
+"This account will be propagated to all lines, if you need to use different "
+"accounts, define the account at line level."
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_purchase_order__department_id
+msgid "This is the Department the purchase order is for"
+msgstr "C'est le Département pour lequel est destiné le bon de commande"
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__website_message_ids
+msgid "Website communication history"
+msgstr ""

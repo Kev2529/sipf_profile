@@ -14,6 +14,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
 
     # any module necessary for this one to work correctly
     'depends': [
+        'l10n_pf_public_purchase_ui_rename',
         'calendar',
         'project_template',
         'project_category',
