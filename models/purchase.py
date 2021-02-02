@@ -43,7 +43,7 @@ class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
     nomenclature_europe_id = fields.Many2one(
-        comodel_name='nomenclature.europe', string='Nomenclature Europe',
+        comodel_name='nomenclature.europe', string='Nomenclature SIPF',
         domain=[('nomenclature_sipf_id', '!=', False)],
     )
     account_budget_id = fields.Many2one(

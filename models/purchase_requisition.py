@@ -60,7 +60,7 @@ class PurchaseRequisitionLine(models.Model):
     _inherit = 'purchase.requisition.line'
 
     nomenclature_europe_id = fields.Many2one(
-        comodel_name='nomenclature.europe', string='Nomenclature Europe',
+        comodel_name='nomenclature.europe', string='Nomenclature SIPF',
         domain=[('nomenclature_sipf_id', '!=', False)],
     )
     account_analytic_id = fields.Many2one(
