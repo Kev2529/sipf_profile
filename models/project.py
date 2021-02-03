@@ -5,6 +5,11 @@ class Project(models.Model):
     _name = 'project.project'
     _inherit = 'project.project'
 
-    purchase_order_id = fields.Many2one(
-        comodel_name='purchase.order', string='Linked Purchase Order',
-        help='Choose the Purchase Order this project is linked to')
+    purchase_order_ids = fields.One2many(
+        comodel_name='purchase.order', inverse_name='project_id',
+        string='Linked Purchase Orders')
+    po_count = fields.Integer(compute='_compute_orders_number', string='Numbers of Orders')
+
+    def _compute_orders_number(self):
+        for project in self:
+            project.po_count = len(project.purchase_order_ids)

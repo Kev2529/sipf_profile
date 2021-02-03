@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="act_open_purchase_orders" model="ir.actions.act_window">
+        <field name="name">Purchase Orders</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('project_id', '=', active_id)]</field>
+        <field name="context">{
+            'default_project_id': active_id,
+            'default_user_id': False,
+            }</field>
+    </record>
+
     <record id="edit_project_sipf" model="ir.ui.view">
         <field name="name">project.project.form.sipf</field>
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
-            <div name="options_active" position="after">
-                <div name="purchase_order" attrs="{'invisible': [('is_template','=',True)]}">
-                    <div>
-                        <label for="purchase_order_id" class="oe_inline" string="Linked Purchase Order :"/>
-                        <field name="purchase_order_id" class="oe_inline oe_input_align"/>
-                    </div>
-                </div>
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" name="%(act_open_purchase_orders)d" type="action" icon="fa-list-alt" attrs="{'invisible': [('po_count','=', 0)]}">
+                    <field string="Purchase Orders" name="po_count" widget="statinfo"/>
+                </button>
             </div>
         </field>
     </record>

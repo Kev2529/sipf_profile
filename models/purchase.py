@@ -5,8 +5,8 @@ class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
     project_id = fields.Many2one(
-        comodel_name='project.project', string='Linked Project',
-        help='Choose the Project this purchase order is linked to')
+        comodel_name='project.project', string='BAF Procedure',
+        help='Choose the BAF Procedure this purchase order is managed in')
     department_id = fields.Many2one(comodel_name='hr.department', string='Department', help='This is the Department the purchase order is for')
     account_budget_id = fields.Many2one(
         'account.account', string='Budgeted Account',

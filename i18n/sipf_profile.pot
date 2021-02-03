@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-02 00:42+0000\n"
-"PO-Revision-Date: 2021-02-02 00:42+0000\n"
+"POT-Creation-Date: 2021-02-03 08:10+0000\n"
+"PO-Revision-Date: 2021-02-03 08:10+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -63,6 +63,11 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order__project_id
+msgid "BAF Procedure"
+msgstr ""
+
+#. module: sipf_profile
 #: model:ir.model.fields,field_description:sipf_profile.field_account_move_line__account_budget_id
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_order__account_budget_id
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_order_line__account_budget_id
@@ -71,12 +76,7 @@ msgstr ""
 
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_purchase_order__project_id
-msgid "Choose the Project this purchase order is linked to"
-msgstr ""
-
-#. module: sipf_profile
-#: model:ir.model.fields,help:sipf_profile.field_project_project__purchase_order_id
-msgid "Choose the Purchase Order this project is linked to"
+msgid "Choose the BAF Procedure this purchase order is managed in"
 msgstr ""
 
 #. module: sipf_profile
@@ -267,18 +267,8 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: sipf_profile
-#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order__project_id
-msgid "Linked Project"
-msgstr ""
-
-#. module: sipf_profile
-#: model:ir.model.fields,field_description:sipf_profile.field_project_project__purchase_order_id
-msgid "Linked Purchase Order"
-msgstr ""
-
-#. module: sipf_profile
-#: model_terms:ir.ui.view,arch_db:sipf_profile.edit_project_sipf
-msgid "Linked Purchase Order :"
+#: model:ir.model.fields,field_description:sipf_profile.field_project_project__purchase_order_ids
+msgid "Linked Purchase Orders"
 msgstr ""
 
 #. module: sipf_profile
@@ -375,6 +365,11 @@ msgid "Number of unread messages"
 msgstr ""
 
 #. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_project_project__po_count
+msgid "Numbers of Orders"
+msgstr ""
+
+#. module: sipf_profile
 #: model:ir.model,name:sipf_profile.model_product_template
 msgid "Product Template"
 msgstr ""
@@ -392,6 +387,12 @@ msgstr ""
 #. module: sipf_profile
 #: model:ir.model,name:sipf_profile.model_purchase_order_line
 msgid "Purchase Order Line"
+msgstr ""
+
+#. module: sipf_profile
+#: model:ir.actions.act_window,name:sipf_profile.act_open_purchase_orders
+#: model_terms:ir.ui.view,arch_db:sipf_profile.edit_project_sipf
+msgid "Purchase Orders"
 msgstr ""
 
 #. module: sipf_profile
