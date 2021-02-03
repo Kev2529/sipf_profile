@@ -77,18 +77,18 @@ msgstr "Article budgétaire"
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_purchase_order__project_id
 msgid "Choose the BAF Procedure this purchase order is managed in"
-msgstr ""
+msgstr "Choisissez la Procédure BAF reliée à ce bon de commande"
 
 #. module: sipf_profile
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe__name
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__name
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__name
 msgid "Code Nomenclature SIPF"
-msgstr ""
+msgstr "Code Nomenclature SIPF"
 
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_nomenclature_europe__name
@@ -122,12 +122,12 @@ msgstr "Département"
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe__description
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__description
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__description
 msgid "Description Nomenclature SIPF"
-msgstr ""
+msgstr "Description Nomenclature SIPF"
 
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_nomenclature_europe__description
@@ -269,7 +269,7 @@ msgstr ""
 #. module: sipf_profile
 #: model:ir.model.fields,field_description:sipf_profile.field_project_project__purchase_order_ids
 msgid "Linked Purchase Orders"
-msgstr ""
+msgstr "Commandes d'achat liées"
 
 #. module: sipf_profile
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_main_attachment_id
@@ -304,7 +304,7 @@ msgstr ""
 #. module: sipf_profile
 #: model_terms:ir.ui.view,arch_db:sipf_profile.view_product_template_sipf_form
 msgid "Nomenclature (SIPF/CPV)"
-msgstr ""
+msgstr "Nomenclature (SIPF/CPV)"
 
 #. module: sipf_profile
 #: model:ir.actions.act_window,name:sipf_profile.nomenclature_europe_action
@@ -316,7 +316,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_europe_search
 #: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_europe_tree
 msgid "Nomenclature Europe"
-msgstr ""
+msgstr "Nomenclature Europe"
 
 #. module: sipf_profile
 #: model:ir.actions.act_window,name:sipf_profile.nomenclature_sipf_action
@@ -332,7 +332,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_sipf_search
 #: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_sipf_tree
 msgid "Nomenclature SIPF"
-msgstr ""
+msgstr "Nomenclature SIPF"
 
 #. module: sipf_profile
 #: model:ir.model,name:sipf_profile.model_nomenclature_sipf
@@ -367,7 +367,7 @@ msgstr ""
 #. module: sipf_profile
 #: model:ir.model.fields,field_description:sipf_profile.field_project_project__po_count
 msgid "Numbers of Orders"
-msgstr ""
+msgstr "Nombre de Commandes"
 
 #. module: sipf_profile
 #: model:ir.model,name:sipf_profile.model_product_template
@@ -429,8 +429,7 @@ msgstr ""
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_purchase_requisition__department_id
 msgid "Select the Department the purchase requisition is for"
-msgstr ""
-"Sélectionnez le département pour lequel est destinée la demande d'achat"
+msgstr "Sélectionnez le département pour lequel est destinée la demande d'achat"
 
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__activity_state
