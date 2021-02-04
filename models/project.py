@@ -9,6 +9,7 @@ class Project(models.Model):
         comodel_name='purchase.order', inverse_name='project_id',
         string='Linked Purchase Orders')
     po_count = fields.Integer(compute='_compute_orders_number', string='Numbers of Orders')
+    type_id = fields.Many2one(copy=True)
 
     def _compute_orders_number(self):
         for project in self:
