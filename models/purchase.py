@@ -6,6 +6,7 @@ class PurchaseOrder(models.Model):
 
     project_id = fields.Many2one(
         comodel_name='project.project', string='BAF Procedure',
+        domain="[('is_procedure_baf', '=', True), ('is_template', '=', False)]",
         help='Choose the BAF Procedure this purchase order is managed in')
     department_id = fields.Many2one(comodel_name='hr.department', string='Department', help='This is the Department the purchase order is for')
     account_budget_id = fields.Many2one(
