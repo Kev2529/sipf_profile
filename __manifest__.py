@@ -27,6 +27,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
     # always loaded
     'data': [
         'data/analytic_account_data.xml',
+        'data/project_type_data.xml',
         'views/product_views.xml',
         'views/project_views.xml',
         'views/purchase_views.xml',
