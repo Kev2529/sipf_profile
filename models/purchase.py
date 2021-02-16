@@ -1,4 +1,5 @@
-from odoo import api, exceptions, fields, models, _
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class PurchaseOrder(models.Model):
@@ -37,6 +38,16 @@ class PurchaseOrder(models.Model):
             if rec.account_budget_id:
                 for line in rec.order_line:
                     line.account_budget_id = rec.account_budget_id
+
+    def button_confirm(self):
+        for order in self:
+            if any(
+                    not line.nomenclature_europe_id
+                    for line in order.order_line
+            ):
+                raise ValidationError(_('Nomenclature is required on every line'))
+            super(PurchaseOrder, self).button_confirm()
+        return True
 
 
 class PurchaseOrderLine(models.Model):

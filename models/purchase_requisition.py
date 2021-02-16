@@ -1,4 +1,5 @@
 from odoo import api, exceptions, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class PurchaseRequisition(models.Model):
@@ -54,6 +55,16 @@ class PurchaseRequisition(models.Model):
             if rec.analytic_tag_ids:
                 for line in rec.line_ids:
                     line.analytic_tag_ids = rec.analytic_tag_ids
+
+    def action_in_progress(self):
+        self.ensure_one()
+        if any(
+                not line.nomenclature_europe_id
+                for line in self.line_ids
+        ):
+            raise ValidationError(_('Nomenclature is required on every line'))
+        res = super(PurchaseRequisition, self).action_in_progress()
+        return res
 
 
 class PurchaseRequisitionLine(models.Model):
