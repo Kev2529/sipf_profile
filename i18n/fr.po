@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 08:10+0000\n"
-"PO-Revision-Date: 2021-02-03 08:10+0000\n"
+"POT-Creation-Date: 2021-02-16 15:37+0000\n"
+"PO-Revision-Date: 2021-02-16 15:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -83,12 +83,12 @@ msgstr "Choisissez la Procédure BAF reliée à ce bon de commande"
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe__name
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__name
 msgid "Code"
-msgstr "Code"
+msgstr ""
 
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__name
 msgid "Code Nomenclature SIPF"
-msgstr "Code Nomenclature SIPF"
+msgstr ""
 
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_nomenclature_europe__name
@@ -122,12 +122,12 @@ msgstr "Département"
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_europe__description
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__description
 msgid "Description"
-msgstr "Description"
+msgstr ""
 
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__description
 msgid "Description Nomenclature SIPF"
-msgstr "Description Nomenclature SIPF"
+msgstr ""
 
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_nomenclature_europe__description
@@ -142,6 +142,7 @@ msgstr "Description pour Nomenclature Européenne CPV"
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__display_name
 #: model:ir.model.fields,field_description:sipf_profile.field_product_template__display_name
 #: model:ir.model.fields,field_description:sipf_profile.field_project_project__display_name
+#: model:ir.model.fields,field_description:sipf_profile.field_project_task__display_name
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_order_line__display_name
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_report__display_name
@@ -188,6 +189,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__id
 #: model:ir.model.fields,field_description:sipf_profile.field_product_template__id
 #: model:ir.model.fields,field_description:sipf_profile.field_project_project__id
+#: model:ir.model.fields,field_description:sipf_profile.field_project_task__id
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_order__id
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_order_line__id
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_report__id
@@ -229,6 +231,12 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_project_project__is_procedure_baf
+#: model:ir.model.fields,field_description:sipf_profile.field_project_task__is_task_baf
+msgid "Is a BAF Procedure"
+msgstr ""
+
+#. module: sipf_profile
 #: model:ir.model.fields,field_description:sipf_profile.field_account_analytic_account__is_project
 msgid "Is a Project"
 msgstr ""
@@ -246,6 +254,7 @@ msgstr "Écriture comptable"
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf____last_update
 #: model:ir.model.fields,field_description:sipf_profile.field_product_template____last_update
 #: model:ir.model.fields,field_description:sipf_profile.field_project_project____last_update
+#: model:ir.model.fields,field_description:sipf_profile.field_project_task____last_update
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_order____last_update
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_order_line____last_update
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_report____last_update
@@ -304,7 +313,7 @@ msgstr ""
 #. module: sipf_profile
 #: model_terms:ir.ui.view,arch_db:sipf_profile.view_product_template_sipf_form
 msgid "Nomenclature (SIPF/CPV)"
-msgstr "Nomenclature (SIPF/CPV)"
+msgstr ""
 
 #. module: sipf_profile
 #: model:ir.actions.act_window,name:sipf_profile.nomenclature_europe_action
@@ -316,7 +325,7 @@ msgstr "Nomenclature (SIPF/CPV)"
 #: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_europe_search
 #: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_europe_tree
 msgid "Nomenclature Europe"
-msgstr "Nomenclature Europe"
+msgstr ""
 
 #. module: sipf_profile
 #: model:ir.actions.act_window,name:sipf_profile.nomenclature_sipf_action
@@ -332,12 +341,12 @@ msgstr "Nomenclature Europe"
 #: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_sipf_search
 #: model_terms:ir.ui.view,arch_db:sipf_profile.view_nomenclature_sipf_tree
 msgid "Nomenclature SIPF"
-msgstr "Nomenclature SIPF"
+msgstr ""
 
 #. module: sipf_profile
 #: model:ir.model,name:sipf_profile.model_nomenclature_sipf
 msgid "Nomenclature interne au SIPF"
-msgstr ""
+msgstr "Nomenclature interne ay SIPF"
 
 #. module: sipf_profile
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_needaction_counter
@@ -370,6 +379,17 @@ msgid "Numbers of Orders"
 msgstr "Nombre de Commandes"
 
 #. module: sipf_profile
+#: model:project.type,name:sipf_profile.project_type_procedure_baf
+msgid "Procedure BAF"
+msgstr "Procédure BAF"
+
+#. module: sipf_profile
+#: model:ir.actions.act_window,name:sipf_profile.open_view_procedure_baf
+#: model:ir.ui.menu,name:sipf_profile.menu_procedures
+msgid "Procedures BAF"
+msgstr "Procédures BAF"
+
+#. module: sipf_profile
 #: model:ir.model,name:sipf_profile.model_product_template
 msgid "Product Template"
 msgstr "Modèle d'article"
@@ -378,6 +398,11 @@ msgstr "Modèle d'article"
 #: model:ir.model,name:sipf_profile.model_project_project
 msgid "Project"
 msgstr "Projet"
+
+#. module: sipf_profile
+#: model:ir.ui.menu,name:sipf_profile.menu_purchase_management
+msgid "Purchase Management"
+msgstr "Suivi des procédures d'achat"
 
 #. module: sipf_profile
 #: model:ir.model,name:sipf_profile.model_purchase_order
@@ -429,7 +454,8 @@ msgstr ""
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_purchase_requisition__department_id
 msgid "Select the Department the purchase requisition is for"
-msgstr "Sélectionnez le département pour lequel est destinée la demande d'achat"
+msgstr ""
+"Sélectionnez le département pour lequel est destinée la demande d'achat"
 
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__activity_state
@@ -439,6 +465,17 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+
+#. module: sipf_profile
+#: model:ir.model,name:sipf_profile.model_project_task
+msgid "Task"
+msgstr "Tâche"
+
+#. module: sipf_profile
+#: model:ir.actions.act_window,name:sipf_profile.action_view_baf_tasks
+#: model:ir.ui.menu,name:sipf_profile.menu_purchase_task_management
+msgid "Tasks"
+msgstr "Tâches"
 
 #. module: sipf_profile
 #: model:ir.model.constraint,message:sipf_profile.constraint_nomenclature_europe_code_company_uniq
@@ -467,6 +504,11 @@ msgstr ""
 #: model:ir.model.fields,help:sipf_profile.field_purchase_order__department_id
 msgid "This is the Department the purchase order is for"
 msgstr "C'est le Département pour lequel est destiné le bon de commande"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_project_project__type_id
+msgid "Type"
+msgstr ""
 
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__activity_exception_decoration

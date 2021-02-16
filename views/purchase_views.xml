@@ -33,4 +33,29 @@
             </xpath>
         </field>
     </record>
+    <!--Menu for Purchase Management-->
+    <record model="ir.actions.act_window" id="action_view_baf_tasks">
+        <field name="name">Tasks</field>
+        <field name="res_model">project.task</field>
+        <field name="domain">[('is_task_baf', '=', True)]</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="context">{'search_default_my_tasks': 1, 'all_task': 0}</field>
+        <field name="search_view_id" ref="project.view_task_search_form"/>
+    </record>
+    <menuitem name="Purchase Management" id="menu_purchase_management" parent="purchase.menu_purchase_root" sequence="20" groups="project.group_project_user"/>
+    <menuitem name="Tasks" id="menu_purchase_task_management" parent="menu_purchase_management"
+            action="action_view_baf_tasks" sequence="10" groups="project.group_project_user"/>
+    <!--Menu for Template Projects-->
+    <record model="ir.actions.act_window" id="open_view_procedure_baf">
+        <field name="name">Procedures BAF</field>
+        <field name="res_model">project.project</field>
+        <field name="domain">[('is_procedure_baf', '=', True)]</field>
+        <field name="view_id" ref="project.view_project_kanban" />
+        <field name="view_mode">kanban,form,tree</field>
+        <field name="search_view_id" ref="project.view_project_project_filter"/>
+        <field
+            name="context"
+            >{"search_default_templates":1, "search_default_not_closed":1}</field>
+    </record>
+    <menuitem action="open_view_procedure_baf" id="menu_procedures" name="Procedures BAF" parent="menu_purchase_management" sequence="20" groups="project.group_project_manager"/>
 </odoo>

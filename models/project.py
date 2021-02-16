@@ -26,3 +26,9 @@ class Project(models.Model):
                 project.is_procedure_baf = True
             else:
                 project.is_procedure_baf = False
+
+
+class ProjectTask(models.Model):
+    _inherit = 'project.task'
+
+    is_task_baf = fields.Boolean(related='project_id.is_procedure_baf')
