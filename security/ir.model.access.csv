@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_nomenclature_sipf_user,user.nomenclature.sipf,model_nomenclature_sipf,purchase.group_purchase_user,1,0,0,0
 access_nomenclature_europe_user,user.nomenclature.europe,model_nomenclature_europe,purchase.group_purchase_user,1,0,0,0
-access_nomenclature_sipf_manager,manager.nomenclature.sipf,model_nomenclature_sipf,purchase.group_purchase_manager,1,1,1,1
-access_nomenclature_europe_manager,manager.nomenclature.europe,model_nomenclature_europe,purchase.group_purchase_manager,1,1,1,1
+access_nomenclature_sipf_manager,manager.nomenclature.sipf,model_nomenclature_sipf,account.group_account_manager,1,1,1,1
+access_nomenclature_europe_manager,manager.nomenclature.europe,model_nomenclature_europe,account.group_account_manager,1,1,1,1

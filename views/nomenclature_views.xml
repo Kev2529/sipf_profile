@@ -15,12 +15,12 @@
     <menuitem
         id="menu_purchase_nomenclature_sipf"
         sequence="10"
-        parent="purchase.menu_purchase_config"
+        parent="account.menu_analytic_accounting"
         action="nomenclature_sipf_action"/>
     <menuitem
         id="menu_purchase_nomenclature_europe"
         sequence="10"
-        parent="purchase.menu_purchase_config"
+        parent="account.menu_analytic_accounting"
         action="nomenclature_europe_action"/>
 
     <record id="view_nomenclature_sipf_tree" model="ir.ui.view">
