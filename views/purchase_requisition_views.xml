@@ -28,4 +28,10 @@
             </field>
         </field>
     </record>
+    <record model="ir.actions.act_window" id="purchase_requisition.action_purchase_requisition_to_so">
+        <field name="context">{
+            "default_requisition_id":active_id,
+            }
+        </field>
+    </record>
 </odoo>
