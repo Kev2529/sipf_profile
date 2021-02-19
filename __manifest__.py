@@ -26,6 +26,8 @@ Ce module permet de personnaliser Odoo pour le SIPF
 
     # always loaded
     'data': [
+        'security/sipf_profile_security.xml',
+        'security/ir.model.access.csv',
         'data/analytic_account_data.xml',
         'data/project_type_data.xml',
         'views/product_views.xml',
@@ -35,7 +37,6 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'views/account_move_views.xml',
         'views/nomenclature_views.xml',
         'views/analytic_account_views.xml',
-        'security/ir.model.access.csv',
     ],
     # only loaded in demonstration mode
     'demo': [
