@@ -46,8 +46,15 @@ class PurchaseOrder(models.Model):
                     for line in order.order_line
             ):
                 raise ValidationError(_('Nomenclature is required on every line'))
-            super(PurchaseOrder, self).button_confirm()
-        return True
+            if order.state not in ['draft', 'sent']:
+                continue
+            order._add_supplier_to_product()
+            # We always want double validation
+            order.write({'state': 'to approve'})
+            if order.partner_id not in order.message_partner_ids:
+                order.message_subscribe([order.partner_id.id])
+        res = super(PurchaseOrder, self).button_confirm()
+        return res
 
 
 class PurchaseOrderLine(models.Model):
