@@ -18,6 +18,7 @@ class PurchaseOrder(models.Model):
         domain="[('deprecated', '=', False), ('company_id', '=', 'company_id'),('is_off_balance', '=', False)]",
         check_company=True,
         tracking=True)
+    requisition_id = fields.Many2one(required=True)
 
     @api.onchange('requisition_id')
     def _onchange_requisition_id(self):
