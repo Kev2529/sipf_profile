@@ -66,6 +66,18 @@ class PurchaseRequisition(models.Model):
         res = super(PurchaseRequisition, self).action_in_progress()
         return res
 
+    def action_open(self):
+        if not self.user_has_groups('purchase.group_purchase_manager'):
+            raise ValidationError(_('You are not allowed to validate a purchase requisition'))
+        res = super(PurchaseRequisition, self).action_open()
+        return res
+
+    def action_done(self):
+        if not self.user_has_groups('purchase.group_purchase_manager'):
+            raise ValidationError(_('You are not allowed to close a purchase requisition'))
+        res = super(PurchaseRequisition, self).action_done()
+        return res
+
 
 class PurchaseRequisitionLine(models.Model):
     _inherit = 'purchase.requisition.line'
