@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record model="purchase.order.type" id="po_type_requisition">
+        <field name="name">Requisition</field>
+    </record>
+</odoo>

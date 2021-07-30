@@ -15,6 +15,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
     # any module necessary for this one to work correctly
     'depends': [
         'l10n_pf_public_purchase_ui_rename',
+        'l10n_pf_purchase_freight',
         'calendar',
         'project_template',
         'project_category',
@@ -31,6 +32,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'data/nomenclature.europe.csv',
         'data/analytic_account_data.xml',
         'data/project_type_data.xml',
+        'data/purchase_order_type.xml',
         'views/product_views.xml',
         'views/project_views.xml',
         'views/purchase_views.xml',
