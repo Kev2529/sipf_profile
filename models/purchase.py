@@ -26,12 +26,45 @@ class PurchaseOrder(models.Model):
         ],
         default='invest',
         string='Investissement/Fonctionnement')
+    transport_ref = fields.Char(
+        string='Transport ref.',
+        help='Saisir le numéro de référence du vol ou du bateau.')
+    departure_place = fields.Char(
+        string='Lieu de départ',
+        help="Saisir le lieu de départ.")
+    arrival_place = fields.Char(
+        string="Lieu d'arrivée",
+        help="Saisir le lieu d'arrivée.")
+
+    # Requisition's purchase order type specific fields
+    option_date = fields.Date(
+        string="Date d'option",
+        help="Saisir la date d'option du vol si existante.")
+    passenger_ids = fields.Many2many(
+        comodel_name='hr.employee',
+        string='Passager(s)',
+        help='Choisir le(s) passager(s)')
+    departure_date = fields.Date(string='Date de départ')
+    return_date = fields.Date(string='Date de retour')
+
+    # Freight's purchase order type specific fields
+    partner_shipping_id = fields.Many2one(
+        comodel_name='res.partner',
+        string='Délivré à',
+        help='Saisir la personne ou entreprise recevant le(s) colis')
 
     @api.onchange('requisition_id')
     def _onchange_requisition_id(self):
         super(PurchaseOrder, self)._onchange_requisition_id()
         self.department_id = self.requisition_id.department_id.id or False
         self.invest = self.requisition_id.invest
+
+    @api.onchange('departure_date', 'return_date')
+    def _onchange_travel_date(self):
+        if (self.departure_date and self.return_date
+                and self.departure_date > self.return_date):
+            raise ValidationError(
+                _('The departure date must be earlier than the return date.'))
 
     @api.depends("order_line.account_budget_id")
     def _compute_budget_account(self):
