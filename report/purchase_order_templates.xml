@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- REQUISITION TEMPLATE -->
+    <template id="requisition_report">
+        <div>
+            <span>N° Dossier :     </span>
+            <span class="pl-3" t-field="o.partner_ref" />
+        </div>
+        <div>
+            <span>Date d'option :  </span>
+            <span class="pl-3" t-field="o.option_date" t-field-options='{"format": "dd/MM/yyyy"}' />
+        </div>
+        <div>
+            <span>VOL :    </span>
+            <span class="pl-3" t-field="o.transport_ref" />
+        </div>
+
+        <h1 class="text-center pb-4">
+            REQUISITION N°
+            <span class="pl-3" t-field="o.name" />
+        </h1>
+
+        <p class="text-center">Le/La Ministre de la modernisation de l'Administration</p>
+        <p>
+            Conformément aux instructions de
+            <span class="pl-3" t-field="o.user_id.name" />
+        </p>
+        <p>
+            En date du (2)
+            <span class="pl-3" t-field="o.date_planned" t-options='{"format": "dd/MM/yyyy"}' />
+        </p>
+        <p>
+            Invite
+            <span class="pl-3" t-field="o.partner_id.name" />
+        </p>
+        <p>à délivrer un titre de transport à (3)</p>
+        <t t-set="i" t-value="0" />
+        <t t-foreach="o.passenger_ids" t-as="passenger">
+            <t t-set="i" t-value="i+1" />
+            <div class="mb-2">
+                M./Mme.
+                <span class="pl-5" t-field="passenger.name" />
+                ,
+                <span class="pl-2" t-field="passenger.job_title" />
+            </div>
+        </t>
+        <p>
+            partant de
+            <span class="pl-3 pr-3" t-field="o.departure_place" />
+            le
+            <span class="pl-3" t-field="o.departure_date" />
+        </p>
+        <p>
+            retour le
+            <span class="pl-3" t-field="o.return_date" />
+        </p>
+        <p>
+            pour se rendre à
+            <span class="pl-3" t-field="o.arrival_place" />
+        </p>
+        <div class="pl-10 pb-4">
+            <p>La dépense est imputable au budget du territoire</p>
+            <p>
+                <t t-set="SSCHAP" t-value="" />
+                <t t-set="CT" t-value="" />
+                <t t-foreach="o.order_line[0].analytic_tag_ids" t-as="tag">
+                    <t t-if="'SSCHAP' in tag.name">
+                        <t t-set="SSCHAP" t-value="tag.name" />
+                    </t>
+                    <t t-if="'CT' in tag.name">
+                        <t t-set="CT" t-value="tag.name" />
+                    </t>
+                </t>
+                <span>
+                    Ss-Chapitre :
+                    <span class="pl-2 pr-5" t-esc="SSCHAP" />
+                </span>
+                <span>
+                    Article :
+                    <span class="pl-2 pr-5" t-field="o.order_line[0].account_budget_id.code" />
+                </span>
+                <span>
+                    CT :
+                    <span class="pl-2 pr-5" t-esc="CT" />
+                </span>
+            </p>
+            <p>
+                MONTANT:
+                <span class="pl-3" t-field="o.amount_total" />
+            </p>
+            <p>
+                Arrêté la présente réquisition au nombre de
+                <span class="pl-3 pr-3" t-esc="i" />
+                passager(s)
+            </p>
+        </div>
+        <div class="row pb-7">
+            <div class="col-6">
+                VISA DU CONTROLE FINANCIER (1)
+            </div>
+            <div class="col-6">
+                Fait à PAPEETE, le
+                <span class="pl-3" t-field="o.date_approve" t-options='{"format": "dd/MM/yyyy"}' />
+            </div>
+        </div>
+
+        <div class="row pb-7">
+            <div class="col-4 text-center">
+                <div>Pour le ministre et par délégation</div>
+                <div>Le chef de service adjoint</div>
+            </div>
+        </div>
+
+        <div style="font-size: 12px;">
+            <div>(1)Préciser les nom et qualité de l'autorité responsable de l'engagement et de la liquidation de la dépense.</div>
+            <div>(2)Référence à l'ordre de déplacement.</div>
+            <div>(3)Préciser le nom et la qualité de la ou des personnes tranportées.</div>
+        </div>
+    </template>
+
+    <!-- FREIGHT TEMPLATE -->
+    <template id="freight_report">
+        <p>
+            N° Client :
+            <t t-if="o.partner_id.parent_id.vat">
+                <span class="pl-3" t-field="o.partner_id.parent_id.vat" />
+            </t>
+            <t t-else="">
+                <span class="pl-3" t-field="o.partner_id.parent_id.name" />
+            </t>
+        </p>
+
+        <h1 class="text-center pb-4">
+            ÉTAT DE TRANSPORT
+        </h1>
+
+        <div class="row pb-3">
+            <div class="col-6">
+                PAPEETE, le
+                <span class="pl-3" t-field="o.date_approve" t-field-options='{"format": "dd/MM/yyyy"}' />
+            </div>
+
+            <div class="col-6">
+                <t t-set="SSCHAP" t-value="" />
+                <t t-set="CT" t-value="" />
+                <t t-foreach="o.order_line[0].analytic_tag_ids" t-as="tag">
+                    <t t-if="'SSCHAP' in tag.name">
+                        <t t-set="SSCHAP" t-value="tag.name" />
+                    </t>
+                    <t t-if="'CT' in tag.name">
+                        <t t-set="CT" t-value="tag.name" />
+                    </t>
+                </t>
+                <div>
+                    <p>
+                        S-CHAP :
+                        <span class="pl-2 pr-5" t-esc="SSCHAP" />
+                    </p>
+                    <p>
+                        Article :
+                        <span class="pl-2 pr-5" t-field="o.order_line[0].account_budget_id.code" />
+                    </p>
+                    <p>
+                        CT :
+                        <span class="pl-2 pr-5" t-esc="CT" />
+                    </p>
+                </div>
+            </div>
+        </div>
+        <p>
+            Ont été chargés en en bon état de conditionnement à :
+            <span class="pl-3" t-field="o.departure_place" />
+        </p>
+        <p>
+            sur :
+            <span class="pl-3" t-field="o.partner_id" />
+        </p>
+        <p>
+            Réf. Vol/Navire :
+            <span class="pl-3" t-field="o.transport_ref" />
+        </p>
+        <p>
+            LTA n° :
+            <span class="pl-3" t-field="o.partner_ref" />
+        </p>
+        <p class="text-center">
+            pour être délivré à
+            <span class="pl-3" t-field="o.partner_shipping_id" />
+        </p>
+        <table class="table table-sm o_main_table mt-5 mb-5">
+            <tr>
+                <th name="th_description" class="text-center">
+                    <strong>CONTENU DES COLIS</strong>
+                </th>
+                <th name="th_quantity" class="text-center">
+                    <strong>Nbre COLIS</strong>
+                </th>
+                <th name="th_weight" class="text-center">
+                    <strong>POIDS EN KG</strong>
+                </th>
+                <th name="th_volume" class="text-center">
+                    <strong>CUBAGE EN M3</strong>
+                </th>
+                <th name="th_price_unit" class="text-right">
+                    <strong>TARIF</strong>
+                </th>
+                <th name="th_amount" class="text-right">
+                    <strong>MONTANT DU FRET TTC</strong>
+                </th>
+            </tr>
+            <t t-set="total_qty" t-value="0" />
+            <t t-set="total_weight" t-value="0" />
+            <t t-set="total_volume" t-value="0" />
+            <tbody>
+                <t t-foreach="o.order_line" t-as="line">
+                    <t t-set="total_qty" t-value="total_qty + line.product_qty" />
+                    <t t-set="total_weight" t-value="total_weight + line.weight" />
+                    <t t-set="total_volume" t-value="total_volume + line.volume" />
+                    <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                        <t t-if="not line.display_type">
+                            <td id="product">
+                                <span t-field="line.name" />
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="int(line.product_qty)" />
+                                <span t-field="line.product_uom.name" groups="uom.group_uom" />
+                            </td>
+                            <td class="text-center">
+                                <span t-field="line.weight" />
+                            </td>
+                            <td class="text-center">
+                                <span t-field="line.volume" />
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="int(line.price_unit)" />
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="line.price_unit * line.product_qty" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                            </td>
+                        </t>
+                    </tr>
+                </t>
+                <tr>
+                    <td class="text-center">
+                        <strong>TOTAL</strong>
+                    </td>
+                    <td class="text-center">
+                        <span t-esc="int(total_qty)" />
+                    </td>
+                    <td class="text-center">
+                        <span t-esc="int(total_weight)" />
+                    </td>
+                    <td class="text-center">
+                        <span t-esc="int(total_volume)" />
+                    </td>
+                    <td></td>
+                    <td class="text-right">
+                        <span t-field="o.amount_total" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            Arrêté à
+            <span class="pl-1 pr-1" t-esc="int(total_qty)" />
+            colis totalisant
+            <span class="pl-1 pr-1" t-esc="int(total_volume)" />
+            m3 et
+            <span class="pl-1 pr-1" t-esc="int(total_weight)" />
+            kg
+        </p>
+        <p>
+            à la somme de
+            <span class="pl-3" t-field="o.amount_total" />
+        </p>
+        <div class="row pt-5">
+            <div class="col-6 text-center">
+                Cachet
+                <strong>VISA</strong>
+            </div>
+            <div class="col-6 text-center">
+                Pour le Ministre et par délégation
+            </div>
+        </div>
+    </template>
+
+    <!-- PURCHASE ORDER TEMPLATE -->
+    <template id="regular_report">
+        <div class="oe_structure" />
+        <h1 class="text-center pb-4">
+            Purchase Order #
+            <span class="pl-3" t-field="o.name" />
+        </h1>
+
+
+        <div id="informations" class="row mt32 mb32">
+            <div t-if="o.user_id" class="col-3 bm-2">
+                <strong>Purchase Representative:</strong>
+                <p t-field="o.user_id" class="m-0" />
+            </div>
+            <div t-if="o.partner_ref" class="col-3 bm-2">
+                <strong>Your Order Reference:</strong>
+                <p t-field="o.partner_ref" class="m-0" />
+            </div>
+            <div t-if="o.date_order" class="col-3 bm-2">
+                <strong>Order Date:</strong>
+                <p t-field="o.date_order" class="m-0" />
+            </div>
+        </div>
+
+        <table class="table table-sm o_main_table">
+            <thead>
+                <tr>
+                    <th name="th_ap" class="text-center">
+                        <strong>N°AP</strong>
+                    </th>
+                    <th name="th_ae" class="text-center">
+                        <strong>N°AE.</strong>
+                    </th>
+                    <th name="th_s_chap" class="text-center">
+                        <strong>S/CHAP.</strong>
+                    </th>
+                    <th name="th_art" class="text-center">
+                        <strong>ART</strong>
+                    </th>
+                    <th name="th_ct" class="text-center">
+                        <strong>CT</strong>
+                    </th>
+                    <th name="th_description">
+                        <strong>Désignation</strong>
+                    </th>
+                    <th name="th_quantity">
+                        <strong>Qté</strong>
+                    </th>
+                    <th name="th_price_unit" class="text-right">
+                        <strong>PU</strong>
+                    </th>
+                    <th name="th_amount" class="text-right">
+                        <strong>Montant</strong>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-set="current_subtotal" t-value="0" />
+                <t t-foreach="o.order_line" t-as="line">
+                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded" />
+                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included" />
+
+                    <t t-set="AP" t-value="" />
+                    <t t-set="AE" t-value="" />
+                    <t t-set="SSCHAP" t-value="" />
+                    <t t-set="CT" t-value="" />
+                    <t t-foreach="o.order_line[0].analytic_tag_ids" t-as="tag">
+                        <t t-if="'SSCHAP' not in tag.name and 'AP' in tag.name">
+                            <t t-set="AP" t-value="tag.name" />
+                        </t>
+                        <t t-if="'AE' in tag.name">
+                            <t t-set="AE" t-value="tag.name" />
+                        </t>
+                        <t t-if="'SSCHAP' in tag.name">
+                            <t t-set="SSCHAP" t-value="tag.name" />
+                        </t>
+                        <t t-if="'CT' in tag.name">
+                            <t t-set="CT" t-value="tag.name" />
+                        </t>
+                    </t>
+
+                    <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                        <t t-if="not line.display_type">
+                            <td class="text-center">
+                                <span t-esc="AP" />
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="AE" />
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="SSCHAP" />
+                            </td>
+                            <td class="text-center">
+                                <span t-field="line.account_budget_id.code" />
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="CT" />
+                            </td>
+                            <td class="text-center">
+                                <span t-field="line.name" />
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.product_qty" />
+                                <span t-field="line.product_uom.name" groups="uom.group_uom" />
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.price_unit" />
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                            </td>
+                        </t>
+                        <t t-if="line.display_type == 'line_section'">
+                            <td colspan="99" id="section">
+                                <span t-field="line.name" />
+                            </td>
+                            <t t-set="current_section" t-value="line" />
+                            <t t-set="current_subtotal" t-value="0" />
+                        </t>
+                        <t t-if="line.display_type == 'line_note'">
+                            <td colspan="99" id="note">
+                                <span t-field="line.name" />
+                            </td>
+                        </t>
+                    </tr>
+                    <t t-if="current_section and (line_last or o.order_line[line_index+1].display_type == 'line_section')">
+                        <tr class="is-subtotal text-right">
+                            <td colspan="99" id="subtotal">
+                                <strong class="mr16">Subtotal</strong>
+                                <span t-esc="current_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                            </td>
+                        </tr>
+                    </t>
+                </t>
+            </tbody>
+        </table>
+
+        <div id="total" class="row justify-content-end">
+            <div class="col-4">
+                <table class="table table-sm">
+                    <tr class="border-black">
+                        <td name="td_subtotal_label">
+                            <strong>Subtotal</strong>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td name="td_taxes_label">Taxes</td>
+                        <td class="text-right">
+                            <span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                        </td>
+                    </tr>
+                    <tr class="border-black o_total">
+                        <td name="td_amount_total_label">
+                            <strong>Total</strong>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </template>
+
+    <template id="sipf_purchase_order">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <style type="text/css">
+                    p {
+                        margin-bottom: 0.5rem!important;
+                    }
+                    .pl-10 {
+                        padding-left: 10rem!important;
+                    }
+                    .pb-7 {
+                        padding-bottom: 7rem!important;
+                    }
+                </style>
+                    <div class="page">
+                        <t t-if="o.order_type.name == 'Requisition'">
+                            <t t-call="sipf_profile.requisition_report" />
+                        </t>
+                        <t t-if="o.order_type.name == 'Freight'">
+                            <t t-call="sipf_profile.freight_report" />
+                        </t>
+                        <t t-if="o.order_type.name == 'Regular'">
+                            <t t-call="sipf_profile.regular_report" />
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
