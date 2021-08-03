@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="report_purchase_order" model="ir.actions.report">
+            <field name="name">Document Sipf</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdb</field>
+            <field name="report_name">sipf_profile.sipf_purchase_order</field>
+            <field name="report_file">sipf_profile.sipf_purchase_order</field>
+            <field name="print_report_name">'%s n° %s' % (object.order_type.name, object.name)</field>
+            <field name="binding_model_id" ref="model_purchase_order" />
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
