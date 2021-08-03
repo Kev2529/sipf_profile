@@ -90,6 +90,11 @@ class PurchaseOrder(models.Model):
         res = super(PurchaseOrder, self).button_confirm()
         return res
 
+    def button_print_report(self):
+        self.ensure_one()
+
+        return self.env.ref('sipf_profile.report_purchase_order').report_action(self)
+
 
 class PurchaseOrderLine(models.Model):
     _name = 'purchase.order.line'

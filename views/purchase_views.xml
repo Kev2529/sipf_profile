@@ -58,6 +58,9 @@
                 <field name="arrival_place" attrs="{'invisible': [('order_type', '!=', %(l10n_pf_purchase_freight.po_type_freight)d)]}" />
             </xpath>
 
+            <xpath expr="//header/button[@name='action_view_picking']" position="after">
+                <button name="button_print_report" string="Imprimer" type="object" class="oe_highlight" groups="base.group_user" attrs="{'invisible': ['|', ('state', 'not in', ('purchase', 'done')), ('order_type', '!=', %(l10n_pf_purchase_freight.po_type_freight)d), ('order_type', '!=', %(sipf_profile.po_type_requisition)d), ('order_type', '!=', %(purchase_order_type.po_type_regular)d)]}" />
+            </xpath>
         </field>
     </record>
     <!--Menu for Purchase Management-->
