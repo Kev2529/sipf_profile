@@ -21,6 +21,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'project_task_dependency',
         'purchase_stock',
         'purchase_requisition',
+        'account_analytic_parent',
     ],
 
     # always loaded
