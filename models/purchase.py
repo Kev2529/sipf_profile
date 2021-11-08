@@ -5,6 +5,7 @@ from odoo.exceptions import ValidationError
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
+    ref = fields.Char('Ref')
     project_id = fields.Many2one(
         comodel_name='project.project', string='BAF Procedure',
         domain="[('is_procedure_baf', '=', True), ('is_template', '=', False)]",
@@ -99,22 +100,24 @@ class PurchaseOrder(models.Model):
         res = super(PurchaseOrder, self).button_approve()
         for order in self:
             department_id = order.user_id.employee_id.department_id.id
-            ref_sequence_list = {
-                'sipf_profile.sipf_baf': 'purchase.order.sipf.bssi',
-                'sipf_profile.sipf_bssi': 'purchase.order.sipf.bssi',
-                'sipf_profile.sipf_project_manager': 'purchase.order.sipf.project_manager',
-                'sipf_profile.sipf_cpau': 'purchase.order.sipf.cpau',
-                'sipf_profile.sipf_dpo': 'purchase.order.sipf.dpo',
-                'sipf_profile.sipf_infra': 'purchase.order.sipf.infra',
-                'sipf_profile.sipf_projects': 'purchase.order.sipf.projects',
-                'sipf_profile.sipf_secretariat': 'purchase.order.sipf.secretariat',
-                'sipf_profile.sipf_silog': 'purchase.order.sipf.silog'
-            }
-            for ref, seq in ref_sequence_list.items():
-                # Set the sequence number regarding the department
-                if self.env.ref(ref).id == department_id:
-                    self.name = self.env['ir.sequence'].next_by_code(seq)
-                    break
+            if department_id and not order.ref:
+                ref_sequence_list = {
+                    'sipf_profile.sipf_baf': 'purchase.order.sipf.bssi',
+                    'sipf_profile.sipf_bssi': 'purchase.order.sipf.bssi',
+                    'sipf_profile.sipf_project_manager': 'purchase.order.sipf.project_manager',
+                    'sipf_profile.sipf_cpau': 'purchase.order.sipf.cpau',
+                    'sipf_profile.sipf_dpo': 'purchase.order.sipf.dpo',
+                    'sipf_profile.sipf_infra': 'purchase.order.sipf.infra',
+                    'sipf_profile.sipf_projects': 'purchase.order.sipf.projects',
+                    'sipf_profile.sipf_secretariat': 'purchase.order.sipf.secretariat',
+                    'sipf_profile.sipf_silog': 'purchase.order.sipf.silog'
+                }
+                if ref_sequence_list != {}:
+                    for ref, seq in ref_sequence_list.items():
+                        # Set the sequence number regarding the department
+                        if self.env.ref(ref).id == department_id:
+                            order.ref = self.env['ir.sequence'].next_by_code(seq)
+                            break
         return res
 
 
