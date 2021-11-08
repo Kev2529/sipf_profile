@@ -42,7 +42,7 @@
                 <field name="invest" attrs="{'readonly': [('state','not in',('draft'))]}" />
                 <field name="account_analytic_id" attrs="{'readonly': [('state','not in',('draft'))]}" groups="analytic.group_analytic_accounting" options="{'no_create': True, 'no_create_edit':True}"/>
                 <field name="analytic_tag_ids" attrs="{'readonly': [('state','not in',('draft'))]}" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'no_create': True, 'no_create_edit':True}"/>
-                <field name="amount_total" attrs="{'readonly': [('state','not in',('draft'))]}" options="{'no_create': True, 'no_create_edit':True}" />
+                <field name="amount_budget" attrs="{'readonly': [('state','not in',('draft'))]}" options="{'no_create': True, 'no_create_edit':True}" />
                 <field name="amount_total" options="{'no_create': True, 'no_create_edit':True}" />
                 <field name="parent_id" attrs="{'readonly': [('state','not in',('draft'))]}" options="{'no_create': True, 'no_create_edit':True}" />
                 <field name="article" attrs="{'readonly': [('state','not in',('draft'))]}" />
