@@ -28,12 +28,34 @@ class PurchaseRequisition(models.Model):
         help='This account will be propagated to all lines, if you need '
         'to use different accounts, define the account at line level.',
     )
+    parent_id = fields.Many2one(
+        'purchase.requisition',
+        string='Parent reference',
+        index=True)
+    child_ids = fields.One2many(
+        'purchase.requisition', 'parent_id',
+        string="Sub-requisitions",
+        context={'active_test': False})
+    child_count = fields.Integer(
+        compute='_compute_child_number', string='Number of childs')
+    amount_budget = fields.Monetary(string='Budget amount', store=True)
+    amount_total = fields.Monetary(
+        string='Total amount of purchase orders',
+        store=True,
+        readonly=True,
+        compute='_compute_total_amount')
+    article = fields.Char('Article budgétaire')
 
     @api.onchange('user_id')
     def onchange_user_id(self):
         employees = self.user_id.employee_ids
         self.department_id = (employees[0].department_id if employees
                               else self.env['hr.department'] or False)
+
+    @api.depends('child_ids')
+    def _compute_child_number(self):
+        for rec in self:
+            rec.child_count = len(rec.child_ids)
 
     @api.depends("line_ids.account_analytic_id")
     def _compute_analytic_account(self):
@@ -43,6 +65,18 @@ class PurchaseRequisition(models.Model):
                 rec.account_analytic_id = account.id
             else:
                 rec.account_analytic_id = False
+
+    @api.depends('purchase_ids.state', 'purchase_ids.amount_total', 'child_ids.amount_total')
+    def _compute_total_amount(self):
+        for rec in self:
+            amount_total = 0.0
+            for po in rec.purchase_ids.filtered(lambda purchase_order: purchase_order.state not in ['draft', 'cancel']):
+                amount_total += po.amount_total
+
+            if rec.child_ids:
+                for child in rec.child_ids:
+                    amount_total += child.amount_total
+            rec.amount_total = amount_total
 
     def _inverse_analytic_account(self):
         for rec in self:
@@ -72,13 +106,15 @@ class PurchaseRequisition(models.Model):
 
     def action_open(self):
         if not self.user_has_groups('purchase.group_purchase_manager'):
-            raise ValidationError(_('You are not allowed to validate a purchase requisition'))
+            raise ValidationError(
+                _('You are not allowed to validate a purchase requisition'))
         res = super(PurchaseRequisition, self).action_open()
         return res
 
     def action_done(self):
         if not self.user_has_groups('purchase.group_purchase_manager'):
-            raise ValidationError(_('You are not allowed to close a purchase requisition'))
+            raise ValidationError(
+                _('You are not allowed to close a purchase requisition'))
         res = super(PurchaseRequisition, self).action_done()
         return res
 
