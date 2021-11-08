@@ -102,7 +102,7 @@ class PurchaseOrder(models.Model):
             department_id = order.user_id.employee_id.department_id.id
             if department_id and not order.ref:
                 ref_sequence_list = {
-                    'sipf_profile.sipf_baf': 'purchase.order.sipf.bssi',
+                    'sipf_profile.sipf_baf': 'purchase.order.sipf.baf',
                     'sipf_profile.sipf_bssi': 'purchase.order.sipf.bssi',
                     'sipf_profile.sipf_project_manager': 'purchase.order.sipf.project_manager',
                     'sipf_profile.sipf_cpau': 'purchase.order.sipf.cpau',
