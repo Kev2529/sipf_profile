@@ -8,6 +8,7 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                         <h4 class="text-center pb-4">
+                            <em t-if="o.state in ['draft', 'ongoing']">DRAFT&#160;</em>
                             <u>FICHE DE DEMANDE D’ENGAGEMENT PROVISIONNEL</u>
                         </h4>
                         <h4 class="text-center pb-4">
