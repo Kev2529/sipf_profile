@@ -113,6 +113,13 @@ msgid "Created on"
 msgstr ""
 
 #. module: sipf_profile
+#: model_terms:ir.ui.view,arch_db:sipf_profile.freight_report
+#: model_terms:ir.ui.view,arch_db:sipf_profile.regular_report
+#: model_terms:ir.ui.view,arch_db:sipf_profile.requisition_report
+msgid "DRAFT"
+msgstr ""
+
+#. module: sipf_profile
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_order__department_id
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition__department_id
 msgid "Department"

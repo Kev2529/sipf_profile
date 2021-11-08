@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="sipf_baf" model="hr.department">
+            <field name="name">BAF</field>
+        </record>
+        <record id="sipf_bssi" model="hr.department">
+            <field name="name">BSSI</field>
+        </record>
+        <record id="sipf_project_manager" model="hr.department">
+            <field name="name">PROJECT MANAGER</field>
+        </record>
+        <record id="sipf_cpau" model="hr.department">
+            <field name="name">CPAU</field>
+        </record>
+        <record id="sipf_dpo" model="hr.department">
+            <field name="name">DPO</field>
+        </record>
+        <record id="sipf_infra" model="hr.department">
+            <field name="name">INFRA</field>
+        </record>
+        <record id="sipf_projects" model="hr.department">
+            <field name="name">PROJECTS</field>
+        </record>
+        <record id="sipf_secretariat" model="hr.department">
+            <field name="name">SECRETARIAT</field>
+        </record>
+        <record id="sipf_silog" model="hr.department">
+            <field name="name">SILOG</field>
+        </record>
+    </data>
+</odoo>

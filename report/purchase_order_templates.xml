@@ -17,6 +17,7 @@
         </div>
 
         <h1 class="text-center pb-4">
+            <em t-if="o.state not in ['purchase', 'done']">DRAFT&#160;</em>
             REQUISITION N°
             <span class="pl-3" t-field="o.name" />
         </h1>
@@ -132,6 +133,7 @@
         </p>
 
         <h1 class="text-center pb-4">
+            <em t-if="o.state not in ['purchase', 'done']">DRAFT&#160;</em>
             ÉTAT DE TRANSPORT
         </h1>
 
@@ -289,6 +291,7 @@
     <template id="regular_report">
         <div class="oe_structure" />
         <h1 class="text-center pb-4">
+            <em t-if="o.state not in ['purchase', 'done']">DRAFT&#160;</em>
             Purchase Order #
             <span class="pl-3" t-field="o.name" />
         </h1>
