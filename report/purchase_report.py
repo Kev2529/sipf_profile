@@ -39,6 +39,7 @@ class PurchaseRequisitionReport(models.AbstractModel):
         # get the records selected for this rendering of the report
         docs = self.env['purchase.requisition'].browse(docids)
 
+        ap = ct = ''
         for tag in docs.analytic_tag_ids:
             if tag.analytic_distribution_ids.account_id.group_id.name == 'Centre de Travail':
                 ct = tag.analytic_distribution_ids.account_id.code or tag.analytic_distribution_ids.name
