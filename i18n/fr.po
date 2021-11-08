@@ -68,11 +68,22 @@ msgid "BAF Procedure"
 msgstr "Procédure BAF"
 
 #. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition__amount_budget
+msgid "Budget amount"
+msgstr "Budget"
+
+#. module: sipf_profile
 #: model:ir.model.fields,field_description:sipf_profile.field_account_move_line__account_budget_id
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_order__account_budget_id
 #: model:ir.model.fields,field_description:sipf_profile.field_purchase_order_line__account_budget_id
 msgid "Budgeted Account"
 msgstr "Article budgétaire"
+
+#. module: sipf_profile
+#: model:ir.actions.act_window,name:sipf_profile.action_purchase_requisition_child_list
+#: model_terms:ir.ui.view,arch_db:sipf_profile.view_purchase_requisition_form_sipf
+msgid "Child's list"
+msgstr "Liste des enfants"
 
 #. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_purchase_order__project_id
@@ -511,6 +522,11 @@ msgstr ""
 #: model:ir.model.fields,help:sipf_profile.field_purchase_order__department_id
 msgid "This is the Department the purchase order is for"
 msgstr "C'est le Département pour lequel est destiné le bon de commande"
+
+#. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition__amount_total
+msgid "Total amount of purchase orders"
+msgstr "Total des bons de commande"
 
 #. module: sipf_profile
 #: model:ir.model.fields,field_description:sipf_profile.field_project_project__type_id

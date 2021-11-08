@@ -33,6 +33,8 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'data/analytic_account_data.xml',
         'data/project_type_data.xml',
         'data/purchase_order_type.xml',
+        'data/ir_sequence_data.xml',
+        'data/hr_department_data.xml',
         'report/purchase_reports.xml',
         'views/product_views.xml',
         'views/project_views.xml',
@@ -42,6 +44,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'views/nomenclature_views.xml',
         'views/analytic_account_views.xml',
         'report/purchase_order_templates.xml',
+        'report/purchase_requisition_templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
