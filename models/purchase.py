@@ -124,7 +124,11 @@ class PurchaseOrder(models.Model):
                     for ref, seq in ref_sequence_list.items():
                         # Set the sequence number regarding the department
                         if self.env.ref(ref).id == department_id:
-                            order.ref = self.env['ir.sequence'].next_by_code(seq)
+                            seq_date = fields.Date.context_today(self)
+                            order.ref = (
+                                self.env['ir.sequence']
+                                .next_by_code(seq, sequence_date=seq_date)
+                            )
                             break
         return res
 
