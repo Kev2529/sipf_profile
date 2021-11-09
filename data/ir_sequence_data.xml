@@ -4,74 +4,58 @@
         <record id="seq_purchase_order_sipf_baf" model="ir.sequence">
             <field name="name">Chrono for SIPF BAF</field>
             <field name="code">purchase.order.sipf.baf</field>
-            <field name="prefix">SIPF/BAF/%(year)s</field>
+            <field name="prefix">SIBAF/%(y)s.</field>
             <field name="implementation">no_gap</field>
             <field name="use_date_range">True</field>
-            <field name="padding">5</field>
+            <field name="padding">3</field>
         </record>
         <record id="seq_purchase_order_sipf_bssi" model="ir.sequence">
             <field name="name">Chrono for SIPF BSSI</field>
             <field name="code">purchase.order.sipf.bssi</field>
-            <field name="prefix">SIPF/BSSI/%(year)s</field>
+            <field name="prefix">SISSI/%(y)s.</field>
             <field name="implementation">no_gap</field>
             <field name="use_date_range">True</field>
-            <field name="padding">5</field>
-        </record>
-        <record id="seq_purchase_order_sipf_project_manager" model="ir.sequence">
-            <field name="name">Chrono for SIPF PROJECT MANAGER</field>
-            <field name="code">purchase.order.sipf.project_manager</field>
-            <field name="prefix">SIPF/PROJECT_MANAGER/%(year)s</field>
-            <field name="implementation">no_gap</field>
-            <field name="use_date_range">True</field>
-            <field name="padding">5</field>
+            <field name="padding">3</field>
         </record>
         <record id="seq_purchase_order_sipf_cpau" model="ir.sequence">
             <field name="name">Chrono for SIPF CPAU</field>
             <field name="code">purchase.order.sipf.cpau</field>
-            <field name="prefix">SIPF/CPAU/%(year)s</field>
+            <field name="prefix">SIPAU/%(y)s.</field>
             <field name="implementation">no_gap</field>
             <field name="use_date_range">True</field>
-            <field name="padding">5</field>
+            <field name="padding">3</field>
         </record>
         <record id="seq_purchase_order_sipf_dpo" model="ir.sequence">
             <field name="name">Chrono for SIPF DPO</field>
             <field name="code">purchase.order.sipf.dpo</field>
-            <field name="prefix">SIPF/DPO/%(year)s</field>
+            <field name="prefix">SIDPD/%(y)s.</field>
             <field name="implementation">no_gap</field>
             <field name="use_date_range">True</field>
-            <field name="padding">5</field>
+            <field name="padding">3</field>
         </record>
         <record id="seq_purchase_order_sipf_infra" model="ir.sequence">
             <field name="name">Chrono for SIPF INFRA</field>
             <field name="code">purchase.order.sipf.infra</field>
-            <field name="prefix">SIPF/INFRA/%(year)s</field>
+            <field name="prefix">SIASR/%(y)s.</field>
             <field name="implementation">no_gap</field>
             <field name="use_date_range">True</field>
-            <field name="padding">5</field>
+            <field name="padding">3</field>
         </record>
         <record id="seq_purchase_order_sipf_projects" model="ir.sequence">
             <field name="name">Chrono for SIPF PROJECTS</field>
             <field name="code">purchase.order.sipf.projects</field>
-            <field name="prefix">SIPF/PROJECTS/%(year)s</field>
+            <field name="prefix">SIPP/%(y)s.</field>
             <field name="implementation">no_gap</field>
             <field name="use_date_range">True</field>
-            <field name="padding">5</field>
-        </record>
-        <record id="seq_purchase_order_sipf_secretariat" model="ir.sequence">
-            <field name="name">Chrono for SIPF SECRETARIAT</field>
-            <field name="code">purchase.order.sipf.secretariat</field>
-            <field name="prefix">SIPF/SECRETARIAT/%(year)s</field>
-            <field name="implementation">no_gap</field>
-            <field name="use_date_range">True</field>
-            <field name="padding">5</field>
+            <field name="padding">3</field>
         </record>
         <record id="seq_purchase_order_sipf_silog" model="ir.sequence">
             <field name="name">Chrono for SIPF SILOG</field>
             <field name="code">purchase.order.sipf.silog</field>
-            <field name="prefix">SIPF/SILOG/%(year)s</field>
+            <field name="prefix">SILOG/%(y)s.</field>
             <field name="implementation">no_gap</field>
             <field name="use_date_range">True</field>
-            <field name="padding">5</field>
+            <field name="padding">3</field>
         </record>
     </data>
 </odoo>
