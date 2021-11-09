@@ -66,6 +66,10 @@ class PurchaseRequisition(models.Model):
         res = super(PurchaseRequisition, self).action_in_progress()
         return res
 
+    def action_draft(self):
+        self.ensure_one()
+        self.write({'state': 'draft'})
+
     def action_open(self):
         if not self.user_has_groups('purchase.group_purchase_manager'):
             raise ValidationError(_('You are not allowed to validate a purchase requisition'))
