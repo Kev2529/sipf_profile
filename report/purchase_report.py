@@ -39,14 +39,14 @@ class PurchaseRequisitionReport(models.AbstractModel):
         # get the records selected for this rendering of the report
         docs = self.env['purchase.requisition'].browse(docids)
 
-        ap = ct = ''
+        sschap = ct = ''
         for tag in docs.analytic_tag_ids:
-            if tag.analytic_distribution_ids.account_id.group_id.name == 'Centre de Travail':
+            if tag.analytic_distribution_ids.account_id.group_id == self.env.ref('sipf_profile.analytic_group_ct'):
                 ct = tag.analytic_distribution_ids.account_id.code or tag.analytic_distribution_ids.name
-            elif tag.analytic_distribution_ids.account_id.group_id.name == 'AP':
-                ap = tag.analytic_distribution_ids.account_id.code or tag.analytic_distribution_ids.name
+            elif tag.analytic_distribution_ids.account_id.group_id == self.env.ref('sipf_profile.analytic_group_sschap'):
+                sschap = tag.analytic_distribution_ids.account_id.code or tag.analytic_distribution_ids.name
         return {
             'docs': docs,
-            'AP': ap or '',
+            'SSCHAP': sschap or '',
             'CT': ct or ''
         }

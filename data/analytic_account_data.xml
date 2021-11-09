@@ -5,5 +5,17 @@
         <record id="analytic_group_projects" model="account.analytic.group">
             <field name="name">Projects</field>
         </record>
+        <record id="analytic_group_ap" model="account.analytic.group">
+            <field name="name">AP</field>
+        </record>
+        <record id="analytic_group_ae" model="account.analytic.group">
+            <field name="name">AE</field>
+        </record>
+        <record id="analytic_group_ct" model="account.analytic.group">
+            <field name="name">Centre de Travail</field>
+        </record>
+        <record id="analytic_group_sschap" model="account.analytic.group">
+            <field name="name">Chapitre/Sous Chapitre</field>
+        </record>
     </data>
 </odoo>
