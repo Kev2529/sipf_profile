@@ -101,7 +101,7 @@
                                     <td class="d-flex justify-content-between pl-3 pr-5 border-0">
                                         <div>
                                             <u>NATURE DE LA DEPENSE : </u>
-                                            <span t-field="o.name" />
+                                            <span t-field="o.description" />
                                         </div>
                                     </td>
                                 </tr>
