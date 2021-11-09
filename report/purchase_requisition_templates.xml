@@ -136,14 +136,16 @@
                                                     <u>ENG. COMPLEMENTAIRE</u>
                                                 </td>
                                                 <td class="ml-1 mr-1" style="text-align: center;">
-                                                    <t t-if="o.parent_id">X</t>
+                                                    <t t-if="o.parent_id and o.amount_budget &gt; 0">X</t>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="border-0 w-50">
                                                     <u>REDUCTION</u>
                                                 </td>
-                                                <td class="ml-1 mr-1"></td>
+                                                <td class="ml-1 mr-1" style="text-align: center;">
+                                                    <t t-if="o.parent_id and o.amount_budget &lt; 0">X</t>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="border-0 w-50">
