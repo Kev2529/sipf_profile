@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    ref = fields.Char('Ref')
+    ref = fields.Char('Ref', copy=False)
     project_id = fields.Many2one(
         comodel_name='project.project', string='BAF Procedure',
         domain="[('is_procedure_baf', '=', True), ('is_template', '=', False)]",
