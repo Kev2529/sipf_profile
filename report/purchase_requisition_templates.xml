@@ -201,17 +201,6 @@
                                 <tr>
                                     <td class="border-0 pl-5 font-weight-bold" colspan="2">
                                         <u>N° DE L’ENGAGEMENT PROVISIONNEL DELIVRE :</u>
-                                        <t t-if="o.parent_id">
-                                            <span class="pl-2" t-field=" o.parent_id.name" />
-                                        </t>
-                                        <t t-else="">
-                                            <span class="pl-2" t-field=" o.name" />
-                                        </t>
-
-                                        <span class="pl-2">
-                                            DU
-                                            <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y')" />
-                                        </span>
                                     </td>
                                 </tr>
                             </tbody>
