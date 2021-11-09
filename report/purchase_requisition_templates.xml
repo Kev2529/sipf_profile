@@ -73,7 +73,7 @@
                                         </span>
                                         <span class="pl-5">
                                             <u>PROGRAMME : </u>
-                                            <span class="pl-1" t-esc="AP" />
+                                            <span class="pl-1" t-esc="SSCHAP" />
                                         </span>
                                         <span class="pl-5">
                                             <u>ARTICLE : </u>
