@@ -1,5 +1,5 @@
 from odoo import api, fields, models, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 
 
 class PurchaseOrder(models.Model):
@@ -107,29 +107,40 @@ class PurchaseOrder(models.Model):
     def button_approve(self):
         res = super(PurchaseOrder, self).button_approve()
         for order in self:
-            department_id = order.user_id.employee_id.department_id.id
-            if department_id and not order.ref:
-                ref_sequence_list = {
-                    'sipf_profile.sipf_baf': 'purchase.order.sipf.baf',
-                    'sipf_profile.sipf_bssi': 'purchase.order.sipf.bssi',
-                    'sipf_profile.sipf_project_manager': 'purchase.order.sipf.project_manager',
-                    'sipf_profile.sipf_cpau': 'purchase.order.sipf.cpau',
-                    'sipf_profile.sipf_dpo': 'purchase.order.sipf.dpo',
-                    'sipf_profile.sipf_infra': 'purchase.order.sipf.infra',
-                    'sipf_profile.sipf_projects': 'purchase.order.sipf.projects',
-                    'sipf_profile.sipf_secretariat': 'purchase.order.sipf.secretariat',
-                    'sipf_profile.sipf_silog': 'purchase.order.sipf.silog'
-                }
-                if ref_sequence_list != {}:
-                    for ref, seq in ref_sequence_list.items():
-                        # Set the sequence number regarding the department
-                        if self.env.ref(ref).id == department_id:
-                            seq_date = fields.Date.context_today(self)
-                            order.ref = (
-                                self.env['ir.sequence']
-                                .next_by_code(seq, sequence_date=seq_date)
-                            )
-                            break
+            if not order.ref:
+                # We have a special sequence for Freight
+                if order.order_type == self.env.ref('l10n_pf_purchase_freight.po_type_freight'):
+                    seq_date = fields.Date.context_today(self)
+                    order.ref = (
+                        self.env['ir.sequence']
+                        .next_by_code('purchase.order.sipf.et', sequence_date=seq_date)
+                    )
+                    break
+                # For other types, we have a sequence for each department
+                if order.department_id:
+                    ref_sequence_list = {
+                        'sipf_profile.sipf_baf': 'purchase.order.sipf.baf',
+                        'sipf_profile.sipf_bssi': 'purchase.order.sipf.bssi',
+                        'sipf_profile.sipf_cpau': 'purchase.order.sipf.cpau',
+                        'sipf_profile.sipf_dpo': 'purchase.order.sipf.dpo',
+                        'sipf_profile.sipf_infra': 'purchase.order.sipf.infra',
+                        'sipf_profile.sipf_projects': 'purchase.order.sipf.projects',
+                        'sipf_profile.sipf_silog': 'purchase.order.sipf.silog'
+                    }
+                    if ref_sequence_list != {}:
+                        for ref, seq in ref_sequence_list.items():
+                            # Set the sequence number regarding the department
+                            if self.env.ref(ref).id == order.department_id.id:
+                                seq_date = fields.Date.context_today(self)
+                                order.ref = (
+                                    self.env['ir.sequence']
+                                    .next_by_code(seq, sequence_date=seq_date)
+                                )
+                                break
+                else:
+                    raise UserError(
+                        _('The department must be filled.'))
+
         return res
 
 
