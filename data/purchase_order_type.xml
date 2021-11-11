@@ -3,4 +3,7 @@
     <record model="purchase.order.type" id="po_type_requisition">
         <field name="name">Requisition</field>
     </record>
+    <record model="purchase.order.type" id="po_type_tva">
+        <field name="name">VAT for import purchase</field>
+    </record>
 </odoo>
