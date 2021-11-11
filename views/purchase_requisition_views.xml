@@ -18,8 +18,9 @@
         <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_tree" />
         <field name="arch" type="xml">
             <field name="state" position="before">
-                <field name="amount_total" decoration-danger="amount_budget &lt; amount_total" optional="show" />
-                <field name="amount_budget" decoration-danger="amount_budget &lt; amount_total" optional="show" />
+                <field name="amount_total" decoration-danger="total_budget &lt; amount_total" optional="show" />
+                <field name="total_budget" optional="show" />
+                <field name="amount_budget" optional="show" />
             </field>
         </field>
     </record>
@@ -43,6 +44,7 @@
                 <field name="account_analytic_id" attrs="{'readonly': [('state','not in',('draft'))]}" groups="analytic.group_analytic_accounting" options="{'no_create': True, 'no_create_edit':True}"/>
                 <field name="analytic_tag_ids" attrs="{'readonly': [('state','not in',('draft'))]}" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'no_create': True, 'no_create_edit':True}"/>
                 <field name="amount_budget" attrs="{'readonly': [('state','not in',('draft'))]}" options="{'no_create': True, 'no_create_edit':True}" />
+                <field name="total_budget" attrs="{'readonly': [('state','not in',('draft'))]}" options="{'no_create': True, 'no_create_edit':True}" />
                 <field name="amount_total" options="{'no_create': True, 'no_create_edit':True}" />
                 <field name="parent_id" attrs="{'readonly': [('state','not in',('draft'))]}" options="{'no_create': True, 'no_create_edit':True}" />
                 <field name="article" attrs="{'readonly': [('state','not in',('draft'))]}" />
