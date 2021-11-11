@@ -31,6 +31,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'security/ir.model.access.csv',
         'data/nomenclature.europe.csv',
         'data/analytic_account_data.xml',
+        'data/purchase_requisition_data.xml',
         'data/project_type_data.xml',
         'data/purchase_order_type.xml',
         'data/ir_sequence_data.xml',
