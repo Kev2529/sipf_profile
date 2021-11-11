@@ -38,11 +38,14 @@ class PurchaseRequisition(models.Model):
         context={'active_test': False})
     child_count = fields.Integer(
         compute='_compute_child_number', string='Number of childs')
-    amount_budget = fields.Monetary(string='Budget amount', store=True)
+    amount_budget = fields.Monetary(string='Budget amount')
+    total_budget = fields.Monetary(
+        string='Total Budget',
+        store=True,
+        compute='_compute_total_amount')
     amount_total = fields.Monetary(
         string='Total amount of purchase orders',
         store=True,
-        readonly=True,
         compute='_compute_total_amount')
     article = fields.Char('Article budgétaire')
 
@@ -70,13 +73,16 @@ class PurchaseRequisition(models.Model):
     def _compute_total_amount(self):
         for rec in self:
             amount_total = 0.0
+            total_budget = rec.amount_budget
             for po in rec.purchase_ids.filtered(lambda purchase_order: purchase_order.state not in ['draft', 'cancel']):
                 amount_total += po.amount_total
 
             if rec.child_ids:
                 for child in rec.child_ids:
                     amount_total += child.amount_total
+                    total_budget += child.amount_budget
             rec.amount_total = amount_total
+            rec.total_budget = total_budget
 
     def _inverse_analytic_account(self):
         for rec in self:
