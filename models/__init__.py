@@ -9,3 +9,4 @@ from . import nomenclature_europe
 from . import account_move
 from . import analytic_account
 from . import product_template
+from . import res_company

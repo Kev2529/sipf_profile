@@ -45,8 +45,20 @@ class PurchaseRequisitionReport(models.AbstractModel):
                 ct = tag.analytic_distribution_ids.account_id.code or tag.analytic_distribution_ids.name
             elif tag.analytic_distribution_ids.account_id.group_id == self.env.ref('sipf_profile.analytic_group_sschap'):
                 sschap = tag.analytic_distribution_ids.account_id.code or tag.analytic_distribution_ids.name
+
+        epac_initial_id = docs.parent_id.id and docs.parent_id or docs
+        epac_childs = self.env['purchase.requisition'].search([
+            ('id', 'child_of', epac_initial_id.id),
+            ('state', 'not in', ['draft'])
+        ], order='create_date asc')
+        counter = 0
+        for i, child in enumerate(epac_childs):
+            if (child == docs):
+                counter = i
+                break
         return {
             'docs': docs,
             'SSCHAP': sschap or '',
-            'CT': ct or ''
+            'CT': ct or '',
+            'epac_counter': counter
         }
