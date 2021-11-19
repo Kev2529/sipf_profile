@@ -15,7 +15,9 @@
                             <u>N°</u>
                             <span class="pl-2" t-field="o.origin" />
                             <t t-if="o.parent_id">
-                                <span>/2</span>
+                                <span>/
+                                    <t t-esc="epac_counter" />
+                                </span>
                             </t>
                             <u> DU </u>
                             <span class="pl-2" t-field="o.create_date" t-options='{"widget": "date"}'/>
@@ -32,7 +34,7 @@
                             <tbody>
                                 <tr>
                                     <td class="d-flex justify-content-between pl-3 border-0">
-                                        <strong>SERVICE DE L'INFORMATIQUE</strong>
+                                        <strong t-esc="o.company_id.name" />
                                     </td>
                                     <td class="border-0">
                                         <strong>
@@ -196,8 +198,13 @@
                                 </tr>
                                 <tr>
                                     <td class="border-0" style="text-align:center;">
-                                        <div>Pour le Ministre et par délégation</div>
-                                        <div>Le Chef de service</div>
+                                        <t t-if="o.amount_budget > o.company_id.signature_delegation_threshold">
+                                            <div>Le Ministre</div>
+                                        </t>
+                                        <t t-else="">
+                                            <div>Pour le Ministre et par délégation</div>
+                                            <div>Le Chef de service</div>
+                                        </t>
                                     </td>
                                 </tr>
                                 <tr>

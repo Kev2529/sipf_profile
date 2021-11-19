@@ -28,14 +28,14 @@
             <span class="pl-3" t-field="o.user_id.name" />
         </p>
         <p>
-            En date du (2)
+            En date du (1)
             <span class="pl-3" t-field="o.date_planned" t-options='{"format": "dd/MM/yyyy"}' />
         </p>
         <p>
             Invite
             <span class="pl-3" t-field="o.partner_id.name" />
         </p>
-        <p>à délivrer un titre de transport à (3)</p>
+        <p>à délivrer un titre de transport à</p>
         <t t-set="i" t-value="0" />
         <t t-foreach="o.passenger_ids" t-as="passenger">
             <t t-set="i" t-value="i+1" />
@@ -98,7 +98,7 @@
         </div>
         <div class="row pb-7">
             <div class="col-6">
-                VISA DU CONTROLE FINANCIER (1)
+                VISA DU CONTROLE FINANCIER
             </div>
             <div class="col-6">
                 Fait à PAPEETE, le
@@ -108,15 +108,18 @@
 
         <div class="row pb-7">
             <div class="col-4 text-center">
-                <div>Pour le ministre et par délégation</div>
-                <div>Le chef de service adjoint</div>
+                <t t-if="o.amount_total > o.company_id.signature_delegation_threshold">
+                    <div>Le Ministre</div>
+                </t>
+                <t t-else="">
+                    <div>Pour le Ministre et par délégation</div>
+                    <div>Le Chef de service</div>
+                </t>
             </div>
         </div>
 
         <div style="font-size: 12px;">
-            <div>(1)Préciser les nom et qualité de l'autorité responsable de l'engagement et de la liquidation de la dépense.</div>
-            <div>(2)Référence à l'ordre de déplacement.</div>
-            <div>(3)Préciser le nom et la qualité de la ou des personnes tranportées.</div>
+            <div>(1)Référence à l'ordre de déplacement.</div>
         </div>
     </template>
 
@@ -281,9 +284,13 @@
                 Cachet
                 <strong>VISA</strong>
             </div>
-            <div class="col-6 text-center">
-                Pour le Ministre et par délégation
-            </div>
+            <t t-if="o.amount_total > o.company_id.signature_delegation_threshold">
+                <div class="col-6 text-center">Le Ministre</div>
+            </t>
+            <t t-else="">
+                <div class="col-6 text-center">Pour le Ministre et par délégation</div>
+                <div class="col-6 text-center">Le Chef de service</div>
+            </t>
         </div>
     </template>
 

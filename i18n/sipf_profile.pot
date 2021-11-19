@@ -475,6 +475,13 @@ msgid "Select the Department the purchase requisition is for"
 msgstr ""
 
 #. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order__signature_delegation_threshold
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_requisition__signature_delegation_threshold
+#: model:ir.model.fields,field_description:sipf_profile.field_res_company__signature_delegation_threshold
+msgid "Signature delegation threshold"
+msgstr ""
+
+#. module: sipf_profile
 #: model:ir.model.fields,help:sipf_profile.field_nomenclature_sipf__activity_state
 msgid ""
 "Status based on activities\n"

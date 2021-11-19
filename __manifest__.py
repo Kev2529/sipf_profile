@@ -40,6 +40,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'views/product_views.xml',
         'views/project_views.xml',
         'views/purchase_views.xml',
+        'views/res_company_views.xml',
         'views/purchase_requisition_views.xml',
         'views/account_move_views.xml',
         'views/nomenclature_views.xml',
