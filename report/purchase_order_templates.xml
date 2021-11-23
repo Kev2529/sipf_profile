@@ -108,7 +108,7 @@
 
         <div class="row pb-7">
             <div class="col-4 text-center">
-                <t t-if="o.amount_total > o.company_id.signature_delegation_threshold">
+                <t t-if="o.amount_total >= o.company_id.signature_delegation_threshold">
                     <div>Le Ministre</div>
                 </t>
                 <t t-else="">
@@ -284,7 +284,7 @@
                 Cachet
                 <strong>VISA</strong>
             </div>
-            <t t-if="o.amount_total > o.company_id.signature_delegation_threshold">
+            <t t-if="o.amount_total >= o.company_id.signature_delegation_threshold">
                 <div class="col-6 text-center">Le Ministre</div>
             </t>
             <t t-else="">
