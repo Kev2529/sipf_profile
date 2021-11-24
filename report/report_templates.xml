@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="external_layout_background_gov" inherit_id="web.external_layout_background">
+        <xpath expr="//div[hasclass('float-left', 'company_address')]/div[1]" position="before">
+            <t t-if="company.parent_id">
+                <div>
+                    <strong t-field="company.parent_id.partner_id.name" />
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="external_layout_boxed_gov" inherit_id="web.external_layout_boxed">
+        <xpath expr="//span[hasclass('company_address')]" position="before">
+            <t t-if="company.parent_id">
+                <span class="company_address" t-field="company.parent_id.partner_id.name" />
+            </t>
+        </xpath>
+    </template>
+
+    <template id="external_layout_clean_gov" inherit_id="web.external_layout_clean">
+        <xpath expr="//div[@name='company_address']/ul[hasclass('list-unstyled')]//li[1]" position="before">
+            <strong>
+                <li t-if="company.parent_id">
+                    <span t-field="company.parent_id.name" />
+                </li>
+            </strong>
+        </xpath>
+    </template>
+
+    <template id="external_layout_standard_gov" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[@name='company_address']/.." position="before">
+            <t t-if="company.parent_id">
+                <div class="row">
+                    <div class="col-6" name="company_address">
+                        <div t-field="company.parent_id.partner_id.name" />
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
