@@ -38,6 +38,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'data/ir_sequence_data.xml',
         'data/hr_department_data.xml',
         'data/hr_expense_data.xml',
+        'report/report_templates.xml',
         'report/purchase_reports.xml',
         'views/product_views.xml',
         'views/project_views.xml',
