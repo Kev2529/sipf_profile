@@ -48,7 +48,7 @@ class PurchaseRequisition(models.Model):
         store=True,
         compute='_compute_total_amount')
     article = fields.Char('Article budgétaire')
-    code_visa = fields.Char('Numéro de visa')
+    code_visa = fields.Char('Numéro de visa', copy=False)
 
     @api.onchange('user_id')
     def onchange_user_id(self):
