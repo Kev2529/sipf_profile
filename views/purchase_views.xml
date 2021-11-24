@@ -45,23 +45,21 @@
             <xpath expr="//field[@name='requisition_id']" position="after">
                 <field name="transport_ref" attrs="{'invisible': [('order_type', '!=', %(sipf_profile.po_type_requisition)d)]}" />
                 <field name="passenger_ids" widget="many2many_tags" attrs="{'invisible': [('order_type', '!=', %(sipf_profile.po_type_requisition)d)]}" />
-                <field name="departure_place" attrs="{'invisible': [('order_type', '!=', %(sipf_profile.po_type_requisition)d)]}" />
                 <field name="arrival_place" attrs="{'invisible': [('order_type', '!=', %(sipf_profile.po_type_requisition)d)]}" />
             </xpath>
             <xpath expr="//field[@name='account_budget_id']" position="after">
                 <field name="option_date" attrs="{'invisible': [('order_type', '!=', %(sipf_profile.po_type_requisition)d)]}" />
                 <field name="departure_date" attrs="{'invisible': [('order_type', '!=', %(sipf_profile.po_type_requisition)d)]}" />
                 <field name="return_date" attrs="{'invisible': [('order_type', '!=', %(sipf_profile.po_type_requisition)d)]}" />
+                <field name="expense_sheet_id" attrs="{'invisible': [('order_type', '!=', %(sipf_profile.po_type_requisition)d)]}" />
             </xpath>
 
             <!-- Specific fields for freight 's purchase order type -->
             <xpath expr="//field[@name='requisition_id']" position="after">
                 <field name="partner_shipping_id" attrs="{'invisible': [('order_type', '!=', %(l10n_pf_purchase_freight.po_type_freight)d)]}" />
-                <field name="transport_ref" attrs="{'invisible': [('order_type', '!=', %(l10n_pf_purchase_freight.po_type_freight)d)]}" />
             </xpath>
             <xpath expr="//field[@name='account_budget_id']" position="after">
                 <field name="departure_place" attrs="{'invisible': [('order_type', '!=', %(l10n_pf_purchase_freight.po_type_freight)d)]}" />
-                <field name="arrival_place" attrs="{'invisible': [('order_type', '!=', %(l10n_pf_purchase_freight.po_type_freight)d)]}" />
             </xpath>
 
             <xpath expr="//header" position="inside">

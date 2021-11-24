@@ -34,8 +34,8 @@ class PurchaseOrder(models.Model):
         string='Lieu de départ',
         help="Saisir le lieu de départ.")
     arrival_place = fields.Char(
-        string="Lieu d'arrivée",
-        help="Saisir le lieu d'arrivée.")
+        string="Lieux visités",
+        help="Saisir les lieux visités.")
 
     # Requisition's purchase order type specific fields
     option_date = fields.Date(
@@ -47,6 +47,7 @@ class PurchaseOrder(models.Model):
         help='Choisir le(s) passager(s)')
     departure_date = fields.Date(string='Date de départ')
     return_date = fields.Date(string='Date de retour')
+    expense_sheet_id = fields.Many2one('hr.expense.sheet', 'Expense sheet')
 
     # Freight's purchase order type specific fields
     partner_shipping_id = fields.Many2one(
