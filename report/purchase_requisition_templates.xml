@@ -197,13 +197,13 @@
                                     <td class="border-0" style="text-align:center;height:150px">
                                         <t t-if="o.amount_budget >= o.company_id.signature_delegation_threshold">
                                             <div>
-                                                Le
+                                                Le/La
                                                 <t t-esc="no_parent_partner.job_title" />
                                                 <t t-esc="no_parent_partner.name" />
                                             </div>
                                         </t>
                                         <t t-else="">
-                                            <div>Pour le Ministre et par délégation</div>
+                                            <div>Pour le/la Ministre et par délégation</div>
                                         </t>
                                     </td>
                                 </tr>
