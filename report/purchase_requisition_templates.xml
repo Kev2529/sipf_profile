@@ -169,13 +169,13 @@
                                     <td class="border-0 p-0 w-25" style="vertical-align:middle;padding-top:20px!important;">
                                         <div class="border border-right-0">
                                             <t t-if="o.parent_id">
-                                                <span class="pl-1" t-esc=" code_visa" /> 
+                                                <span class="pl-1" t-esc=" initial_code_visa" /> 
                                             </t>
                                         </div>
                                         <div>
                                             <small>
                                                 DU
-                                                <span t-field=" o.ordering_date" />
+                                                <span t-esc=" initial_date" t-options='{"widget": "date"}'/>
                                             </small>
                                         </div>
                                     </td>

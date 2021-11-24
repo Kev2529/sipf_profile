@@ -89,6 +89,7 @@ class PurchaseRequisitionReport(models.AbstractModel):
             'SSCHAP': sschap or '',
             'CT': ct or '',
             'epac_counter': counter,
-            'code_visa': epac_initial_id.code_visa,
+            'initial_code_visa': epac_initial_id.code_visa,
+            'initial_date': epac_initial_id.create_date,
             'no_parent_partner': no_parent_partner[0]
         }
