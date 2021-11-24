@@ -22,7 +22,9 @@
             <span class="pl-3" t-field="o.name" />
         </h1>
 
-        <p class="text-center">Le/La Ministre de la modernisation de l'Administration</p>
+        <p class="text-center">Le/La
+        <t t-esc="no_parent_partner.job_title" />
+    </p>
         <p>
             Conformément aux instructions de l'ordre de déplacement
             <span class="pl-3" t-field="o.expense_sheet_id.ref" />
@@ -451,13 +453,13 @@
                     <td class="border-0 pb-3" style="text-align:center;height:150px">
                         <t t-if="o.amount_total >= o.company_id.signature_delegation_threshold">
                             <div>
-                                Le
+                                Le/La
                                 <t t-esc="no_parent_partner.job_title" />
                                 <t t-esc="no_parent_partner.name" />
                             </div>
                         </t>
                         <t t-else="">
-                            <div>Pour le Ministre et par délégation</div>
+                            <div>Pour le/la Ministre et par délégation</div>
                         </t>
                     </td>
                 </tr>
