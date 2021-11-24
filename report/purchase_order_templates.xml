@@ -24,32 +24,43 @@
 
         <p class="text-center">Le/La Ministre de la modernisation de l'Administration</p>
         <p>
-            Conformément aux instructions de
-            <span class="pl-3" t-field="o.user_id.name" />
+            Conformément aux instructions de l'ordre de déplacement
+            <span class="pl-3" t-field="o.expense_sheet_id.ref" />
         </p>
         <p>
-            En date du (1)
-            <span class="pl-3" t-field="o.date_planned" t-options='{"format": "dd/MM/yyyy"}' />
+            En date du
+            <span class="pl-3" t-field="o.expense_sheet_id.approve_date" t-options='{"format": "dd/MM/yyyy"}' />
         </p>
         <p>
             Invite
-            <span class="pl-3" t-field="o.partner_id.name" />
+            <span class="pl-3">
+                <t t-esc="o.partner_id.name" />
+                <t t-if="o.partner_id.ref">
+                    (
+                    <t t-esc="o.partner_id.ref" />
+                    )
+                </t>
+            </span>
         </p>
         <p>à délivrer un titre de transport à</p>
         <t t-set="i" t-value="0" />
-        <t t-foreach="o.passenger_ids" t-as="passenger">
-            <t t-set="i" t-value="i+1" />
-            <div class="mb-2">
-                M./Mme.
-                <span class="pl-5" t-field="passenger.name" />
-                ,
-                <span class="pl-2" t-field="passenger.job_title" />
-            </div>
-        </t>
         <p>
-            partant de
-            <span class="pl-3 pr-3" t-field="o.departure_place" />
-            le
+            <t t-foreach="o.passenger_ids" t-as="passenger">
+                <t t-set="i" t-value="i+1" />
+                <span class="pl-2">
+                    <t t-esc="passenger.name" />
+                    <t t-if="passenger.job_title">
+                        (
+                        <t t-esc="passenger.job_title" />
+                        )
+                    </t>
+                    ,
+                </span>
+            </t>
+        </p>
+
+        <p>
+            partant le
             <span class="pl-3" t-field="o.departure_date" />
         </p>
         <p>
@@ -96,43 +107,15 @@
                 passager(s)
             </p>
         </div>
-        <div class="row pb-7">
-            <div class="col-6">
-                VISA DU CONTROLE FINANCIER
-            </div>
-            <div class="col-6">
-                Fait à PAPEETE, le
-                <span class="pl-3" t-field="o.date_approve" t-options='{"format": "dd/MM/yyyy"}' />
-            </div>
-        </div>
 
-        <div class="row pb-7">
-            <div class="col-4 text-center">
-                <t t-if="o.amount_total >= o.company_id.signature_delegation_threshold">
-                    <div>Le Ministre</div>
-                </t>
-                <t t-else="">
-                    <div>Pour le Ministre et par délégation</div>
-                    <div>Le Chef de service</div>
-                </t>
-            </div>
-        </div>
-
-        <div style="font-size: 12px;">
-            <div>(1)Référence à l'ordre de déplacement.</div>
-        </div>
+        <t t-call="sipf_profile.signature" />
     </template>
 
     <!-- FREIGHT TEMPLATE -->
     <template id="freight_report">
         <p>
             N° Client :
-            <t t-if="o.partner_id.parent_id.vat">
-                <span class="pl-3" t-field="o.partner_id.parent_id.vat" />
-            </t>
-            <t t-else="">
-                <span class="pl-3" t-field="o.partner_id.parent_id.name" />
-            </t>
+            <span class="pl-3" t-field="o.partner_id.customer_supplier_ref" />
         </p>
 
         <h1 class="text-center pb-4">
@@ -179,15 +162,14 @@
         </p>
         <p>
             sur :
-            <span class="pl-3" t-field="o.partner_id" />
-        </p>
-        <p>
-            Réf. Vol/Navire :
-            <span class="pl-3" t-field="o.transport_ref" />
-        </p>
-        <p>
-            LTA n° :
-            <span class="pl-3" t-field="o.partner_ref" />
+            <span class="pl-3">
+                <t t-esc="o.partner_id.name" />
+                <t t-if="o.partner_id.ref">
+                    (
+                    <t t-esc="o.partner_id.ref" />
+                    )
+                </t>
+            </span>
         </p>
         <p class="text-center">
             pour être délivré à
@@ -279,19 +261,8 @@
             à la somme de
             <span class="pl-3" t-field="o.amount_total" />
         </p>
-        <div class="row pt-5">
-            <div class="col-6 text-center">
-                Cachet
-                <strong>VISA</strong>
-            </div>
-            <t t-if="o.amount_total >= o.company_id.signature_delegation_threshold">
-                <div class="col-6 text-center">Le Ministre</div>
-            </t>
-            <t t-else="">
-                <div class="col-6 text-center">Pour le Ministre et par délégation</div>
-                <div class="col-6 text-center">Le Chef de service</div>
-            </t>
-        </div>
+
+        <t t-call="sipf_profile.signature" />
     </template>
 
     <!-- PURCHASE ORDER TEMPLATE -->
@@ -461,6 +432,37 @@
             </div>
         </div>
 
+        <t t-call="sipf_profile.signature" />
+
+    </template>
+
+    <template id="signature">
+        <table class="table table-bordered table-sm o_main_table mt-5 p-3">
+            <tbody>
+                <tr>
+                    <td class="border-0 font-weight-bold w-50 pl-3 pr-3" style="text-align:center;">
+                        <u>DATE ET SIGNATURE</u>
+                    </td>
+                    <td class="border-0 font-weight-bold w-50 pl-3 pr-3" style="text-align:center;">
+                        <u>DATE ET SIGNATURE DU CONTROLEUR DES DEPENSES ENGAGEES</u>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border-0 pb-3" style="text-align:center;">
+                        <t t-if="o.amount_total >= o.company_id.signature_delegation_threshold">
+                            <div>
+                                Le
+                                <t t-esc="no_parent_partner.job_title" />
+                                <t t-esc="no_parent_partner.name" />
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <div>Pour le Ministre et par délégation</div>
+                        </t>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </template>
 
     <template id="sipf_purchase_order">
