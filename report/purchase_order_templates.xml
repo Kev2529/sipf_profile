@@ -448,7 +448,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="border-0 pb-3" style="text-align:center;">
+                    <td class="border-0 pb-3" style="text-align:center;height:150px">
                         <t t-if="o.amount_total >= o.company_id.signature_delegation_threshold">
                             <div>
                                 Le
