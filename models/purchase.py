@@ -117,6 +117,13 @@ class PurchaseOrder(models.Model):
                         .next_by_code('purchase.order.sipf.et', sequence_date=seq_date)
                     )
                     break
+                if order.order_type == self.env.ref('sipf_profile.po_type_requisition'):
+                    seq_date = fields.Date.context_today(self)
+                    order.ref = (
+                        self.env['ir.sequence']
+                        .next_by_code('purchase.order.sipf.req', sequence_date=seq_date)
+                    )
+                    break
                 # For other types, we have a sequence for each department
                 if order.department_id:
                     ref_sequence_list = {
