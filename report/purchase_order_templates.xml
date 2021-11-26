@@ -27,11 +27,14 @@
         </p>
         <p>
             Conformément aux instructions de l'ordre de déplacement
-            <span class="pl-3" t-field="o.expense_sheet_ids.ref" />
-        </p>
-        <p>
-            En date du
-            <span class="pl-3" t-field="o.expense_sheet_ids.approve_date" t-options='{"format": "dd/MM/yyyy"}' />
+            <t t-foreach="o.expense_sheet_ids" t-as="sheet">
+                <span class="pl-3">
+                    <t t-esc="sheet.ref" />
+                    &#160;(
+                    <t t-esc="sheet.approve_date" t-options="{'widget': 'date', 'format': 'dd/MM/yyyy'}" />
+                    )
+                </span>
+            </t>
         </p>
         <p>
             Invite
@@ -272,12 +275,24 @@
         <div class="oe_structure" />
         <h1 class="text-center pb-4">
             <em t-if="o.state not in ['purchase', 'done']">DRAFT&#160;</em>
-            Purchase Order #
-            <span class="pl-3" t-field="o.name" />
+            N° BC :&#160;
+            <span class="pl-3" t-field="o.ref" />
         </h1>
 
+        <div style="float:left;">
+            <strong>Délivré à :</strong>
+        </div>
+        <div class="pl-5" style="float:left;" t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["name", "email", "phone", "address"]}' />
+        <div class="pl-3" style="float:left;">
+            <strong>N° VAT :</strong>
+            <span t-esc="o.partner_id.vat" />
+        </div>
+        <div class="pl-3" style="float:left;">
+            <strong>Code fournisseur :</strong>
+            <span t-esc="o.partner_id.ref" />
+        </div>
 
-        <div id="informations" class="row mt32 mb32">
+        <div id="informations" class="row mt32 mb32 pt-3">
             <div t-if="o.user_id" class="col-3 bm-2">
                 <strong>Purchase Representative:</strong>
                 <p t-field="o.user_id" class="m-0" />
@@ -288,7 +303,7 @@
             </div>
             <div t-if="o.date_order" class="col-3 bm-2">
                 <strong>Order Date:</strong>
-                <p t-field="o.date_order" class="m-0" />
+                <p class="m-0" t-field="o.date_order" t-options="{'widget': 'date', 'format': 'dd/MM/yyyy'}" />
             </div>
         </div>
 

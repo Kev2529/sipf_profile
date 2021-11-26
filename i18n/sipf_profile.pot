@@ -16,6 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sipf_profile
+#: model_terms:ir.ui.view,arch_db:sipf_profile.regular_report
+msgid "<strong>Order Date:</strong>"
+msgstr ""
+
+#. module: sipf_profile
 #: model:ir.model.fields,field_description:sipf_profile.field_nomenclature_sipf__message_needaction
 msgid "Action Needed"
 msgstr ""
