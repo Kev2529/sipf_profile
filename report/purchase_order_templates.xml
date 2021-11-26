@@ -23,8 +23,8 @@
         </h1>
 
         <p class="text-center">Le/La
-        <t t-esc="no_parent_partner.job_title" />
-    </p>
+            <t t-esc="no_parent_partner.job_title" />
+        </p>
         <p>
             Conformément aux instructions de l'ordre de déplacement
             <span class="pl-3" t-field="o.expense_sheet_id.ref" />
@@ -128,7 +128,7 @@
         <div class="row pb-3">
             <div class="col-6">
                 PAPEETE, le
-                <span class="pl-3" t-field="o.date_approve" t-field-options='{"format": "dd/MM/yyyy"}' />
+                <span class="pl-1" t-field="o.date_approve" t-options='{"widget": "date"}' />
             </div>
 
             <div class="col-6">
@@ -159,7 +159,7 @@
             </div>
         </div>
         <p>
-            Ont été chargés en en bon état de conditionnement à :
+            Ont été chargés en bon état de conditionnement à :
             <span class="pl-3" t-field="o.departure_place" />
         </p>
         <p>
@@ -173,10 +173,10 @@
                 </t>
             </span>
         </p>
-        <p class="text-center">
-            pour être délivré à
-            <span class="pl-3" t-field="o.partner_shipping_id" />
-        </p>
+        <div class="pb-5">
+            <div style="float:left;">pour être délivré à :</div>
+            <div class="pl-5" style="float:left;" t-field="o.partner_shipping_id" t-options='{"widget": "contact", "fields": ["name", "email", "phone", "address"]}' />
+        </div>
         <table class="table table-sm o_main_table mt-5 mb-5">
             <tr>
                 <th name="th_description" class="text-center">
@@ -231,20 +231,20 @@
                     </tr>
                 </t>
                 <tr>
-                    <td class="text-center">
+                    <td class="border-top text-center">
                         <strong>TOTAL</strong>
                     </td>
-                    <td class="text-center">
+                    <td class="border-top text-center">
                         <span t-esc="int(total_qty)" />
                     </td>
-                    <td class="text-center">
+                    <td class="border-top text-center">
                         <span t-esc="int(total_weight)" />
                     </td>
-                    <td class="text-center">
+                    <td class="border-top text-center">
                         <span t-esc="int(total_volume)" />
                     </td>
-                    <td></td>
-                    <td class="text-right">
+                    <td class="border-top" />
+                    <td class="border-top text-right">
                         <span t-field="o.amount_total" />
                     </td>
                 </tr>
@@ -439,7 +439,7 @@
     </template>
 
     <template id="signature">
-        <table class="table table-bordered table-sm o_main_table mt-5 p-3">
+        <table class="table table-bordered table-sm o_main_table mt-5 p-3" style="page-break-inside: avoid">
             <tbody>
                 <tr>
                     <td class="border-0 font-weight-bold w-50 pl-3 pr-3" style="text-align:center;">
@@ -449,8 +449,8 @@
                         <u>DATE ET SIGNATURE DU CONTROLEUR DES DEPENSES ENGAGEES</u>
                     </td>
                 </tr>
-                <tr>
-                    <td class="border-0 pb-3" style="text-align:center;height:150px">
+                <tr style="text-align:center;height:150px">
+                    <td class="border-0 pb-3">
                         <t t-if="o.amount_total >= o.company_id.signature_delegation_threshold">
                             <div>
                                 Le/La

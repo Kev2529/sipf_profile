@@ -183,7 +183,7 @@
                             </tbody>
                         </table>
 
-                        <table class="table table-bordered table-sm o_main_table mt-5 p-3">
+                        <table class="table table-bordered table-sm o_main_table mt-5 p-3" style="page-break-inside: avoid">
                             <tbody>
                                 <tr>
                                     <td class="border-0 font-weight-bold w-50 pl-3 pr-3" style="text-align:center;">
