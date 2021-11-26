@@ -212,7 +212,7 @@
                                 <span t-field="line.name" />
                             </td>
                             <td class="text-center">
-                                <span t-esc="int(line.product_qty)" />
+                                <span t-esc="int(line.pack_qty)" />
                                 <span t-field="line.product_uom.name" groups="uom.group_uom" />
                             </td>
                             <td class="text-center">

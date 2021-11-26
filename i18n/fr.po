@@ -397,6 +397,11 @@ msgid "Numbers of Orders"
 msgstr "Nombre de Commandes"
 
 #. module: sipf_profile
+#: model:ir.model.fields,field_description:sipf_profile.field_purchase_order_line__pack_qty
+msgid "Pack Qty"
+msgstr "Pack Qté"
+
+#. module: sipf_profile
 #: model:project.type,name:sipf_profile.project_type_procedure_baf
 msgid "Procedure BAF"
 msgstr "Procédure BAF"
