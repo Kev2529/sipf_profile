@@ -90,6 +90,6 @@ class PurchaseRequisitionReport(models.AbstractModel):
             'CT': ct or '',
             'epac_counter': counter,
             'initial_code_visa': epac_initial_id.code_visa,
-            'initial_date': epac_initial_id.create_date,
+            'initial_date': epac_initial_id.approve_date,
             'no_parent_partner': no_parent_partner[0]
         }

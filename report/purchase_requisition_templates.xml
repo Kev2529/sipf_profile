@@ -20,7 +20,7 @@
                                 </span>
                             </t>
                             <u> DU </u>
-                            <span class="pl-2" t-field="o.create_date" t-options='{"widget": "date"}'/>
+                            <span class="pl-2" t-field="o.approve_date" t-options='{"widget": "date"}' />
                         </h4>
 
                         <table class="table table-bordered table-sm o_main_table mt-3">

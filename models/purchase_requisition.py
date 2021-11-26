@@ -49,6 +49,7 @@ class PurchaseRequisition(models.Model):
         compute='_compute_total_amount')
     article = fields.Char('Article budgétaire')
     code_visa = fields.Char('Numéro de visa', copy=False)
+    approve_date = fields.Date('Date approve', readonly=True, copy=True)
 
     @api.onchange('user_id')
     def onchange_user_id(self):
@@ -121,6 +122,7 @@ class PurchaseRequisition(models.Model):
         if self.name == 'New' and self.type_id == self.env.ref('sipf_profile.type_epac'):
             seq_date = fields.Date.context_today(self)
             self.name = self.env['ir.sequence'].next_by_code('purchase.requisition.epac', sequence_date=seq_date)
+            self.approve_date = fields.Date.context_today(self)
         res = super(PurchaseRequisition, self).action_in_progress()
         return res
 
