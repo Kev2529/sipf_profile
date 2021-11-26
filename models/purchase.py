@@ -40,7 +40,9 @@ class PurchaseOrder(models.Model):
         help='Choisir le(s) passager(s)')
     departure_date = fields.Date(string='Date de départ')
     return_date = fields.Date(string='Date de retour')
-    expense_sheet_id = fields.Many2one('hr.expense.sheet', 'Expense sheet')
+    expense_sheet_ids = fields.Many2many(
+        comodel_name='hr.expense.sheet',
+        string='Expense sheet')
 
     # Freight's purchase order type specific fields
     partner_shipping_id = fields.Many2one(

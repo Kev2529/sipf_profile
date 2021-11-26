@@ -27,11 +27,11 @@
         </p>
         <p>
             Conformément aux instructions de l'ordre de déplacement
-            <span class="pl-3" t-field="o.expense_sheet_id.ref" />
+            <span class="pl-3" t-field="o.expense_sheet_ids.ref" />
         </p>
         <p>
             En date du
-            <span class="pl-3" t-field="o.expense_sheet_id.approve_date" t-options='{"format": "dd/MM/yyyy"}' />
+            <span class="pl-3" t-field="o.expense_sheet_ids.approve_date" t-options='{"format": "dd/MM/yyyy"}' />
         </p>
         <p>
             Invite

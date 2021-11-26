@@ -48,7 +48,7 @@
                 <field name="option_date" attrs="{'invisible': [('order_type', '!=', %(sipf_profile.po_type_requisition)d)]}" />
                 <field name="departure_date" attrs="{'invisible': [('order_type', '!=', %(sipf_profile.po_type_requisition)d)]}" />
                 <field name="return_date" attrs="{'invisible': [('order_type', '!=', %(sipf_profile.po_type_requisition)d)]}" />
-                <field name="expense_sheet_id" attrs="{'invisible': [('order_type', '!=', %(sipf_profile.po_type_requisition)d)]}" />
+                <field name="expense_sheet_ids" widget="many2many_tags" attrs="{'invisible': [('order_type', '!=', %(sipf_profile.po_type_requisition)d)]}" />
             </xpath>
 
             <!-- Specific fields for freight 's purchase order type -->
