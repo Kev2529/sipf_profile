@@ -35,6 +35,12 @@ class PurchaseReport(models.Model):
 class PurchaseOrderReport(models.AbstractModel):
     _name = 'report.sipf_profile.sipf_purchase_order'
 
+    def _get_highest_parent(self, partner):
+        if partner.parent_id:
+            return self._get_highest_parent(partner.parent_id)
+        else:
+            return partner
+
     def _get_report_values(self, docids, data=None):
         docs = self.env['purchase.order'].browse(docids)
         company_id = docs.company_id.parent_id and docs.company_id.parent_id or docs.company_id
@@ -42,10 +48,22 @@ class PurchaseOrderReport(models.AbstractModel):
             ('parent_id', '=', False),
             ('company_id', '=', company_id.id)
         ])
-        return {
+        data = {
             'docs': docs,
             'no_parent_partner': no_parent_partner[0]
         }
+
+        if (docs.order_type in (
+            self.env.ref('purchase_order_type.po_type_regular'),
+            self.env.ref('sipf_profile.po_type_requisition'),
+            self.env.ref('l10n_pf_purchase_freight.po_type_freight')
+        ) and docs.requisition_id.type_id in (
+                self.env.ref('sipf_profile.type_epac'),
+                self.env.ref('sipf_profile.type_marche')
+        )):
+            epac_initial_id = self._get_highest_parent(docs.requisition_id)
+            data['initial_code_visa'] = epac_initial_id.code_visa
+        return data
 
 
 class PurchaseRequisitionReport(models.AbstractModel):

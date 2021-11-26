@@ -462,6 +462,12 @@
                             <div>Pour le/la Ministre et par délégation</div>
                         </t>
                     </td>
+                    <td class="border-0 pl-5 pb-3" style="text-align:initial;">
+                        <t t-if="initial_code_visa">
+                            N° VISA
+                            <t t-esc="initial_code_visa" />
+                        </t>
+                    </td>
                 </tr>
             </tbody>
         </table>
