@@ -165,6 +165,11 @@ class PurchaseOrderLine(models.Model):
         index=True, ondelete="cascade",
         domain="[('deprecated', '=', False), ('company_id', '=', 'company_id'),('is_off_balance', '=', False)]",
         check_company=True)
+    pack_qty = fields.Float(
+        string='Pack Qty',
+        digits='Pack Unit of Measure',
+        required=True,
+        default=1.0)
 
     def _get_computed_account(self):
         self.ensure_one()
