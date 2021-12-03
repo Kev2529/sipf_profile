@@ -118,15 +118,6 @@
 
     <!-- FREIGHT TEMPLATE -->
     <template id="freight_report">
-        <p>
-            N° Client :
-            <span class="pl-3" t-field="o.partner_id.customer_supplier_ref" />
-            <t t-if="o.partner_id.ref">
-                (
-                <t t-esc="o.partner_id.ref" />
-                )
-            </t>
-        </p>
 
         <h1 class="text-center pb-4">
             <em t-if="o.state not in ['purchase', 'done']">DRAFT&#160;</em>
@@ -134,12 +125,12 @@
         </h1>
 
         <div class="row pb-3">
-            <div class="col-6">
+            <div class="col-3">
                 PAPEETE, le
                 <span class="pl-1" t-field="o.date_approve" t-options='{"widget": "date"}' />
             </div>
 
-            <div class="col-6">
+            <div class="col-9">
                 <t t-set="SSCHAP" t-value="" />
                 <t t-set="CT" t-value="" />
                 <t t-foreach="o.order_line[0].analytic_tag_ids" t-as="tag">
@@ -151,18 +142,12 @@
                     </t>
                 </t>
                 <div>
-                    <p>
                         S-CHAP :
                         <span class="pl-2 pr-5" t-esc="SSCHAP" />
-                    </p>
-                    <p>
                         Article :
                         <span class="pl-2 pr-5" t-field="o.order_line[0].account_budget_id.code" />
-                    </p>
-                    <p>
                         CT :
                         <span class="pl-2 pr-5" t-esc="CT" />
-                    </p>
                 </div>
             </div>
         </div>
@@ -270,26 +255,23 @@
 
     <!-- PURCHASE ORDER TEMPLATE -->
     <template id="regular_report">
-        <div class="oe_structure" />
-        <h1 class="text-center pb-4">
-            <em t-if="o.state not in ['purchase', 'done']">DRAFT&#160;</em>
-            N° BC :&#160;
-            <span class="pl-3" t-field="o.ref" />
-        </h1>
-
-        <div style="float:left;">
-            <strong>Délivré à :</strong>
-        </div>
-        <div class="pl-5" style="float:left;" t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["name", "email", "phone", "address"]}' />
-        <div class="pl-3" style="float:left;">
-            <strong>Code client :</strong>
-            <span t-esc="o.partner_id.customer_supplier_ref" />
-            <t t-if="o.partner_id.ref">
+        <t t-set="address">
+            <div style="float:left;">
+                <strong>Délivré à :</strong>
+            </div>
+            <div class="pl-5" style="float:left;" t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["name", "email", "phone", "address"]}' />
+            <p t-if="o.partner_id.ref">
                 (
                 <t t-esc="o.partner_id.ref" />
                 )
-            </t>
-        </div>
+            </p>
+        </t>
+
+        <h1 class="text-center pb-4">
+            <em t-if="o.state not in ['purchase', 'done']">DRAFT&#160;</em>
+                N° BC :&#160;
+            <span class="pl-3" t-field="o.ref" />
+        </h1>
 
         <div id="informations" class="row mt32 mb32 pt-3">
             <div t-if="o.date_order" class="col-3 bm-2">
@@ -412,32 +394,9 @@
         </table>
 
         <div id="total" class="row justify-content-end">
-            <div class="col-4">
-                <table class="table table-sm">
-                    <tr class="border-black">
-                        <td name="td_subtotal_label">
-                            <strong>HT</strong>
-                        </td>
-                        <td class="text-right">
-                            <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td name="td_taxes_label">Taxes</td>
-                        <td class="text-right">
-                            <span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
-                        </td>
-                    </tr>
-                    <tr class="border-black o_total">
-                        <td name="td_amount_total_label">
-                            <strong>TTC</strong>
-                        </td>
-                        <td class="text-right">
-                            <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
-                        </td>
-                    </tr>
-
-                    <t t-if="o.is_import">
+            <t t-if="o.is_import">
+                <div class="col-4">
+                    <table class="table table-sm">
                         <tr class="border-black">
                             <td name="td_taxes_label">TVA 5%</td>
                             <td class="text-right">
@@ -474,7 +433,34 @@
                                 <span t-field="o.total_engaged" t-options='{"widget": "monetary", "display_currency": o.company_currency_id}' />
                             </td>
                         </tr>
-                    </t>
+                    </table>
+                </div>
+            </t>
+            <div class="col-4">
+                <table class="table table-sm">
+                    <tr class="border-black">
+                        <td name="td_subtotal_label">
+                            <strong>HT</strong>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td name="td_taxes_label">Taxes</td>
+                        <td class="text-right">
+                            <span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                        </td>
+                    </tr>
+                    <tr class="border-black o_total">
+                        <td name="td_amount_total_label">
+                            <strong>TTC</strong>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                        </td>
+                    </tr>
+
                 </table>
             </div>
         </div>
@@ -493,7 +479,7 @@
     </template>
 
     <template id="signature">
-        <table class="table table-bordered table-sm o_main_table mt-5 p-3" style="page-break-inside: avoid">
+        <table class="table table-bordered table-sm o_main_table mt-1 p-1" style="page-break-inside: avoid">
             <tbody>
                 <tr>
                     <td class="border-0 font-weight-bold w-50 pl-3 pr-3" style="text-align:center;">
@@ -503,7 +489,7 @@
                         <u>DATE ET SIGNATURE DU CONTROLEUR DES DEPENSES ENGAGEES</u>
                     </td>
                 </tr>
-                <tr style="text-align:center;height:150px">
+                <tr style="text-align:center;height:200px">
                     <td class="border-0 pb-3">
                         <t t-if="o.total_engaged >= o.company_id.signature_delegation_threshold">
                             <div>
@@ -520,6 +506,8 @@
                                     </i>
                                 </small>
                             </div>
+                            <br/>
+                            <br/>
                             <br/>
                             <div t-esc="no_parent_partner.name" />
                         </t>
@@ -542,17 +530,21 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
-                    <style type="text/css">
-                    p {
-                        margin-bottom: 0.5rem!important;
-                    }
-                    .pl-10 {
-                        padding-left: 10rem!important;
-                    }
-                    .pb-7 {
-                        padding-bottom: 7rem!important;
-                    }
-                </style>
+                    <t t-if="o.partner_id.customer_supplier_ref">
+                        <t t-set="information_block">
+                            <p>
+                                N° Client :
+                                <span class="pl-3" t-field="o.partner_id.customer_supplier_ref" />
+                            </p>
+                        </t>
+                    </t>
+                    <t t-set="address">
+                        <div t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["name", "email", "phone", "address"]}' />
+                        <t t-if="o.partner_id.ref">
+                            Code tiers : 
+                            <t t-esc="o.partner_id.ref" />
+                        </t>
+                    </t>
                     <div class="page">
                         <t t-if="o.order_type.name == 'Requisition'">
                             <t t-call="sipf_profile.requisition_report" />

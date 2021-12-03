@@ -187,20 +187,22 @@
                             <tbody>
                                 <tr>
                                     <td class="border-0 font-weight-bold w-50 pl-3 pr-3" style="text-align:center;">
-                                        <u>DATE ET SIGNATURE RESPONSABLE DU SERVICE (2)</u>
+                                        <u>DATE ET SIGNATURE RESPONSABLE DU SERVICE</u>
                                     </td>
                                     <td class="border-0 font-weight-bold w-50 pl-3 pr-3" style="text-align:center;">
                                         <u>DATE ET SIGNATURE DU CONTROLEUR DES DEPENSES ENGAGEES</u>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="border-0" style="text-align:center;height:150px">
+                                    <td class="border-0" style="text-align:center;height:200px">
                                         <t t-if="o.amount_budget >= o.company_id.signature_delegation_threshold">
                                             <div>
                                                 Le/La
-                                                <t t-esc="no_parent_partner.job_title" />
+                                                <t t-esc="no_parent_partner.job_title"/>
+                                                <t t-if="no_parent_partner.in_charge_of">
+                                                    ,
+                                                </t>
                                             </div>
-                                            <div t-esc="no_parent_partner.name" />
                                             <div>
                                                 <small>
                                                     <i>
@@ -208,6 +210,10 @@
                                                     </i>
                                                 </small>
                                             </div>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <div t-esc="no_parent_partner.name" />
                                         </t>
                                         <t t-else="">
                                             <div>Pour le/la Ministre et par délégation</div>
@@ -221,7 +227,6 @@
                             <p style="font-size: 12px;">(1) En cas de convention,arrêté, bail, marché, l’engagement doit couvrir la totalité de leurs conséquences financières pour l’année.
                                 Pour les autres dépenses de fonctionnement faisant l’objet d’engagement comptable provisionnel, celui-ci ne peut
                                 dépasser les 9/12èmes des crédits ouverts pour l’année.</p>
-                            <p style="font-size: 12px;">(2) Fiche à adresser en double exemplaire au contrôle des dépenses engagées.</p>
                         </div>
                     </div>
                 </t>
