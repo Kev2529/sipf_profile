@@ -29,6 +29,22 @@ class PurchaseOrder(models.Model):
     arrival_place = fields.Char(
         string="Lieux visités",
         help="Saisir les lieux visités.")
+    company_currency_id = fields.Many2one(
+        string='Company Currency',
+        readonly=True,
+        related='company_id.currency_id')
+
+    # Regular's purchase order type specific fields
+    tva_5 = fields.Monetary(
+        string='TVA 5%', currency_field='company_currency_id')
+    tva_13 = fields.Monetary(
+        string='TVA 13%', currency_field='company_currency_id')
+    tva_16 = fields.Monetary(
+        string='TVA 16%', currency_field='company_currency_id')
+    total_engaged = fields.Monetary(
+        string='Total engagé', compute='_compute_total_engaged')
+    is_import = fields.Boolean(
+        string='Is tva import', default=False, store=True, compute='_compute_is_import')
 
     # Requisition's purchase order type specific fields
     option_date = fields.Date(
@@ -76,6 +92,23 @@ class PurchaseOrder(models.Model):
             if rec.account_budget_id:
                 for line in rec.order_line:
                     line.account_budget_id = rec.account_budget_id
+
+    @api.depends('amount_total', 'tva_5', 'tva_13', 'tva_16')
+    def _compute_total_engaged(self):
+        for order in self:
+            converted_amount = order.currency_id._convert(
+                order.amount_total, order.company_currency_id, order.company_id, order.date_approve or fields.Date.context_today(order))
+            order.total_engaged = converted_amount + \
+                order.tva_5 + order.tva_13 + order.tva_16
+
+    @api.depends('order_type', 'order_line.taxes_id')
+    def _compute_is_import(self):
+        for order in self:
+            if order.order_type == self.env.ref('purchase_order_type.po_type_regular'):
+                for line in order.order_line:
+                    if self.env.ref('l10n_pf_public.1_tva_import_0') in line.taxes_id:
+                        order.is_import = True
+                        break
 
     def button_confirm(self):
         for order in self:
