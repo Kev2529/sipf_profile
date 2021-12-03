@@ -24,6 +24,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'purchase_requisition',
         'account_analytic_parent',
         'hr_expense',
+        'hr',
     ],
 
     # always loaded
@@ -45,6 +46,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'views/purchase_views.xml',
         'views/res_company_views.xml',
         'views/res_partner_views.xml',
+        'views/hr_employee_views.xml',
         'views/purchase_requisition_views.xml',
         'views/account_move_views.xml',
         'views/nomenclature_views.xml',
