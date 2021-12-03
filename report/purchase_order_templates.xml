@@ -121,6 +121,11 @@
         <p>
             N° Client :
             <span class="pl-3" t-field="o.partner_id.customer_supplier_ref" />
+            <t t-if="o.partner_id.ref">
+                (
+                <t t-esc="o.partner_id.ref" />
+                )
+            </t>
         </p>
 
         <h1 class="text-center pb-4">
@@ -284,23 +289,16 @@
         </div>
         <div class="pl-5" style="float:left;" t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["name", "email", "phone", "address"]}' />
         <div class="pl-3" style="float:left;">
-            <strong>N° VAT :</strong>
-            <span t-esc="o.partner_id.vat" />
-        </div>
-        <div class="pl-3" style="float:left;">
-            <strong>Code fournisseur :</strong>
-            <span t-esc="o.partner_id.ref" />
+            <strong>Code client :</strong>
+            <span t-esc="o.partner_id.customer_supplier_ref" />
+            <t t-if="o.partner_id.ref">
+                (
+                <t t-esc="o.partner_id.ref" />
+                )
+            </t>
         </div>
 
         <div id="informations" class="row mt32 mb32 pt-3">
-            <div t-if="o.user_id" class="col-3 bm-2">
-                <strong>Purchase Representative:</strong>
-                <p t-field="o.user_id" class="m-0" />
-            </div>
-            <div t-if="o.partner_ref" class="col-3 bm-2">
-                <strong>Your Order Reference:</strong>
-                <p t-field="o.partner_ref" class="m-0" />
-            </div>
             <div t-if="o.date_order" class="col-3 bm-2">
                 <strong>Order Date:</strong>
                 <p class="m-0" t-field="o.date_order" t-options="{'widget': 'date', 'format': 'dd/MM/yyyy'}" />
@@ -451,6 +449,15 @@
 
         <t t-call="sipf_profile.signature" />
 
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td>
+                        <div t-esc="o.notes" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </template>
 
     <template id="signature">
