@@ -199,9 +199,6 @@
                 <th name="th_volume" class="text-center">
                     <strong>CUBAGE EN M3</strong>
                 </th>
-                <th name="th_price_unit" class="text-right">
-                    <strong>TARIF</strong>
-                </th>
                 <th name="th_amount" class="text-right">
                     <strong>MONTANT DU FRET TTC</strong>
                 </th>
@@ -211,7 +208,7 @@
             <t t-set="total_volume" t-value="0" />
             <tbody>
                 <t t-foreach="o.order_line" t-as="line">
-                    <t t-set="total_qty" t-value="total_qty + line.product_qty" />
+                    <t t-set="total_qty" t-value="total_qty + line.pack_qty" />
                     <t t-set="total_weight" t-value="total_weight + line.weight" />
                     <t t-set="total_volume" t-value="total_volume + line.volume" />
                     <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
@@ -228,9 +225,6 @@
                             </td>
                             <td class="text-center">
                                 <span t-field="line.volume" />
-                            </td>
-                            <td class="text-right">
-                                <span t-esc="int(line.price_unit)" />
                             </td>
                             <td class="text-right">
                                 <span t-esc="line.price_unit * line.product_qty" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
@@ -251,7 +245,6 @@
                     <td class="border-top text-center">
                         <span t-esc="int(total_volume)" />
                     </td>
-                    <td class="border-top" />
                     <td class="border-top text-right">
                         <span t-field="o.amount_total" />
                     </td>
