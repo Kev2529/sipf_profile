@@ -423,7 +423,7 @@
                 <table class="table table-sm">
                     <tr class="border-black">
                         <td name="td_subtotal_label">
-                            <strong>Subtotal</strong>
+                            <strong>HT</strong>
                         </td>
                         <td class="text-right">
                             <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
@@ -437,12 +437,51 @@
                     </tr>
                     <tr class="border-black o_total">
                         <td name="td_amount_total_label">
-                            <strong>Total</strong>
+                            <strong>TTC</strong>
                         </td>
                         <td class="text-right">
                             <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
                         </td>
                     </tr>
+
+                    <t t-if="o.is_import">
+                        <tr class="border-black">
+                            <td name="td_taxes_label">TVA 5%</td>
+                            <td class="text-right">
+                                <span t-field="o.tva_5" t-options='{"widget": "monetary", "display_currency": o.company_currency_id}' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td name="td_taxes_label">TVA 13%</td>
+                            <td class="text-right">
+                                <span t-field="o.tva_13" t-options='{"widget": "monetary", "display_currency": o.company_currency_id}' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td name="td_taxes_label">TVA 16%</td>
+                            <td class="text-right">
+                                <span t-field="o.tva_16" t-options='{"widget": "monetary", "display_currency": o.company_currency_id}' />
+                            </td>
+                        </tr>
+
+                        <tr class="border-black o_total">
+                            <td name="td_amount_total_label">
+                                <strong>Total TVA</strong>
+                            </td>
+                            <td class="text-right">
+                                <t t-set="total_tva" t-value="o.tva_5 + o.tva_13 + o.tva_16" />
+                                <span t-esc="total_tva" t-options='{"widget": "monetary", "display_currency": o.company_currency_id}' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td name="td_amount_total_label">
+                                <strong>Total engagé</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.total_engaged" t-options='{"widget": "monetary", "display_currency": o.company_currency_id}' />
+                            </td>
+                        </tr>
+                    </t>
                 </table>
             </div>
         </div>
@@ -473,7 +512,7 @@
                 </tr>
                 <tr style="text-align:center;height:150px">
                     <td class="border-0 pb-3">
-                        <t t-if="o.amount_total >= o.company_id.signature_delegation_threshold">
+                        <t t-if="o.total_engaged >= o.company_id.signature_delegation_threshold">
                             <div>
                                 Le/La
                                 <t t-esc="no_parent_partner.job_title" />
