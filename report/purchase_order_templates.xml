@@ -479,8 +479,6 @@
             </div>
         </div>
 
-        <t t-call="sipf_profile.signature" />
-
         <table class="table table-bordered">
             <tbody>
                 <tr>
@@ -490,6 +488,8 @@
                 </tr>
             </tbody>
         </table>
+        <t t-call="sipf_profile.signature" />
+
     </template>
 
     <template id="signature">
