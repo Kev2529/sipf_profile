@@ -470,7 +470,14 @@
                             <div>
                                 Le/La
                                 <t t-esc="no_parent_partner.job_title" />
-                                <t t-esc="no_parent_partner.name" />
+                            </div>
+                            <div t-esc="no_parent_partner.name" />
+                            <div>
+                                <small>
+                                    <i>
+                                        <t t-esc="no_parent_partner.in_charge_of" />
+                                    </i>
+                                </small>
                             </div>
                         </t>
                         <t t-else="">
