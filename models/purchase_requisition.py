@@ -28,6 +28,13 @@ class PurchaseRequisition(models.Model):
         help='This account will be propagated to all lines, if you need '
         'to use different accounts, define the account at line level.',
     )
+    invest = fields.Selection(
+        selection=[
+            ('invest', 'Investissement'),
+            ('fonction', 'Fonctionnement'),
+        ],
+        default='invest',
+        string='Investissement/Fonctionnement')
 
     @api.onchange('user_id')
     def onchange_user_id(self):

@@ -19,11 +19,19 @@ class PurchaseOrder(models.Model):
         check_company=True,
         tracking=True)
     requisition_id = fields.Many2one(required=True)
+    invest = fields.Selection(
+        selection=[
+            ('invest', 'Investissement'),
+            ('fonction', 'Fonctionnement'),
+        ],
+        default='invest',
+        string='Investissement/Fonctionnement')
 
     @api.onchange('requisition_id')
     def _onchange_requisition_id(self):
         super(PurchaseOrder, self)._onchange_requisition_id()
         self.department_id = self.requisition_id.department_id.id or False
+        self.invest = self.requisition_id.invest
 
     @api.depends("order_line.account_budget_id")
     def _compute_budget_account(self):
