@@ -33,6 +33,17 @@
             </field>
         </field>
     </record>
+    <record id="view_purchase_requisition_tree_sipf" model="ir.ui.view">
+        <field name="name">purchase.requisition.tree.sipf</field>
+        <field name="model">purchase.requisition</field>
+        <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_tree"/>
+        <field name="arch" type="xml">
+            <field name="ordering_date" position="after">
+                <field name="create_date" optional="show"/>
+            </field>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="purchase_requisition.action_purchase_requisition_to_so">
         <field name="context">{
             "default_requisition_id":active_id,
