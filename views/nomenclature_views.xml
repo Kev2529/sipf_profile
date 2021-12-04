@@ -76,6 +76,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <tree string="Nomenclature Europe">
+                <field name="nomenclature_sipf_id"/>
                 <field name="name"/>
                 <field name="description"/>
             </tree>
