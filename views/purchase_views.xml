@@ -69,6 +69,15 @@
             <xpath expr="//header" position="inside">
                 <button name="button_print_report" string="Imprimer le BdC à signer" type="object" class="oe_highlight" groups="base.group_user" attrs="{'invisible': ['|', ('state', 'not in', ('purchase', 'done')), ('order_type', '!=', %(l10n_pf_purchase_freight.po_type_freight)d), ('order_type', '!=', %(sipf_profile.po_type_requisition)d), ('order_type', '!=', %(purchase_order_type.po_type_regular)d)]}" />
             </xpath>
+            <!--Specific fields for import-->
+            <field name="amount_total" position="after">
+                <field name="is_import" invisible="1"/>
+                <field name="company_currency_id" invisible="1"/>
+                <field name="tva_5" widget="monetary" options="{'currency_field': 'company_currency_id'}" attrs="{'invisible': [('is_import', '==', False)]}"/>
+                <field name="tva_13" widget="monetary" options="{'currency_field': 'company_currency_id'}" attrs="{'invisible': [('is_import', '==', False)]}"/>
+                <field name="tva_16" widget="monetary" options="{'currency_field': 'company_currency_id'}" attrs="{'invisible': [('is_import', '==', False)]}"/>
+                <field name="total_engaged" widget="monetary" options="{'currency_field': 'company_currency_id'}" attrs="{'invisible': [('is_import', '==', False)]}"/>
+            </field>
         </field>
     </record>
     <!--Menu for Purchase Management-->
