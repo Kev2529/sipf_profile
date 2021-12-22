@@ -173,7 +173,7 @@
         </p>
         <div class="pb-5">
             <div style="float:left;">pour être délivré à :</div>
-            <div class="pl-5" style="float:left;" t-field="o.partner_shipping_id" t-options='{"widget": "contact", "fields": ["name", "email", "phone", "address"]}' />
+            <div class="pl-5" style="float:left;" t-field="o.partner_shipping_id" t-options='{"widget": "contact", "fields": ["name", "email", "phone", "mobile", "address"]}' />
         </div>
         <table class="table table-sm o_main_table mt-5 mb-5">
             <tr>
