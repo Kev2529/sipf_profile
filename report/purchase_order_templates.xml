@@ -19,11 +19,10 @@
         <h1 class="text-center pb-4">
             <em t-if="o.state not in ['purchase', 'done']">DRAFT&#160;</em>
             REQUISITION N°
-            <span class="pl-3" t-field="o.name" />
+            <span class="pl-3" t-field="o.ref" />
         </h1>
 
-        <p class="text-center">Le/La
-            <t t-esc="no_parent_partner.job_title" />
+        <p class="text-center">Pour le/la Ministre et par délégation le chef de service,
         </p>
         <p>
             Conformément aux instructions de l'ordre de déplacement
@@ -47,9 +46,8 @@
                 </t>
             </span>
         </p>
-        <p>à délivrer un titre de transport à</p>
+        <p>à délivrer un titre de transport à
         <t t-set="i" t-value="0" />
-        <p>
             <t t-foreach="o.passenger_ids" t-as="passenger">
                 <t t-set="i" t-value="i+1" />
                 <span class="pl-2">
@@ -65,16 +63,18 @@
         </p>
 
         <p>
-            partant le
-            <span class="pl-3" t-field="o.departure_date" />
-        </p>
-        <p>
-            retour le
-            <span class="pl-3" t-field="o.return_date" />
+            partant de
+            <span class="pl-1" t-field="o.departure_date" />
+             le
+            <span class="pl-1" t-field="o.departure_date" />
         </p>
         <p>
             pour se rendre à
-            <span class="pl-3" t-field="o.arrival_place" />
+            <span class="pl-1" t-field="o.arrival_place" />
+        </p>
+        <p>
+            retour le
+            <span class="pl-1" t-field="o.return_date" />
         </p>
         <div class="pl-10 pb-4">
             <p>La dépense est imputable au budget du territoire</p>
@@ -90,7 +90,7 @@
                     </t>
                 </t>
                 <span>
-                    Ss-Chapitre :
+                    Programme :
                     <span class="pl-2 pr-5" t-esc="SSCHAP" />
                 </span>
                 <span>
@@ -110,6 +110,10 @@
                 Arrêté la présente réquisition au nombre de
                 <span class="pl-3 pr-3" t-esc="i" />
                 passager(s)
+            </p>
+            <p class="text-right">
+                Fait à Papeete le 
+                <span  t-field="o.date_approve" t-options='{"widget": "date"}' />
             </p>
         </div>
 
