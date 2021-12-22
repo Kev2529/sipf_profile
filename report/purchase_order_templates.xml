@@ -478,10 +478,10 @@
             <tbody>
                 <tr>
                     <td class="border-0 font-weight-bold w-50 pl-3 pr-3" style="text-align:center;">
-                        <u>DATE ET SIGNATURE</u>
+                        <u>ORGANISME EMETTEUR</u>
                     </td>
                     <td class="border-0 font-weight-bold w-50 pl-3 pr-3" style="text-align:center;">
-                        <u>DATE ET SIGNATURE DU CONTROLEUR DES DEPENSES ENGAGEES</u>
+                        <u>SERVICE DU CONTROLE DE L'ENGAGEMENT</u>
                     </td>
                 </tr>
                 <tr style="text-align:center;height:200px">
@@ -507,7 +507,7 @@
                             <div t-esc="no_parent_partner.name" />
                         </t>
                         <t t-else="">
-                            <div>Pour le/la Ministre et par délégation</div>
+                            <div>Nom et prénom de l'agent habilité à engager la dépense</div>
                         </t>
                     </td>
                     <td class="border-0 pl-5 pb-3" style="text-align:initial;">
@@ -515,6 +515,7 @@
                             N° VISA
                             <t t-esc="initial_code_visa" />
                         </t>
+                        <div>Nom et prénom de l'agent habilité à engager la dépense</div>
                     </td>
                 </tr>
             </tbody>
