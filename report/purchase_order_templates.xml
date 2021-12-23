@@ -64,7 +64,7 @@
 
         <p>
             partant de
-            <span class="pl-1" t-field="o.departure_date" />
+            <span class="pl-1" t-field="o.departure_place" />
              le
             <span class="pl-1" t-field="o.departure_date" />
         </p>
