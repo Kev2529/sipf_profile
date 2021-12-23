@@ -55,7 +55,7 @@ class PurchaseRequisition(models.Model):
         store=True,
         compute='_compute_total_amount')
     article = fields.Char('Article budgétaire')
-    code_visa = fields.Char('Numéro de visa', copy=False)
+    code_visa = fields.Char('Numéro de visa', copy=False, help='Saisissez le numéro de Visa du CDE suivi de la date du Visa (ex : CDE/2938 du 12/11/2021)')
     approve_date = fields.Date('Date approve', readonly=True, copy=True)
 
     @api.onchange('user_id')
