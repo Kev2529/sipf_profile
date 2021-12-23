@@ -260,25 +260,26 @@
 
     <!-- PURCHASE ORDER TEMPLATE -->
     <template id="regular_report">
-        <h2 class="text-center pb-4">
+        <h3 class="text-center pb-4">
             <em t-if="o.state not in ['purchase', 'done']">DRAFT&#160;</em>
-                N° BC :&#160;
-            <span class="pl-3" t-field="o.ref" />
+                Bon de Commande :&#160;
+            <span t-field="o.ref" />
             du 
             <span t-field="o.date_order" t-options="{'widget': 'date', 'format': 'dd/MM/yyyy'}" />
-        </h2>
+        </h3>
 
-        <t t-set="address">
-            <div style="float:left;">
-                <strong>Délivré à :</strong>
+        <div class="row justify-content-end">
+            <div>
+                Délivré à : 
             </div>
-            <div class="pl-5" style="float:left;" t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["name", "email", "phone", "address"]}' />
+            <div class="col-3" t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["name", "email", "phone", "address"]}'>
+            </div>
             <p t-if="o.partner_id.ref">
                 (
                 <t t-esc="o.partner_id.ref" />
                 )
             </p>
-        </t>
+        </div>
 
         <table class="table table-sm o_main_table">
             <thead>
@@ -535,13 +536,6 @@
                                 N° Client :
                                 <span class="pl-3" t-field="o.partner_id.customer_supplier_ref" />
                             </p>
-                        </t>
-                    </t>
-                    <t t-set="address">
-                        <div t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["name", "email", "phone", "address"]}' />
-                        <t t-if="o.partner_id.ref">
-                            Code tiers : 
-                            <t t-esc="o.partner_id.ref" />
                         </t>
                     </t>
                     <div class="page">
