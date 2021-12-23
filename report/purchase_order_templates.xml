@@ -254,7 +254,15 @@
             à la somme de
             <span class="pl-3" t-field="o.amount_total" />
         </p>
-
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td>
+                        <div t-field="o.notes" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <t t-call="sipf_profile.signature" />
     </template>
 
