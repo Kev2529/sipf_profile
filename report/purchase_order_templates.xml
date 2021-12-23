@@ -470,7 +470,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <div t-esc="o.notes" />
+                        <div t-field="o.notes" />
                     </td>
                 </tr>
             </tbody>
