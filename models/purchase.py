@@ -144,19 +144,27 @@ class PurchaseOrder(models.Model):
         res = super(PurchaseOrder, self).button_approve()
         for order in self:
             if not order.ref:
+                seq_date = fields.Date.context_today(self)
                 # We have a special sequence for Freight
                 if order.order_type == self.env.ref('l10n_pf_purchase_freight.po_type_freight'):
-                    seq_date = fields.Date.context_today(self)
                     order.ref = (
                         self.env['ir.sequence']
                         .next_by_code('purchase.order.sipf.et', sequence_date=seq_date)
                     )
                     break
                 if order.order_type == self.env.ref('sipf_profile.po_type_requisition'):
-                    seq_date = fields.Date.context_today(self)
                     order.ref = (
                         self.env['ir.sequence']
                         .next_by_code('purchase.order.sipf.req', sequence_date=seq_date)
+                    )
+                    break
+                # We want a specific chrono for purchase orders in a MAPA or MAFOR
+                if order.requisition_id.type_id in (
+                        self.env.ref('sipf_profile.type_mapa'),
+                        self.env.ref('sipf_profile.type_mafor')):
+                    order.ref = (
+                        self.env['ir.sequence']
+                        .next_by_code('purchase.order.sipf.ma', sequence_date=seq_date)
                     )
                     break
                 # For other types, we have a sequence for each department
@@ -174,7 +182,6 @@ class PurchaseOrder(models.Model):
                         for ref, seq in ref_sequence_list.items():
                             # Set the sequence number regarding the department
                             if self.env.ref(ref).id == order.department_id.id:
-                                seq_date = fields.Date.context_today(self)
                                 order.ref = (
                                     self.env['ir.sequence']
                                     .next_by_code(seq, sequence_date=seq_date)
