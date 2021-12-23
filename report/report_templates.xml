@@ -3,33 +3,25 @@
 
     <template id="external_layout_background_gov" inherit_id="web.external_layout_background">
         <xpath expr="//div[hasclass('float-left', 'company_address')]/div[1]" position="before">
-            POLYNESIE FRANCAISE
-            <br/>
-            ORGANISME EMETTEUR :
+            POLYNESIE FRANCAISE/ORGANISME EMETTEUR :
         </xpath>
     </template>
 
     <template id="external_layout_boxed_gov" inherit_id="web.external_layout_boxed">
         <xpath expr="//span[hasclass('company_address')]" position="before">
-            POLYNESIE FRANCAISE
-            <br/>
-            ORGANISME EMETTEUR :
+            POLYNESIE FRANCAISE/ORGANISME EMETTEUR :
         </xpath>
     </template>
 
     <template id="external_layout_clean_gov" inherit_id="web.external_layout_clean">
         <xpath expr="//div[@name='company_address']/ul[hasclass('list-unstyled')]//li[1]" position="before">
-            POLYNESIE FRANCAISE
-            <br/>
-            ORGANISME EMETTEUR :
+            POLYNESIE FRANCAISE/ORGANISME EMETTEUR :
         </xpath>
     </template>
 
     <template id="external_layout_standard_gov" inherit_id="web.external_layout_standard">
         <xpath expr="//div[@name='company_address']/.." position="before">
-            POLYNESIE FRANCAISE
-            <br/>
-            ORGANISME EMETTEUR :
+            POLYNESIE FRANCAISE/ORGANISME EMETTEUR :
         </xpath>
     </template>
 
