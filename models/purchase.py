@@ -137,38 +137,30 @@ class PurchaseOrder(models.Model):
 
     def button_print_report(self):
         self.ensure_one()
-
-        return self.env.ref('sipf_profile.report_purchase_order').report_action(self)
-
-    def button_approve(self):
-        res = super(PurchaseOrder, self).button_approve()
-        for order in self:
-            if not order.ref:
-                seq_date = fields.Date.context_today(self)
-                # We have a special sequence for Freight
-                if order.order_type == self.env.ref('l10n_pf_purchase_freight.po_type_freight'):
-                    order.ref = (
-                        self.env['ir.sequence']
-                        .next_by_code('purchase.order.sipf.et', sequence_date=seq_date)
-                    )
-                    break
-                if order.order_type == self.env.ref('sipf_profile.po_type_requisition'):
-                    order.ref = (
-                        self.env['ir.sequence']
-                        .next_by_code('purchase.order.sipf.req', sequence_date=seq_date)
-                    )
-                    break
-                # We want a specific chrono for purchase orders in a MAPA or MAFOR
-                if order.requisition_id.type_id in (
-                        self.env.ref('sipf_profile.type_mapa'),
-                        self.env.ref('sipf_profile.type_mafor')):
-                    order.ref = (
-                        self.env['ir.sequence']
-                        .next_by_code('purchase.order.sipf.ma', sequence_date=seq_date)
-                    )
-                    break
-                # For other types, we have a sequence for each department
-                if order.department_id:
+        if not self.ref and self.state in ('purchase', 'done'):
+            seq_date = fields.Date.context_today(self)
+            # We have a special sequence for Freight
+            if self.order_type == self.env.ref('l10n_pf_purchase_freight.po_type_freight'):
+                self.ref = (
+                    self.env['ir.sequence']
+                    .next_by_code('purchase.order.sipf.et', sequence_date=seq_date)
+                )
+            if self.order_type == self.env.ref('sipf_profile.po_type_requisition'):
+                self.ref = (
+                    self.env['ir.sequence']
+                    .next_by_code('purchase.order.sipf.req', sequence_date=seq_date)
+                )
+            # We want a specific chrono for purchase orders in a MAPA or MAFOR
+            if self.requisition_id.type_id in (
+                    self.env.ref('sipf_profile.type_mapa'),
+                    self.env.ref('sipf_profile.type_mafor')):
+                self.ref = (
+                    self.env['ir.sequence']
+                    .next_by_code('purchase.order.sipf.ma', sequence_date=seq_date)
+                )
+            # For other types, we have a sequence for each department
+            if self.order_type == self.env.ref('purchase_order_type.po_type_regular'):
+                if self.department_id:
                     ref_sequence_list = {
                         'sipf_profile.sipf_baf': 'purchase.order.sipf.baf',
                         'sipf_profile.sipf_bssi': 'purchase.order.sipf.bssi',
@@ -181,17 +173,16 @@ class PurchaseOrder(models.Model):
                     if ref_sequence_list != {}:
                         for ref, seq in ref_sequence_list.items():
                             # Set the sequence number regarding the department
-                            if self.env.ref(ref).id == order.department_id.id:
-                                order.ref = (
+                            if self.env.ref(ref).id == self.department_id.id:
+                                self.ref = (
                                     self.env['ir.sequence']
                                     .next_by_code(seq, sequence_date=seq_date)
                                 )
-                                break
                 else:
                     raise UserError(
                         _('The department must be filled.'))
 
-        return res
+        return self.env.ref('sipf_profile.report_purchase_order').report_action(self)
 
 
 class PurchaseOrderLine(models.Model):
