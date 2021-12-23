@@ -5,9 +5,11 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
-            <field name="name" position="after">
-                <field name="ref" readonly="1"/>
-            </field>
+            <xpath expr="//div[hasclass('oe_title')]" position="inside">
+                <h2>
+                    <field name="ref" readonly="1"/>
+                </h2>
+            </xpath>
             <xpath expr="//header/button[@name='action_rfq_send'][3]" position="attributes">
                 <attribute name="groups">purchase.group_purchase_manager</attribute>
             </xpath>
@@ -78,6 +80,37 @@
                 <field name="tva_16" widget="monetary" options="{'currency_field': 'company_currency_id'}" attrs="{'invisible': [('is_import', '==', False)]}"/>
                 <field name="total_engaged" widget="monetary" options="{'currency_field': 'company_currency_id'}" attrs="{'invisible': [('is_import', '==', False)]}"/>
             </field>
+        </field>
+    </record>
+    <!-- Tree View -->
+    <record id="purchase_order_tree_sipf" model="ir.ui.view">
+        <field name="name">purchase.order.tree.sipf</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="ref"/>
+            </field>
+            <field name="user_id" position="after">
+                <field name="department_id" optional="hide"/>
+            </field>
+        </field>
+    </record>
+    <!-- Search View -->
+    <record id="purchase_order_search_sipf" model="ir.ui.view">
+        <field name="name">purchase.order.tree.sipf</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search"/>
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute name="filter_domain">['|', '|', '|', ('ref', 'ilike', self), ('name', 'ilike', self), ('partner_ref', 'ilike', self), ('partner_id', 'child_of', self)]</attribute>
+            </field>
+            <field name="user_id" position="after">
+                <field name="department_id"/>
+            </field>
+            <filter name="representative" position="after">
+                <filter string="Department" name="department" domain="[]" context="{'group_by': 'department_id'}"/>
+            </filter>
         </field>
     </record>
     <!--Menu for Purchase Management-->
