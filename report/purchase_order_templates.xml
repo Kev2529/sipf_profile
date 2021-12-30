@@ -506,7 +506,7 @@
                         <u>SERVICE DU CONTROLE DE L'ENGAGEMENT</u>
                     </td>
                 </tr>
-                <tr style="text-align:center;height:200px">
+                <tr style="text-align:center;height:250px">
                     <td class="border-0 pb-3">
                         <t t-if="o.total_engaged >= o.company_id.signature_delegation_threshold">
                             <div>
