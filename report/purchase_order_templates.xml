@@ -16,9 +16,11 @@
             <span class="pl-3" t-field="o.transport_ref" />
         </div>
 
-        <h4 class="text-center pb-4">
+        <h3 class="text-center pb-4">
             <em t-if="o.state not in ['purchase', 'done']">DRAFT&#160;</em>
             REQUISITION N°
+        </h3>
+        <h4 class="text-center pb-4">
             <span class="pl-3" t-field="o.ref" />
         </h4>
 
@@ -123,9 +125,11 @@
     <!-- FREIGHT TEMPLATE -->
     <template id="freight_report">
 
-        <h4 class="text-center pb-4">
+        <h3 class="text-center pb-4">
             <em t-if="o.state not in ['purchase', 'done']">DRAFT&#160;</em>
             ÉTAT DE TRANSPORT N°&#160;
+        </h3>
+        <h4 class="text-center pb-4">
             <span class="pl-3" t-field="o.ref" />
         </h4>
 
@@ -268,9 +272,11 @@
 
     <!-- PURCHASE ORDER TEMPLATE -->
     <template id="regular_report">
-        <h4 class="text-center pb-4">
+        <h3 class="text-center pb-4">
             <em t-if="o.state not in ['purchase', 'done']">DRAFT&#160;</em>
                 Bon de Commande :&#160;
+        </h3>
+        <h4 class="text-center pb-4">
             <span t-field="o.ref" />
             du 
             <span t-field="o.date_order" t-options="{'widget': 'date', 'format': 'dd/MM/yyyy'}" />
@@ -288,6 +294,8 @@
                 )
             </p>
         </div>
+        <br/>
+        <br/>
 
         <table class="table table-sm o_main_table">
             <thead>
@@ -307,16 +315,16 @@
                     <th name="th_ct" class="text-center">
                         <strong>CT</strong>
                     </th>
-                    <th name="th_description">
+                    <th name="th_description" class="text-center">
                         <strong>Désignation</strong>
                     </th>
-                    <th name="th_quantity">
+                    <th name="th_quantity" class="text-center">
                         <strong>Qté</strong>
                     </th>
-                    <th name="th_price_unit" class="text-right">
+                    <th name="th_price_unit" class="text-center">
                         <strong>PU</strong>
                     </th>
-                    <th name="th_amount" class="text-right">
+                    <th name="th_amount" class="text-center">
                         <strong>Montant</strong>
                     </th>
                 </tr>
@@ -363,7 +371,7 @@
                             <td class="text-center">
                                 <span t-esc="CT" />
                             </td>
-                            <td class="text-center">
+                            <td class="text-left">
                                 <span t-field="line.name" />
                             </td>
                             <td class="text-right">
