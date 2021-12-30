@@ -191,10 +191,16 @@
                                     <td class="border-0 pb-3">
                                         <t t-if="abs(o.amount_budget) >= o.company_id.signature_delegation_threshold">
                                             <div>
-                                                Le/La
+                                                <t t-if="no_parent_partner.gender == 'female'">
+                                                    La 
+                                                </t>
+                                                <t t-else="">
+                                                    Le 
+                                                </t>
                                                 <t t-esc="no_parent_partner.job_title"/>
                                                 <t t-if="no_parent_partner.in_charge_of">
                                                     ,
+                                                    <br/>
                                                     <small>
                                                         <i>
                                                             <t t-esc="no_parent_partner.in_charge_of" />
@@ -202,6 +208,8 @@
                                                     </small>
                                                 </t>
                                             </div>
+                                            <br/>
+                                            <br/>
                                             <br/>
                                             <br/>
                                             <br/>
