@@ -153,13 +153,17 @@ class PurchaseOrder(models.Model):
             # We want a specific chrono for purchase orders in a MAPA or MAFOR
             if self.requisition_id.type_id in (
                     self.env.ref('sipf_profile.type_mapa'),
-                    self.env.ref('sipf_profile.type_mafor')):
+                    self.env.ref('sipf_profile.type_mafor')
+            ) and self.order_type == self.env.ref('purchase_order_type.po_type_regular'):
                 self.ref = (
                     self.env['ir.sequence']
                     .next_by_code('purchase.order.sipf.ma', sequence_date=seq_date)
                 )
             # For other types, we have a sequence for each department
-            if self.order_type == self.env.ref('purchase_order_type.po_type_regular'):
+            if self.requisition_id.type_id not in (
+                    self.env.ref('sipf_profile.type_mapa'),
+                    self.env.ref('sipf_profile.type_mafor')
+            ) and self.order_type == self.env.ref('purchase_order_type.po_type_regular'):
                 if self.department_id:
                     ref_sequence_list = {
                         'sipf_profile.sipf_baf': 'purchase.order.sipf.baf',

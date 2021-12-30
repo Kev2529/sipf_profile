@@ -41,7 +41,7 @@
             <field name="quantity_copy">copy</field>
         </record>
         <record id="type_mafor" model="purchase.requisition.type">
-            <field name="name">MAPA formalisé</field>
+            <field name="name">Marché à BdC</field>
             <field name="sequence">5</field>
             <field name="quantity_copy">copy</field>
         </record>
