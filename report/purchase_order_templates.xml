@@ -24,7 +24,8 @@
             <span class="pl-3" t-field="o.ref" />
         </h4>
 
-        <p class="text-center">Pour le/la Ministre et par délégation le chef de service,
+        <p class="text-center">Pour le Ministre et par délégation,
+            <br/>le chef de service,
         </p>
         <p>
             Conformément aux instructions de l'ordre de déplacement
