@@ -45,7 +45,9 @@ class PurchaseRequisition(models.Model):
         context={'active_test': False})
     child_count = fields.Integer(
         compute='_compute_child_number', string='Number of childs')
-    amount_budget = fields.Monetary(string='Budget amount')
+    amount_budget = fields.Monetary(
+        string='Budget amount',
+        help='Saisissez le montant en négatif s\'il s\'agit d\'une réduction')
     total_budget = fields.Monetary(
         string='Total Budget',
         store=True,
