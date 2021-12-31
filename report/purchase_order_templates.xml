@@ -71,8 +71,6 @@
             <span class="pl-1" t-field="o.departure_place" />
              le
             <span class="pl-1" t-field="o.departure_date" />
-        </p>
-        <p>
             pour se rendre à
             <span class="pl-1" t-field="o.arrival_place" />
         </p>
@@ -80,9 +78,8 @@
             retour le
             <span class="pl-1" t-field="o.return_date" />
         </p>
-        <div class="pl-10 pb-4">
-            <p>La dépense est imputable au budget du territoire</p>
-            <p>
+        <div class="pl-10">
+            <p>La dépense est imputable au budget du territoire :
                 <t t-set="SSCHAP" t-value="" />
                 <t t-set="CT" t-value="" />
                 <t t-foreach="o.order_line[0].analytic_tag_ids" t-as="tag">
@@ -95,15 +92,15 @@
                 </t>
                 <span>
                     Programme :
-                    <span class="pl-2 pr-5" t-esc="SSCHAP" />
+                    <span class="pl-2" t-esc="SSCHAP" />
                 </span>
                 <span>
                     Article :
-                    <span class="pl-2 pr-5" t-field="o.order_line[0].account_budget_id.code" />
+                    <span class="pl-2" t-field="o.order_line[0].account_budget_id.code" />
                 </span>
                 <span>
                     CT :
-                    <span class="pl-2 pr-5" t-esc="CT" />
+                    <span class="pl-2" t-esc="CT" />
                 </span>
             </p>
             <p>
