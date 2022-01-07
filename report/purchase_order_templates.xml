@@ -83,10 +83,10 @@
                 <t t-set="SSCHAP" t-value="" />
                 <t t-set="CT" t-value="" />
                 <t t-foreach="o.order_line[0].analytic_tag_ids" t-as="tag">
-                    <t t-if="'SSCHAP' in tag.name">
+                    <t t-if="tag.analytic_distribution_ids.account_id.group_id.id == %(sipf_profile.analytic_group_sschap)d">
                         <t t-set="SSCHAP" t-value="tag.name" />
                     </t>
-                    <t t-if="'CT' in tag.name">
+                    <t t-if="tag.analytic_distribution_ids.account_id.group_id.id == %(sipf_profile.analytic_group_ct)d">
                         <t t-set="CT" t-value="tag.name" />
                     </t>
                 </t>
@@ -143,10 +143,10 @@
                 <t t-set="SSCHAP" t-value="" />
                 <t t-set="CT" t-value="" />
                 <t t-foreach="o.order_line[0].analytic_tag_ids" t-as="tag">
-                    <t t-if="'SSCHAP' in tag.name">
+                    <t t-if="tag.analytic_distribution_ids.account_id.group_id.id == %(sipf_profile.analytic_group_sschap)d">
                         <t t-set="SSCHAP" t-value="tag.name" />
                     </t>
-                    <t t-if="'CT' in tag.name">
+                    <t t-if="tag.analytic_distribution_ids.account_id.group_id.id == %(sipf_profile.analytic_group_ct)d">
                         <t t-set="CT" t-value="tag.name" />
                     </t>
                 </t>
@@ -339,17 +339,17 @@
                     <t t-set="AE" t-value="" />
                     <t t-set="SSCHAP" t-value="" />
                     <t t-set="CT" t-value="" />
-                    <t t-foreach="o.order_line[0].analytic_tag_ids" t-as="tag">
-                        <t t-if="'SSCHAP' not in tag.name and 'AP' in tag.name">
+                    <t t-foreach="line.analytic_tag_ids" t-as="tag">
+                        <t t-if="tag.analytic_distribution_ids.account_id.group_id.id == %(sipf_profile.analytic_group_ap)d">
                             <t t-set="AP" t-value="tag.name" />
                         </t>
-                        <t t-if="'AE' in tag.name">
+                        <t t-if="tag.analytic_distribution_ids.account_id.group_id.id == %(sipf_profile.analytic_group_ae)d">
                             <t t-set="AE" t-value="tag.name" />
                         </t>
-                        <t t-if="'SSCHAP' in tag.name">
+                        <t t-if="tag.analytic_distribution_ids.account_id.group_id.id == %(sipf_profile.analytic_group_sschap)d">
                             <t t-set="SSCHAP" t-value="tag.name" />
                         </t>
-                        <t t-if="'CT' in tag.name">
+                        <t t-if="tag.analytic_distribution_ids.account_id.group_id.id == %(sipf_profile.analytic_group_ct)d">
                             <t t-set="CT" t-value="tag.name" />
                         </t>
                     </t>
