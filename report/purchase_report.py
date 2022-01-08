@@ -78,14 +78,6 @@ class PurchaseRequisitionReport(models.AbstractModel):
     def _get_report_values(self, docids, data=None):
         # get the records selected for this rendering of the report
         docs = self.env['purchase.requisition'].browse(docids)
-
-        sschap = ct = ''
-        for tag in docs.analytic_tag_ids:
-            if tag.analytic_distribution_ids.account_id.group_id == self.env.ref('sipf_profile.analytic_group_ct'):
-                ct = tag.analytic_distribution_ids.account_id.code or tag.analytic_distribution_ids.name
-            elif tag.analytic_distribution_ids.account_id.group_id == self.env.ref('sipf_profile.analytic_group_sschap'):
-                sschap = tag.analytic_distribution_ids.account_id.code or tag.analytic_distribution_ids.name
-
         epac_initial_id = self._get_highest_parent(docs[0])
         epac_childs = self.env['purchase.requisition'].search([
             ('id', 'child_of', epac_initial_id.id),
@@ -104,8 +96,6 @@ class PurchaseRequisitionReport(models.AbstractModel):
         ])
         return {
             'docs': docs,
-            'SSCHAP': sschap or '',
-            'CT': ct or '',
             'epac_counter': counter,
             'initial_code_visa': epac_initial_id.code_visa,
             'no_parent_partner': no_parent_partner[0]

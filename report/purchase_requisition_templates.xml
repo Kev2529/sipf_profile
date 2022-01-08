@@ -56,20 +56,16 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <!-- <t t-foreach="o.line_ids[0].analytic_tag_ids" t-as="tag">
-                                        <t t-if="tag.analytic_distribution_ids.account_id.group_id.name == 'Centre de travail'">
-                                            <t t-set="CT" t-value="tag.analytic_distribution_ids.name" />
+                                    <t t-set="SSCHAP" t-value="" />
+                                    <t t-set="CT" t-value="" />
+                                    <t t-foreach="o.analytic_tag_ids" t-as="tag">
+                                        <t t-if="tag.analytic_distribution_ids.account_id.group_id.id == %(sipf_profile.analytic_group_sschap)d">
+                                            <t t-set="SSCHAP" t-value="tag.name" />
                                         </t>
-                                        <t t-if="tag.analytic_distribution_ids.account_id.group_id.name == 'AP'">
-                                            <t t-set="CT" t-value="tag.analytic_distribution_ids.name" />
-                                        </t>
-                                        <t t-if="'CT' in tag.name">
+                                        <t t-if="tag.analytic_distribution_ids.account_id.group_id.id == %(sipf_profile.analytic_group_ct)d">
                                             <t t-set="CT" t-value="tag.name" />
                                         </t>
-                                        <t t-else="'AP' in tag.name">
-                                            <t t-set="AP" t-value="tag.name" />
-                                        </t>
-                                    </t> -->
+                                    </t>
                                     <td class="border-0">
                                         <span class="pl-5">
                                             <u>CT : </u>
