@@ -297,13 +297,17 @@
         <br/>
         <br/>
 
+        <!-- Is there an AP or AE on at least one line? -->
+        <t t-set="display_ap" t-value="any(any(tag.analytic_distribution_ids.account_id.group_id.id == %(sipf_profile.analytic_group_ap)d for tag in l.analytic_tag_ids) for l in o.order_line)"/>
+        <t t-set="display_ae" t-value="any(any(tag.analytic_distribution_ids.account_id.group_id.id == %(sipf_profile.analytic_group_ae)d for tag in l.analytic_tag_ids) for l in o.order_line)"/>
+
         <table class="table table-sm o_main_table">
             <thead>
                 <tr>
-                    <th name="th_ap" class="text-center">
+                    <th name="th_ap" class="text-center" t-if="display_ap">
                         <strong>N°AP</strong>
                     </th>
-                    <th name="th_ae" class="text-center">
+                    <th name="th_ae" class="text-center" t-if="display_ae">
                         <strong>N°AE.</strong>
                     </th>
                     <th name="th_s_chap" class="text-center">
@@ -356,10 +360,10 @@
 
                     <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
                         <t t-if="not line.display_type">
-                            <td class="text-center">
+                            <td class="text-center" t-if="display_ap">
                                 <span t-esc="AP" />
                             </td>
-                            <td class="text-center">
+                            <td class="text-center" t-if="display_ae">
                                 <span t-esc="AE" />
                             </td>
                             <td class="text-center">
