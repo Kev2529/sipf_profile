@@ -90,7 +90,7 @@ class PurchaseRequisitionReport(models.AbstractModel):
                 break
         # get employee with no parent_id of company or parent company if exists
         company_id = docs.company_id.parent_id and docs.company_id.parent_id or docs.company_id
-        no_parent_partner = self.env['hr.employee'].search([
+        no_parent_partner = self.env['hr.employee'].sudo().search([
             ('parent_id', '=', False),
             ('company_id', '=', company_id.id)
         ])
