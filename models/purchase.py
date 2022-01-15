@@ -114,6 +114,7 @@ class PurchaseOrder(models.Model):
         for order in self:
             if order.order_type == self.env.ref('purchase_order_type.po_type_regular'):
                 for line in order.order_line:
+                    # TODO xmlid has to be multicompany
                     if self.env.ref('l10n_pf_public.1_tva_import_0') in line.taxes_id:
                         order.is_import = True
                         break

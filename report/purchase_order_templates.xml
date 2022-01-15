@@ -417,20 +417,30 @@
         <div id="total" class="row justify-content-end">
             <t t-if="o.is_import">
                 <div class="col-4">
-                    <table class="table table-sm">
+                    <table class="table table-sm" style="font-size:small;">
+                        <t t-set="total_tva" t-value="o.tva_5 + o.tva_13 + o.tva_16" />
+                        <t t-set="total_ht" t-value="o.total_engaged - total_tva" />
                         <tr class="border-black">
+                            <td name="td_amount_total_label">
+                                <strong>Total HT en <span t-field='o.company_currency_id'/></strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="total_ht" t-options='{"widget": "monetary", "display_currency": o.company_currency_id}' />
+                            </td>
+                        </tr>
+                        <tr t-if="o.tva_5">
                             <td name="td_taxes_label">TVA 5%</td>
                             <td class="text-right">
                                 <span t-field="o.tva_5" t-options='{"widget": "monetary", "display_currency": o.company_currency_id}' />
                             </td>
                         </tr>
-                        <tr>
+                        <tr t-if="o.tva_13">
                             <td name="td_taxes_label">TVA 13%</td>
                             <td class="text-right">
                                 <span t-field="o.tva_13" t-options='{"widget": "monetary", "display_currency": o.company_currency_id}' />
                             </td>
                         </tr>
-                        <tr>
+                        <tr t-if="o.tva_16">
                             <td name="td_taxes_label">TVA 16%</td>
                             <td class="text-right">
                                 <span t-field="o.tva_16" t-options='{"widget": "monetary", "display_currency": o.company_currency_id}' />
@@ -442,13 +452,12 @@
                                 <strong>Total TVA</strong>
                             </td>
                             <td class="text-right">
-                                <t t-set="total_tva" t-value="o.tva_5 + o.tva_13 + o.tva_16" />
                                 <span t-esc="total_tva" t-options='{"widget": "monetary", "display_currency": o.company_currency_id}' />
                             </td>
                         </tr>
                         <tr>
                             <td name="td_amount_total_label">
-                                <strong>Total engagé</strong>
+                                <strong>Total engagé en <span t-field='o.company_currency_id'/></strong>
                             </td>
                             <td class="text-right">
                                 <span t-field="o.total_engaged" t-options='{"widget": "monetary", "display_currency": o.company_currency_id}' />
@@ -456,6 +465,7 @@
                         </tr>
                     </table>
                 </div>
+                <div class="col-2"/>
             </t>
             <div class="col-4">
                 <table class="table table-sm">
@@ -467,7 +477,7 @@
                             <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
                         </td>
                     </tr>
-                    <tr>
+                    <tr t-if="o.amount_tax != 0">
                         <td name="td_taxes_label">TVA</td>
                         <td class="text-right">
                             <span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
@@ -486,7 +496,7 @@
             </div>
         </div>
 
-        <table class="table table-bordered">
+        <table class="table table-bordered" t-if="o.notes">
             <tbody>
                 <tr>
                     <td>
