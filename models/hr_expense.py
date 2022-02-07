@@ -6,6 +6,18 @@ class HrExpenseSheet(models.Model):
 
     ref = fields.Char('Reference', readonly=True, copy=True)
     approve_date = fields.Date('Date approve', readonly=True, copy=True)
+    expense_type = fields.Selection(
+        selection_add=[
+            ('mission', 'Mission'),
+            ('formation', 'Formation'),
+            ('meal_allowance', 'Panier'),
+            ('overseas', 'Étranger'),
+        ], ondelete={
+            'mission': 'cascade',
+            'formation': 'cascade',
+            'meal_allowance': 'cascade',
+            'overseas': 'cascade',
+        }, required=True, default='mission')
 
     def write(self, vals):
         if 'state' in vals and vals['state'] == 'approve':

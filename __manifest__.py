@@ -24,6 +24,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'purchase_requisition',
         'account_analytic_parent',
         'hr_expense',
+        'hr_expense_type',
         'hr',
     ],
 
