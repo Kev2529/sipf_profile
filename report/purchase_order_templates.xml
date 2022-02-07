@@ -25,9 +25,18 @@
             <span class="pl-1" t-field="o.ref" />
         </h4>
 
-        <p class="text-center">Pour le Ministre et par délégation,
-            <br/>le chef de service,
+        <t t-if="is_overseas">
+            <p class="text-center">
+                Le Président de la Polynésie française,
         </p>
+        </t>
+        <t t-else="">
+            <p class="text-center">
+                Pour le Ministre et par délégation,
+                <br />
+                le chef de service,
+            </p>
+        </t>
         <p>
             Conformément aux instructions de l'ordre de déplacement
             <t t-foreach="o.expense_sheet_ids" t-as="sheet">
@@ -103,10 +112,28 @@
                     <span class="pl-2" t-esc="CT" />
                 </span>
             </p>
-            <p>
-                MONTANT:
-                <span class="pl-3" t-field="o.amount_total" />
-            </p>
+            <table class="table table-sm o_main_table">
+                <tbody>
+                    <t t-if="o.expense_sheet_ids[0].expense_type != 'basket'">
+                        <t t-foreach="o.order_line" t-as="line">
+                            <tr>
+                                <td>
+                                    <span t-field="line.name" />
+                                </td>
+                                <td>
+                                    <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                    <tr>
+                        <td class="font-weight-bold">Montant TTC </td>
+                        <td class="font-weight-bold">
+                            <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <p>
                 Arrêté la présente réquisition au nombre de
                 <span class="pl-3 pr-3" t-esc="i" />

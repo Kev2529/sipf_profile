@@ -41,16 +41,29 @@ class PurchaseOrderReport(models.AbstractModel):
         else:
             return partner
 
+    def _get_highest_company(self, company):
+        if company.parent_id:
+            return self._get_highest_company(company.parent_id)
+        else:
+            return company
+
     def _get_report_values(self, docids, data=None):
         docs = self.env['purchase.order'].browse(docids)
-        company_id = docs.company_id.parent_id and docs.company_id.parent_id or docs.company_id
+        is_overseas = (docs.expense_sheet_ids and docs.expense_sheet_ids[0].expense_type == 'overseas' and
+                       docs.order_type == self.env.ref('sipf_profile.po_type_requisition')) or False
+        if is_overseas:
+            company_id = self._get_highest_company(docs.company_id)
+        else:
+            company_id = docs.company_id.parent_id and docs.company_id.parent_id or docs.company_id
         no_parent_partner = self.env['hr.employee'].sudo().search([
             ('parent_id', '=', False),
             ('company_id', '=', company_id.id)
         ])
         data = {
             'docs': docs,
-            'no_parent_partner': no_parent_partner[0]
+            'no_parent_partner': no_parent_partner[0],
+            'is_overseas': is_overseas,
+            'company': company_id
         }
 
         if (docs.order_type in (
