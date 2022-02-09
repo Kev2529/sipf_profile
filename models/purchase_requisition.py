@@ -43,8 +43,12 @@ class PurchaseRequisition(models.Model):
         'purchase.requisition', 'parent_id',
         string="Sub-requisitions",
         context={'active_test': False})
+    hr_expense_sheet_ids = fields.One2many(
+        'hr.expense.sheet', 'requisition_id', string="Hr Expense Sheet's list", copy=False)
     child_count = fields.Integer(
         compute='_compute_child_number', string='Number of childs')
+    hr_expense_sheet_count = fields.Integer(
+        compute='_compute_hr_expense_sheet_count', string='Count of hr expense sheet')
     amount_budget = fields.Monetary(
         string='Budget amount',
         help='Saisissez le montant en négatif s\'il s\'agit d\'une réduction')
@@ -71,6 +75,11 @@ class PurchaseRequisition(models.Model):
         for rec in self:
             rec.child_count = len(rec.child_ids)
 
+    @api.depends('hr_expense_sheet_ids')
+    def _compute_hr_expense_sheet_count(self):
+        for rec in self:
+            rec.hr_expense_sheet_count = len(rec.hr_expense_sheet_ids)
+
     @api.depends("line_ids.account_analytic_id")
     def _compute_analytic_account(self):
         for rec in self:
@@ -80,18 +89,23 @@ class PurchaseRequisition(models.Model):
             else:
                 rec.account_analytic_id = False
 
-    @api.depends('purchase_ids.state', 'purchase_ids.amount_total', 'child_ids.amount_total')
+    @api.depends('purchase_ids.state', 'purchase_ids.amount_total', 'child_ids.amount_total', 'hr_expense_sheet_ids.total_amount')
     def _compute_total_amount(self):
         for rec in self:
             amount_total = 0.0
             total_budget = rec.amount_budget
             for po in rec.purchase_ids.filtered(lambda purchase_order: purchase_order.state not in ['draft', 'cancel']):
                 amount_total += po.amount_total
-
+            # Child's amount
             if rec.child_ids:
                 for child in rec.child_ids:
                     amount_total += child.amount_total
                     total_budget += child.amount_budget
+            # Hr expense sheet's amount
+            if rec.child_ids:
+                for expense_sheet in rec.hr_expense_sheet_ids:
+                    amount_total += expense_sheet.total_amount
+
             rec.amount_total = amount_total
             rec.total_budget = total_budget
 

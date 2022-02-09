@@ -12,6 +12,18 @@
             }
         </field>
     </record>
+    <record model="ir.actions.act_window" id="action_purchase_requisition_hr_expense_sheet_list">
+        <field name="name">Hr expense sheet's list</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.expense.sheet</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('requisition_id','=',active_id)]</field>
+        <field name="context">{
+            "default_requisition_id":active_id,
+            "default_user_id": False,
+            }
+        </field>
+    </record>
     <record model="ir.ui.view" id="view_purchase_requisition_tree_sipf">
         <field name="name">purchase.requisition.tree.sipf</field>
         <field name="model">purchase.requisition</field>
@@ -36,6 +48,9 @@
             <xpath expr="//button[@name='%(purchase_requisition.action_purchase_requisition_list)d']" position="before">
                 <button name="%(action_purchase_requisition_child_list)d" type="action" class="oe_stat_button" icon="fa-list-alt" attrs="{'invisible': [('state', '=', 'draft')]}">
                     <field name="child_count" widget="statinfo" string="Child's list" />
+                </button>
+                <button name="%(action_purchase_requisition_hr_expense_sheet_list)d" type="action" class="oe_stat_button" icon="fa-list-alt" attrs="{'invisible': [('state', '=', 'draft')]}">
+                    <field name="hr_expense_sheet_count" widget="statinfo" string="Hr expense sheets" />
                 </button>
             </xpath>
             <field name="vendor_id" position="after">
