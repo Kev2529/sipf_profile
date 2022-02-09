@@ -41,6 +41,7 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'data/hr_department_data.xml',
         'report/report_templates.xml',
         'data/hr_expense_data.xml',
+        'data/product_data.xml',
         'report/report_templates.xml',
         'report/purchase_reports.xml',
         'views/product_views.xml',
@@ -49,12 +50,14 @@ Ce module permet de personnaliser Odoo pour le SIPF
         'views/res_company_views.xml',
         'views/res_partner_views.xml',
         'views/hr_employee_views.xml',
+        "views/hr_expense_views.xml",
         'views/purchase_requisition_views.xml',
         'views/account_move_views.xml',
         'views/nomenclature_views.xml',
         'views/analytic_account_views.xml',
         'report/purchase_order_templates.xml',
         'report/purchase_requisition_templates.xml',
+        'wizard/complete_expense_od_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

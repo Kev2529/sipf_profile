@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!--Mission -->
+        <record id="mission_lunch_od" model="product.product">
+            <field name="name">Mission - repas midi</field>
+            <field name="purchase_ok" eval="False" />
+            <field name="sale_ok" eval="False" />
+            <field name="can_be_expensed" eval="True" />
+            <field name="type">service</field>
+            <field name="list_price">3045.0</field>
+            <field name="standard_price">3045.0</field>
+            <field name="taxes_id" eval="[]" />
+        </record>
+        <record id="mission_dinner_od" model="product.product">
+            <field name="name">Mission - repas soir</field>
+            <field name="purchase_ok" eval="False" />
+            <field name="sale_ok" eval="False" />
+            <field name="can_be_expensed" eval="True" />
+            <field name="type">service</field>
+            <field name="list_price">3045.0</field>
+            <field name="standard_price">3045.0</field>
+            <field name="taxes_id" eval="[]" />
+        </record>
+        <record id="mission_night_od" model="product.product">
+            <field name="name">Mission - découcher</field>
+            <field name="purchase_ok" eval="False" />
+            <field name="sale_ok" eval="False" />
+            <field name="can_be_expensed" eval="True" />
+            <field name="type">service</field>
+            <field name="list_price">15225.0</field>
+            <field name="standard_price">15225.0</field>
+            <field name="taxes_id" eval="[]" />
+        </record>
+        <!-- Basket -->
+        <record id="meal_allowance_lunch_od" model="product.product">
+            <field name="name">Panier repas déjeuner</field>
+            <field name="purchase_ok" eval="False" />
+            <field name="sale_ok" eval="False" />
+            <field name="can_be_expensed" eval="True" />
+            <field name="type">service</field>
+            <field name="list_price">651.0</field>
+            <field name="standard_price">651.0</field>
+            <field name="taxes_id" eval="[]" />
+        </record>
+        <record id="meal_allowance_dinner_od" model="product.product">
+            <field name="name">Panier repas dîner</field>
+            <field name="purchase_ok" eval="False" />
+            <field name="sale_ok" eval="False" />
+            <field name="can_be_expensed" eval="True" />
+            <field name="type">service</field>
+            <field name="list_price">651.0</field>
+            <field name="standard_price">651.0</field>
+            <field name="taxes_id" eval="[]" />
+        </record>
+        <!-- Overseas compensation -->
+        <record id="overseas_compensation_od" model="product.product">
+            <field name="name">Indemnités à l'étranger</field>
+            <field name="purchase_ok" eval="False" />
+            <field name="sale_ok" eval="False" />
+            <field name="can_be_expensed" eval="True" />
+            <field name="type">service</field>
+            <field name="taxes_id" eval="[]" />
+            <field name="list_price">30000.0</field>
+            <field name="standard_price">30000.0</field>
+        </record>
+        <!-- Formation compensation -->
+        <record id="formation_compensation_od" model="product.product">
+            <field name="name">Indemnités de formation</field>
+            <field name="purchase_ok" eval="False" />
+            <field name="sale_ok" eval="False" />
+            <field name="can_be_expensed" eval="True" />
+            <field name="type">service</field>
+            <field name="taxes_id" eval="[]" />
+            <field name="list_price">20000.0</field>
+            <field name="standard_price">20000.0</field>
+        </record>
+        <!-- Purchase Order requisition specific articles -->
+        <record id="transportation_ticket_po" model="product.product">
+            <field name="name">Billet de transport PO</field>
+            <field name="purchase_ok" eval="True" />
+            <field name="sale_ok" eval="False" />
+            <field name="can_be_expensed" eval="True" />
+            <field name="type">service</field>
+            <field name="taxes_id" eval="[]" />
+        </record>
+        <record id="fuel_surcharge_po" model="product.product">
+            <field name="name">Surcharge carburant</field>
+            <field name="purchase_ok" eval="True" />
+            <field name="sale_ok" eval="False" />
+            <field name="can_be_expensed" eval="True" />
+            <field name="type">service</field>
+            <field name="taxes_id" eval="[]" />
+        </record>
+        <record id="service_charge_po" model="product.product">
+            <field name="name">Frais de service</field>
+            <field name="purchase_ok" eval="True" />
+            <field name="sale_ok" eval="False" />
+            <field name="can_be_expensed" eval="True" />
+            <field name="type">service</field>
+            <field name="taxes_id" eval="[]" />
+        </record>
+        <record id="taxes_po" model="product.product">
+            <field name="name">Taxes</field>
+            <field name="purchase_ok" eval="True" />
+            <field name="sale_ok" eval="False" />
+            <field name="can_be_expensed" eval="True" />
+            <field name="type">service</field>
+            <field name="taxes_id" eval="[]" />
+        </record>
+    </data>
+</odoo>

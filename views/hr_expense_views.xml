@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_expense_sheet_form_sipf" model="ir.ui.view">
+        <field name="name">hr.expense.sheet.form.inherit</field>
+        <field name="model">hr.expense.sheet</field>
+        <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='employee_details']" position="inside">
+                <field name="reglementary_text" />
+                <field name="bank_account_id" />
+                <field name="mission_objective" />
+                <field name="requisition_id" />
+            </xpath>
+            <xpath expr="//group[@name='employee_details']" position="after">
+                <group>
+                    <field name="destination" />
+                    <field name="transportation" />
+                    <field name="departure_depart_date" />
+                    <field name="arrival_depart_date" attrs="{'invisible': [('expense_type', '=', 'meal_allowance')]}" />
+                    <field name="departure_return_date" attrs="{'invisible': [('expense_type', '=', 'meal_allowance')]}" />
+                    <field name="arrival_return_date" />
+                    <field name="duration" />
+                    <field name="transport_cost" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                    <field name="transport_analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'no_create': True}" />
+                    <groupby>
+                    <button string="Ajouter automatiquement les compensations"
+                        name="action_add_expense_line_wizard"
+                        class="btn-primary mt-3"
+                        type="object"
+                        attrs="{'invisible': [('expense_line_ids', '!=', [])]}" />
+                    <button
+                        string="Mettre à jour automatiquement les compensations"
+                        name="action_add_expense_line_wizard"
+                        class="btn-primary mt-3"
+                        type="object"
+                        attrs="{'invisible': [('expense_line_ids', '=', [])]}"
+                        confirm="Attention, cette action supprimera les lignes de notes de frais actuelles pour les remplacer. Souhaitez-vous continuer ?" />
+                    </groupby>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
