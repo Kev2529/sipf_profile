@@ -48,6 +48,8 @@ class HrExpenseSheet(models.Model):
         'account.analytic.tag',
         string='Imputations budgétaires du transport',
     )
+    transport_account_budget = fields.Char(
+        'Article budgétaire du transport')
 
     def write(self, vals):
         if 'state' in vals and vals['state'] == 'approve':
