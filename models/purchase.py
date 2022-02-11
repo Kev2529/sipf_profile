@@ -86,6 +86,31 @@ class PurchaseOrder(models.Model):
             raise ValidationError(
                 _('The departure date must be earlier than the return date.'))
 
+    @api.onchange('expense_sheet_ids')
+    def onchange_check_expense_sheets(self):
+        res = {}
+        is_expense_sheets_error = self._check_expense_sheet()
+        if is_expense_sheets_error:
+            res['warning'] = {
+                'title': _('Attention !'),
+                'message': _('Les notes de frais sélectionnées présentent des différences :\n - ' + is_expense_sheets_error)
+            }
+        return res
+
+    def _check_expense_sheet(self):
+        expense_type = None
+        for sheet in self.expense_sheet_ids:
+            if expense_type is None:
+                expense_type = sheet.expense_type
+                account_budget = sheet.transport_account_budget
+            elif sheet.expense_type == 'meal_allowance':
+                return 'Mauvais type de dépense : panier'
+            elif sheet.expense_type != expense_type:
+                return 'Types de dépense différents'
+            elif sheet.transport_account_budget != account_budget.id:
+                return 'Articles différents '
+        return False
+
     @api.depends("order_line.account_budget_id")
     def _compute_budget_account(self):
         for rec in self:
@@ -128,6 +153,12 @@ class PurchaseOrder(models.Model):
                 raise ValidationError(_('Nomenclature is required on every line'))
             if order.state not in ['draft', 'sent']:
                 continue
+            # check homogeneity of expense type ids for po requisition
+            if order.order_type == self.env.ref('sipf_profile.po_type_requisition'):
+                is_expense_sheets_error = order._check_expense_sheet()
+                if is_expense_sheets_error:
+                    raise ValidationError(
+                        _('Attention, des différences importantes sont présentes entre vos notes de frais :\n - ' + is_expense_sheets_error))
             order._add_supplier_to_product()
             # We always want double validation
             order.write({'state': 'to approve'})
