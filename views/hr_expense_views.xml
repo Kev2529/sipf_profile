@@ -12,7 +12,7 @@
                 <field name="requisition_id" />
             </xpath>
             <xpath expr="//group[@name='employee_details']" position="after">
-                <group>
+                <group attrs="{'invisible': [('expense_type', 'not in',  ('mission', 'formation', 'meal_allowance', 'overseas'))]}">
                     <field name="destination" />
                     <field name="transportation" />
                     <field name="departure_depart_date" />

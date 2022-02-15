@@ -20,26 +20,26 @@ class HrExpenseSheet(models.Model):
             'formation': 'cascade',
             'meal_allowance': 'cascade',
             'overseas': 'cascade',
-        }, required=True, default='mission')
-    reglementary_text = fields.Char('Reglementary Text', required=True)
+        })
+    reglementary_text = fields.Char('Reglementary Text')
     bank_account_id = fields.Many2one(related='employee_id.bank_account_id')
-    destination = fields.Char('Destination', required=True)
-    mission_objective = fields.Char('Mission Objective', required=True)
+    destination = fields.Char('Destination')
+    mission_objective = fields.Char('Mission Objective')
     requisition_id = fields.Many2one(
-        'purchase.requisition', string="Demande d'achat", required=True, copy=False)
+        'purchase.requisition', string="Demande d'achat", copy=False)
     transportation = fields.Selection([
         ('aerial', 'Aerien'),
         ('maritime', 'Maritime'),
         ('land', 'Terrestre')
-    ], required=True, default='aerial')
+    ], default='aerial')
     departure_depart_date = fields.Datetime(
-        string='Départ du voyage de départ', required=True)
+        string='Départ du voyage de départ')
     arrival_depart_date = fields.Datetime(
-        string='Arrivée du voyage de départ', required=True)
+        string='Arrivée du voyage de départ')
     departure_return_date = fields.Datetime(
-        string="Départ du voyage de retour", required=True)
+        string="Départ du voyage de retour")
     arrival_return_date = fields.Datetime(
-        string="Arrivée du voyage de retour", required=True)
+        string="Arrivée du voyage de retour")
     duration = fields.Integer(
         compute='_compute_duration', string='Duration')
     transport_cost = fields.Monetary(
@@ -86,6 +86,7 @@ class HrExpenseSheet(models.Model):
             'sipf_profile.complete_expense_od_view')
         ctx = dict(self._context,
                    default_hr_expense_sheet_id=self.id,
+                   default_compensation_analytic_tag_ids=self.transport_analytic_tag_ids.ids,
                    default_company_id=self.env.company.id,
                    active_ids=self.ids)
         ctx.pop('active_id', None)

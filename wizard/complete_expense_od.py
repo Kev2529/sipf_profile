@@ -27,7 +27,7 @@ class CompleteExpenseOd(models.TransientModel):
         default=lambda self: self._default_hr_expense_sheet_id(),
     )
     compensation_analytic_tag_ids = fields.Many2many(
-        'account.analytic.tag', relation='compensation_analytic_tag_rel',
+        'account.analytic.tag',
         string='Imputations budgétaires des indemnités',
     )
 
@@ -43,14 +43,14 @@ class CompleteExpenseOd(models.TransientModel):
         expense_type = self.hr_expense_sheet_id.expense_type
 
         # Create one or multiple lines depending of the expense type
+        qty = self.hr_expense_sheet_id.duration
         if expense_type == 'overseas':
             self._create_expense(
-                self.env.ref('sipf_profile.overseas_compensation_od'), 1)
+                self.env.ref('sipf_profile.overseas_compensation_od'), qty)
         elif expense_type == 'formation':
             self._create_expense(
-                self.env.ref('sipf_profile.formation_compensation_od'), 1)
+                self.env.ref('sipf_profile.formation_compensation_od'), qty)
         elif expense_type == 'meal_allowance' or 'mission':
-            qty = self.hr_expense_sheet_id.duration
             timezone = pytz.timezone(self._context.get('tz')
                                      or self.env.user.tz or 'UTC')
             lunch_not_included = dinner_not_included = 0
