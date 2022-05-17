@@ -99,6 +99,7 @@ class PurchaseOrder(models.Model):
 
     def _check_expense_sheet(self):
         expense_type = None
+        # __import__('pdb').set_trace()
         for sheet in self.expense_sheet_ids:
             if expense_type is None:
                 expense_type = sheet.expense_type
@@ -107,7 +108,7 @@ class PurchaseOrder(models.Model):
                 return 'Mauvais type de dépense : panier'
             elif sheet.expense_type != expense_type:
                 return 'Types de dépense différents'
-            elif sheet.transport_account_budget != account_budget.id:
+            elif sheet.transport_account_budget != account_budget:
                 return 'Articles différents '
         return False
 
